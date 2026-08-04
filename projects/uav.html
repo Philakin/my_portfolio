@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UAV Communications — Philips Akinbami</title>
+  <meta name="description" content="Senior design with Raytheon Technologies: telemetry and ROS optimization improving UAV communication performance by 20%." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { paper:"#F5F7F8", panel:"#FFFFFF", ink:"#0D1B2A", muted:"#566573", line:"#E1E6EA", signal:"#0AA5A9", signalink:"#0A6E70", amber:"#E8833A" },
+      fontFamily: { display:["Sora","sans-serif"], sans:["IBM Plex Sans","sans-serif"], mono:["IBM Plex Mono","monospace"] },
+    }}};
+  </script>
+  <style>
+    body { background:#F5F7F8; color:#0D1B2A; }
+    ::selection { background:#0AA5A9; color:#fff; }
+    .eyebrow { letter-spacing:.18em; }
+    a:focus-visible { outline:2px solid #0AA5A9; outline-offset:3px; border-radius:2px; }
+    .prose-body p { margin-top:.9rem; line-height:1.75; }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+  <header class="sticky top-0 z-40 bg-paper/85 backdrop-blur border-b border-line">
+    <div class="mx-auto max-w-3xl px-5 h-14 flex items-center justify-between">
+      <a href="../index.html" class="inline-flex items-center gap-2 font-mono text-[12.5px] text-muted hover:text-signalink transition-colors">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        back
+      </a>
+      <a href="../assets/resume.pdf" class="font-mono text-[12.5px] text-ink border border-line rounded px-2.5 py-1 hover:border-signal hover:text-signalink transition-colors">résumé</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-3xl px-5 py-12 md:py-16">
+    <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-5">
+      <span>SENIOR DESIGN · RAYTHEON TECHNOLOGIES</span><span>2023–2024</span>
+    </div>
+    <h1 class="font-display font-bold text-[2.1rem] md:text-[2.6rem] leading-[1.05] tracking-tight">UAV Communications</h1>
+    <p class="mt-3 text-muted text-[1.02rem]">Tuning telemetry and ROS to make an unmanned aircraft's link faster and more reliable.</p>
+
+    <div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px]">
+      <span class="rounded border border-line px-2 py-0.5 text-muted">ROS</span>
+      <span class="rounded border border-line px-2 py-0.5 text-muted">Telemetry</span>
+      <span class="rounded border border-line px-2 py-0.5 text-muted">RF / Comms</span>
+      <span class="rounded border border-line px-2 py-0.5 text-muted">Aerospace</span>
+    </div>
+
+    <div class="mt-8 grid grid-cols-3 rounded-xl border border-line bg-panel divide-x divide-line font-mono">
+      <div class="p-4 text-center"><div class="text-[1.35rem] text-ink">+20%</div><div class="text-[11px] text-muted mt-1">comms uplift</div></div>
+      <div class="p-4 text-center"><div class="text-[1.35rem] text-ink">10+</div><div class="text-[11px] text-muted mt-1">flight tests</div></div>
+      <div class="p-4 text-center"><div class="text-[1.35rem] text-ink">4+</div><div class="text-[11px] text-muted mt-1">Raytheon engineers</div></div>
+    </div>
+
+    <div class="prose-body mt-10 text-[1rem] text-muted">
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight">Overview</h2>
+      <p>A senior capstone with Raytheon Technologies focused on the communication and telemetry subsystems of an
+        unmanned aerial vehicle. The team's job was to make the link measurably better while meeting aerospace
+        standards.</p>
+
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">What I did</h2>
+      <p>I improved UAV communication performance by 20% by optimizing the telemetry pipeline and the ROS system
+        driving it. Working biweekly with a group of Raytheon engineers, I helped integrate the telemetry systems
+        so they met the program's aerospace requirements.</p>
+      <p>We validated the communication and telemetry subsystems across more than ten autonomous flight tests,
+        analyzing real-time performance, sensor accuracy, and overall reliability under actual flight conditions.</p>
+
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Artifacts</h2>
+      <p class="!mt-2">Add a telemetry plot, a test-flight photo, or a subsystem diagram here when you have them.</p>
+    </div>
+
+    <div class="mt-4 grid sm:grid-cols-2 gap-4">
+      <div class="rounded-xl border border-dashed border-line bg-panel aspect-[4/3] flex items-center justify-center font-mono text-[11.5px] text-muted text-center px-4">
+        telemetry performance plot<br><span class="text-[10.5px]">add screenshot →</span>
+      </div>
+      <div class="rounded-xl border border-dashed border-line bg-panel aspect-[4/3] flex items-center justify-center font-mono text-[11.5px] text-muted text-center px-4">
+        flight-test photo<br><span class="text-[10.5px]">add image →</span>
+      </div>
+    </div>
+
+    <div class="mt-12 flex items-center justify-between border-t border-line pt-6">
+      <a href="../index.html#projects" class="font-mono text-[12.5px] text-signalink">all projects</a>
+      <a href="mawi.html" class="font-mono text-[12.5px] text-muted hover:text-signalink transition-colors">Traffic Analysis →</a>
+    </div>
+  </main>
+
+  <footer class="border-t border-line">
+    <div class="mx-auto max-w-3xl px-5 py-6 font-mono text-[12px] text-muted">© <span id="yr"></span> Philips Akinbami</div>
+  </footer>
+  <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
