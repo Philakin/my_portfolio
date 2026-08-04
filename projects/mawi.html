@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MAWI Network Traffic Analytics Platform — Philips Akinbami</title>
-  <meta name="description" content="An end-to-end network traffic analytics platform built with PyShark, Pandas, and Streamlit using real MAWI backbone traffic." />
+  <meta name="description" content="An end-to-end network traffic analytics platform built with PyShark, Pandas, and Streamlit Version 2, processing 904,720 MAWI backbone packets and identifying 6,403 TCP retransmissions." />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,6 +56,32 @@
     .code-card { background:#102A43; color:#D9EAF2; border-radius:14px; overflow:auto; }
     .signal-line { background:linear-gradient(90deg,#0AA5A9,#64D8D8); }
     .step-number { box-shadow:0 0 0 5px #E8F7F7; }
+    .project-button {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.45rem;
+      border-radius:10px;
+      padding:.7rem 1rem;
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.75rem;
+      font-weight:500;
+      transition:.2s ease;
+    }
+    .project-button-primary {
+      background:#0AA5A9;
+      color:#fff;
+      border:1px solid #0AA5A9;
+    }
+    .project-button-primary:hover { background:#0A6E70; border-color:#0A6E70; }
+    .project-button-secondary {
+      background:#fff;
+      color:#0D1B2A;
+      border:1px solid #E1E6EA;
+    }
+    .project-button-secondary:hover { color:#0A6E70; border-color:#0AA5A9; }
+    .status-complete { color:#0A6E70; background:#E8F7F7; border-color:#BDE9E9; }
+    .status-progress { color:#9A4D12; background:#FFF2E8; border-color:#F4C6A4; }
     .chart-placeholder {
       background:
         linear-gradient(180deg, rgba(10,165,169,.04), rgba(10,165,169,.01)),
@@ -112,6 +138,18 @@
             <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">TCP/IP</span>
             <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Git / GitHub</span>
           </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <!-- Replace this URL with the exact MAWI repository URL if the repository name differs. -->
+            <a href="https://github.com/Philakin" target="_blank" rel="noopener noreferrer"
+               class="project-button project-button-primary">
+              View GitHub
+            </a>
+            <!-- Replace #dashboard with the deployed Streamlit URL after deployment. -->
+            <a href="#dashboard" class="project-button project-button-secondary">
+              View Dashboard Details
+            </a>
+          </div>
         </div>
 
         <div class="rounded-2xl border border-line bg-paper p-5">
@@ -151,6 +189,7 @@
           <p class="mb-3 font-mono text-[10px] uppercase tracking-[.15em] text-muted">On this page</p>
           <nav class="space-y-1 text-sm">
             <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#overview">Overview</a>
+            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#status">Current status</a>
             <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#architecture">Architecture</a>
             <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#pipeline">Pipeline</a>
             <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#features">Features</a>
@@ -189,8 +228,42 @@
           </div>
         </section>
 
+
+        <section id="status" class="section-card scroll-mt-24">
+          <p class="eyebrow font-mono text-[10px] text-signalink">02 — CURRENT STATUS</p>
+          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What is complete and what comes next</h2>
+          <p class="mt-3 leading-7 text-muted">
+            The one-million-packet prototype is now fully connected from packet parsing through Streamlit Version 2. Future components are clearly separated from the capabilities already implemented.
+          </p>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-2">
+            <div class="rounded-xl border border-line bg-paper p-5">
+              <span class="status-complete inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">Completed</span>
+              <ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
+                <li>One-million-packet MAWI development sample</li>
+                <li>904,720 successfully parsed packet records</li>
+                <li>6,403 TCP retransmissions identified</li>
+                <li>17 features across 32 windows at 100 ms resolution</li>
+                <li>Streamlit Version 2 with tabs, filters, KPI cards, charts, data tables, and CSV export</li>
+                <li>Clean GitHub repository structure and reproducible scripts</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl border border-line bg-paper p-5">
+              <span class="status-progress inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">In progress / planned</span>
+              <ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
+                <li>Public deployment of the Streamlit dashboard</li>
+                <li>Top talkers, port analytics, flow-level features, and non-IP packet handling</li>
+                <li>Batch processing for larger portions of the original 19 GB capture</li>
+                <li>REST API, React frontend, and Docker deployment</li>
+                <li>Machine-learning experiments after a larger observation dataset is available</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <section id="architecture" class="section-card scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">02 — SYSTEM ARCHITECTURE</p>
+          <p class="eyebrow font-mono text-[10px] text-signalink">03 — SYSTEM ARCHITECTURE</p>
           <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">A modular analytics pipeline</h2>
           <p class="mt-3 max-w-3xl leading-7 text-muted">
             Each stage is separated so the parser, feature engineering logic, and dashboard can be tested and improved independently.
@@ -231,7 +304,7 @@
 
         <section id="pipeline" class="scroll-mt-24">
           <div class="mb-5">
-            <p class="eyebrow font-mono text-[10px] text-signalink">03 — PROCESSING PIPELINE</p>
+            <p class="eyebrow font-mono text-[10px] text-signalink">04 — PROCESSING PIPELINE</p>
             <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">How the first 1M-packet sample was processed</h2>
           </div>
 
@@ -338,58 +411,117 @@
 
         <section id="dashboard" class="scroll-mt-24">
           <div class="mb-5">
-            <p class="eyebrow font-mono text-[10px] text-signalink">05 — INTERACTIVE DASHBOARD</p>
-            <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Turning the feature table into a usable interface</h2>
+            <p class="eyebrow font-mono text-[10px] text-signalink">06 — INTERACTIVE DASHBOARD</p>
+            <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Streamlit Version 2: a more complete analytics application</h2>
             <p class="mt-3 leading-7 text-muted">
-              The Streamlit dashboard provides summary KPIs and time-series views so network behavior can be explored without manually filtering the original PCAP.
+              Version 2 reorganizes the dashboard into focused views rather than one long sequence of charts. A shared time-range filter updates the dashboard, while protocol controls and feature-group selectors make the interface more useful for exploratory analysis.
             </p>
           </div>
 
-          <!-- Replace these placeholders with real dashboard screenshots -->
           <div class="grid gap-4 md:grid-cols-2">
             <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
+              <!-- Replace the placeholder below with:
+              <img src="../assets/mawi-dashboard-v2-overview.png"
+                   alt="MAWI Streamlit Version 2 overview with filters and KPI cards"
+                   class="aspect-[16/10] w-full object-cover" /> -->
               <div class="chart-placeholder flex aspect-[16/10] items-center justify-center p-6 text-center">
                 <div>
-                  <p class="font-display font-semibold">Dashboard overview screenshot</p>
-                  <p class="mt-2 font-mono text-[11px] text-muted">Replace with: assets/mawi-dashboard-overview.png</p>
+                  <p class="font-display font-semibold">Version 2 overview screenshot</p>
+                  <p class="mt-2 font-mono text-[11px] text-muted">assets/mawi-dashboard-v2-overview.png</p>
                 </div>
               </div>
               <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
-                KPI cards for packet count, retransmissions, analysis windows, and average packet size.
+                Wide-layout header, filtered KPI cards, analysis controls, and tab-based navigation.
               </figcaption>
             </figure>
 
             <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
+              <!-- Replace the placeholder below with:
+              <img src="../assets/mawi-dashboard-v2-reliability.png"
+                   alt="MAWI reliability view showing TCP retransmission count and rate"
+                   class="aspect-[16/10] w-full object-cover" /> -->
               <div class="chart-placeholder flex aspect-[16/10] items-center justify-center p-6 text-center">
                 <div>
-                  <p class="font-display font-semibold">Traffic timeline screenshot</p>
-                  <p class="mt-2 font-mono text-[11px] text-muted">Replace with: assets/mawi-traffic-timeline.png</p>
+                  <p class="font-display font-semibold">Reliability analysis screenshot</p>
+                  <p class="mt-2 font-mono text-[11px] text-muted">assets/mawi-dashboard-v2-reliability.png</p>
                 </div>
               </div>
               <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
-                Packet count and TCP retransmission behavior across 100 ms windows.
+                Retransmission count, normalized rate, peak reliability metrics, and highest-retransmission windows.
+              </figcaption>
+            </figure>
+
+            <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
+              <!-- Replace the placeholder below with:
+              <img src="../assets/mawi-dashboard-v2-traffic.png"
+                   alt="MAWI traffic analysis showing protocol share and endpoint diversity"
+                   class="aspect-[16/10] w-full object-cover" /> -->
+              <div class="chart-placeholder flex aspect-[16/10] items-center justify-center p-6 text-center">
+                <div>
+                  <p class="font-display font-semibold">Traffic analysis screenshot</p>
+                  <p class="mt-2 font-mono text-[11px] text-muted">assets/mawi-dashboard-v2-traffic.png</p>
+                </div>
+              </div>
+              <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
+                Protocol composition, packet-length behavior, and unique source and destination IP activity.
+              </figcaption>
+            </figure>
+
+            <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
+              <!-- Replace the placeholder below with:
+              <img src="../assets/mawi-dashboard-v2-data.png"
+                   alt="MAWI engineered feature table with feature-group selection"
+                   class="aspect-[16/10] w-full object-cover" /> -->
+              <div class="chart-placeholder flex aspect-[16/10] items-center justify-center p-6 text-center">
+                <div>
+                  <p class="font-display font-semibold">Feature dataset screenshot</p>
+                  <p class="mt-2 font-mono text-[11px] text-muted">assets/mawi-dashboard-v2-data.png</p>
+                </div>
+              </div>
+              <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
+                Filterable engineered features, data-quality notes, and downloadable CSV output.
               </figcaption>
             </figure>
           </div>
 
-          <div class="mt-4 grid gap-4 sm:grid-cols-3">
+          <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div class="rounded-xl border border-line bg-panel p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Trend</p>
-              <p class="mt-2 text-sm font-semibold">Packet count over time</p>
+              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Overview</p>
+              <p class="mt-2 text-sm font-semibold">Traffic and reliability KPIs</p>
+            </div>
+            <div class="rounded-xl border border-line bg-panel p-4">
+              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Traffic</p>
+              <p class="mt-2 text-sm font-semibold">Protocols, endpoints, and sizes</p>
             </div>
             <div class="rounded-xl border border-line bg-panel p-4">
               <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Reliability</p>
-              <p class="mt-2 text-sm font-semibold">Retransmissions and rate</p>
+              <p class="mt-2 text-sm font-semibold">Retransmission count and rate</p>
             </div>
             <div class="rounded-xl border border-line bg-panel p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Composition</p>
-              <p class="mt-2 text-sm font-semibold">Protocol distribution</p>
+              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Feature data</p>
+              <p class="mt-2 text-sm font-semibold">Grouped columns and CSV export</p>
             </div>
+          </div>
+
+          <div class="mt-5 rounded-2xl border border-line bg-panel p-5">
+            <h3 class="font-display font-semibold">Version 2 capabilities</h3>
+            <ul class="mt-3 grid gap-x-8 gap-y-2 text-sm leading-6 text-muted md:grid-cols-2">
+              <li>Global 100 ms time-window range filter</li>
+              <li>Protocol selection controls</li>
+              <li>Five dynamically updated KPI cards</li>
+              <li>Overview, traffic, reliability, and feature-data tabs</li>
+              <li>Packet volume and packet-size trend views</li>
+              <li>Endpoint-diversity and protocol-share views</li>
+              <li>Peak retransmission and traffic metrics</li>
+              <li>Ranked high-retransmission window table</li>
+              <li>Feature-group selection</li>
+              <li>Filtered CSV download</li>
+            </ul>
           </div>
         </section>
 
         <section id="results" class="section-card scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">06 — CURRENT RESULTS</p>
+          <p class="eyebrow font-mono text-[10px] text-signalink">07 — CURRENT RESULTS</p>
           <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Validated outputs from the prototype</h2>
 
           <div class="mt-6 overflow-x-auto rounded-xl border border-line">
@@ -408,7 +540,8 @@
                 <tr><td class="px-4 py-3 text-sm">TCP retransmissions</td><td class="px-4 py-3 font-mono text-sm">6,403</td><td class="px-4 py-3 text-sm text-muted">Reliability monitoring</td></tr>
                 <tr><td class="px-4 py-3 text-sm">Aggregation interval</td><td class="px-4 py-3 font-mono text-sm">100 ms</td><td class="px-4 py-3 text-sm text-muted">Higher temporal resolution</td></tr>
                 <tr><td class="px-4 py-3 text-sm">Feature windows</td><td class="px-4 py-3 font-mono text-sm">32</td><td class="px-4 py-3 text-sm text-muted">Dashboard observations</td></tr>
-                <tr><td class="px-4 py-3 text-sm">Engineered features</td><td class="px-4 py-3 font-mono text-sm">17</td><td class="px-4 py-3 text-sm text-muted">Future ML-ready dataset</td></tr>
+                <tr><td class="px-4 py-3 text-sm">Engineered features</td><td class="px-4 py-3 font-mono text-sm">17</td><td class="px-4 py-3 text-sm text-muted">Structured analytics and future ML input</td></tr>
+                <tr><td class="px-4 py-3 text-sm">Dashboard release</td><td class="px-4 py-3 font-mono text-sm">Streamlit V2</td><td class="px-4 py-3 text-sm text-muted">Tabs, filters, charts, tables, and export</td></tr>
               </tbody>
             </table>
           </div>
@@ -416,7 +549,7 @@
 
         <section id="challenges" class="scroll-mt-24">
           <div class="mb-5">
-            <p class="eyebrow font-mono text-[10px] text-signalink">07 — ENGINEERING CHALLENGES</p>
+            <p class="eyebrow font-mono text-[10px] text-signalink">08 — ENGINEERING CHALLENGES</p>
             <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What required the most reasoning</h2>
           </div>
 
@@ -441,15 +574,15 @@
         </section>
 
         <section id="roadmap" class="section-card scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">08 — ROADMAP</p>
+          <p class="eyebrow font-mono text-[10px] text-signalink">09 — ROADMAP</p>
           <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Planned evolution of the platform</h2>
 
           <div class="mt-6 space-y-5">
             <div class="relative pl-8">
               <span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-signal"></span>
               <div class="absolute left-[5px] top-5 h-[calc(100%+10px)] w-px bg-line"></div>
-              <h3 class="font-display font-semibold">Dashboard refinement</h3>
-              <p class="mt-1 text-sm leading-6 text-muted">Responsive chart layout, filters, top talkers, ports, drill-downs, and a public deployment.</p>
+              <h3 class="font-display font-semibold">Deploy and extend Streamlit Version 2</h3>
+              <p class="mt-1 text-sm leading-6 text-muted">Publish the current dashboard, add top talkers and port analytics, and introduce deeper drill-down views.</p>
             </div>
             <div class="relative pl-8">
               <span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-signal"></span>
@@ -475,7 +608,7 @@
           <p class="eyebrow font-mono text-[10px] text-signal">FINAL THOUGHTS</p>
           <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">More than a packet-analysis script</h2>
           <p class="mt-4 max-w-3xl leading-7 text-slate-300">
-            The current implementation is a validated prototype that connects packet parsing, network reliability analysis, feature engineering, and application development. It demonstrates how raw network data can be transformed into a reusable analytics product rather than stopping at manual inspection.
+            The current implementation is a validated prototype that connects packet parsing, network reliability analysis, feature engineering, and a multi-view Streamlit Version 2 application. It demonstrates how raw network data can be transformed into a reusable analytics product rather than stopping at manual inspection.
           </p>
         </section>
 
