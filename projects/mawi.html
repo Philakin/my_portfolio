@@ -41,7 +41,7 @@
       <span>PERSONAL PROJECT</span><span>ongoing</span>
     </div>
     <h1 class="font-display font-bold text-[2.1rem] md:text-[2.6rem] leading-[1.05] tracking-tight">
-      Network Traffic Measurement &amp; Analysis
+      Network Traffic Analysis Platform
     </h1>
     <p class="mt-3 text-muted text-[1.02rem]">Measuring reliability and finding bottlenecks in real backbone traffic from the MAWI dataset.</p>
 
@@ -61,21 +61,546 @@
 
     <div class="prose-body mt-10 text-[1rem] text-muted">
       <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight">Overview</h2>
-      <p>Using packet captures from the MAWI backbone dataset, I parsed and analyzed over a million packets to
-        evaluate network reliability, locate performance bottlenecks, and understand real traffic behavior. The
-        goal was to move past summary stats and reason about what individual flows were actually doing.</p>
+      <p>Modern computer networks generate millions of packets within seconds, making it nearly impossible to understand network behavior by manually inspecting packet captures. While tools such as Wireshark are excellent for analyzing individual packets, they become difficult to use when working with large backbone captures containing millions of records. Network engineers instead rely on aggregated metrics, traffic statistics, and visualization platforms to identify congestion, protocol behavior, and performance issues. </p>
 
-      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">What I did</h2>
-      <p>I extracted protocol, retransmission, and packet-level features from the captures and assembled them into
-        structured datasets built for analysis and debugging. Isolating retransmissions surfaced more than 6,000
-        TCP retransmission events, a direct signal of loss and congestion worth investigating.</p>
-      <p>On top of those datasets I built Power BI dashboards that make traffic trends, abnormal behavior, and
-        reliability issues visible at a glance rather than buried in raw captures.</p>
+    </p>This project aims to bridge that gap by building a complete network traffic analytics platform that transforms raw packet capture (PCAP) files into meaningful network-performance insights. Using the public MAWI backbone traffic dataset, the platform parses packet-level information, engineers network traffic features, and presents the results through an interactive analytics dashboard. </p>
 
-      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Artifacts</h2>
-      <p class="!mt-2">Drop screenshots and captures here as you produce them: dashboard views, a retransmission
-        timeline, and a sample Wireshark filter.</p>
+Rather than focusing on individual packets, the project analyzes traffic behavior over time, allowing trends such as retransmissions, protocol distribution, traffic bursts, and IP activity to be explored more efficiently.</p>
+
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Project Motivation</h2>
+      <p>As part of my graduate studies in Telecommunications, I wanted to build a project that reflected the type of work performed by network engineers and network automation engineers in production environments.</p>
+
+  </p>Many networking projects focus on configuring routers or simulating small lab topologies. While valuable, they rarely demonstrate how engineers analyze real network traffic collected from operational backbone networks.</p
+
+</p>The MAWI Working Group Traffic Archive provides anonymized backbone traffic collected from production Internet infrastructure, making it an excellent dataset for studying realistic traffic behavior at scale.
+
+</p>The goal of this project was not simply to inspect packets, but to build an end-to-end analytics pipeline capable of:
+
+<ul>
+    <li>Packet count</li>
+    <li>Average packet size</li>
+    <li>TCP retransmission rate</li>
+    <li>Protocol distribution</li>
+</ul></p>
+      
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Objectives</h2>
+      <p>The project was designed to answer questions such as:
+<ul>
+    <li>How much traffic passes through the network over time?</li>
+    <li>Which protocols dominate the capture?</li>
+    <li>How frequently do TCP retransmissions occur?</li>
+    <li>How does packet size vary throughout the capture?</li>
+    <li>How many unique hosts communicate during each observation window?</li>
+    <li>Can raw packet captures be transformed into datasets suitable for future machine learning applications?</li>
+    <li>How much traffic passes through the network over time?</li>
+    <li>Which protocols dominate the capture?</li>
+    <li>How frequently do TCP retransmissions occur?</li>
+    <li>How does packet size vary throughout the capture?</li>
+    <li>How many unique hosts communicate during each observation window?</li>
+    <li>Can raw packet captures be transformed into datasets suitable for future machine learning applications?</li>
+</ul></p>
+      
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Dataset</h2>
+      <p>The project uses packet captures from the MAWI Working Group Traffic Archive, one of the most widely used public datasets for networking research.
+
+Because the original capture exceeds 19 GB, development began using a representative sample containing approximately 1 million packets. This allowed the analytics pipeline to be developed and validated while maintaining realistic backbone traffic characteristics.
+
+Current processing results include:
+<table>
+    <thead>
+        <tr>
+            <th>Metric</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Original Capture</td>
+            <td>19 GB</td>
+        </tr>
+
+        <tr>
+            <td>Sample Size</td>
+            <td>Approximately 1,000,000 packets</td>
+        </tr>
+
+        <tr>
+            <td>Successfully Parsed</td>
+            <td>904,720 packets</td>
+        </tr>
+
+        <tr>
+            <td>TCP Retransmissions Identified</td>
+            <td>6,403</td>
+        </tr>
+
+        <tr>
+            <td>Time Windows</td>
+            <td>32 windows at 100 ms intervals</td>
+        </tr>
+
+        <tr>
+            <td>Engineered Features</td>
+            <td>17</td>
+        </tr>
+    </tbody>
+</table></p>
+
+
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">System Architecture</h2>
+
+    <p>
+        The project follows a modular processing pipeline that separates packet
+        parsing, feature engineering, data storage, and visualization. This makes
+        the system easier to test, maintain, and expand as new capabilities are added.
+    </p>
+
+    <div class="architecture-flow">
+        <div class="architecture-step">MAWI PCAP</div>
+        <div class="architecture-arrow">↓</div>
+        <div class="architecture-step">Packet Parsing with PyShark</div>
+        <div class="architecture-arrow">↓</div>
+        <div class="architecture-step">Structured Packet Dataset</div>
+        <div class="architecture-arrow">↓</div>
+        <div class="architecture-step">Feature Engineering with Pandas</div>
+        <div class="architecture-arrow">↓</div>
+        <div class="architecture-step">Network Analytics Dataset</div>
+        <div class="architecture-arrow">↓</div>
+        <div class="architecture-step">Interactive Streamlit Dashboard</div>
+        <div class="architecture-arrow">↓</div>
+        <div class="architecture-step">Future ML and Full-Stack Expansion</div>
     </div>
+</section>
+
+
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Packet Parsing</h2>
+
+    <p>
+        The first stage transforms the raw packet capture into structured data that
+        can be analyzed programmatically. PyShark is used as the Python interface to
+        TShark, allowing the capture to be processed packet by packet.
+    </p>
+
+    <p>
+        For each supported packet, the parser extracts:
+    </p>
+
+    <ul>
+        <li>Packet number</li>
+        <li>Capture timestamp</li>
+        <li>Source IP address</li>
+        <li>Destination IP address</li>
+        <li>Transport protocol</li>
+        <li>Packet length</li>
+    </ul>
+
+    <p>
+        The first development sample contained approximately one million packets.
+        From this sample, 904,720 packets containing the required IP and transport
+        information were successfully written into a structured packet-level dataset.
+    </p>
+
+    <p>
+        Packets without the expected IP-layer fields were excluded from the first
+        parser. These remaining packets will be revisited in a separate non-IP
+        protocol analysis stage so that protocols such as ARP, LLDP, STP, and other
+        Ethernet-level traffic can be handled appropriately.
+    </p>
+</section>
+
+
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Feature Engineering</h2>
+
+    <p>
+        Inspecting nearly one million packets individually is not practical for
+        understanding overall network behavior. To make the traffic easier to
+        analyze, the packet-level dataset is aggregated into fixed 100-millisecond
+        time windows.
+    </p>
+
+    <p>
+        Each time window becomes one observation containing numerical features that
+        describe network activity during that interval.
+    </p>
+
+    <h3>Current Engineered Features</h3>
+
+    <ul>
+        <li>Packet count</li>
+        <li>Average packet length</li>
+        <li>Total bytes transferred</li>
+        <li>Minimum packet length</li>
+        <li>Maximum packet length</li>
+        <li>Packet-length standard deviation</li>
+        <li>Unique source IP count</li>
+        <li>Unique destination IP count</li>
+        <li>TCP packet count</li>
+        <li>UDP packet count</li>
+        <li>ICMP packet count</li>
+        <li>Other protocol count</li>
+        <li>TCP retransmission count</li>
+        <li>TCP retransmission rate</li>
+        <li>TCP traffic percentage</li>
+        <li>UDP traffic percentage</li>
+        <li>Time-window timestamp</li>
+    </ul>
+
+    <p>
+        The current one-million-packet sample spans approximately 3.12 seconds.
+        Using 100-millisecond intervals produces 32 time windows and 17 engineered
+        features. This resolution provides more detail than one-second aggregation
+        while remaining compact enough for dashboard analysis.
+    </p>
+</section>
+
+
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">TCP Retransmission Analysis</h2>
+
+    <p>
+        TCP retransmissions occur when a sender does not receive the expected
+        acknowledgment and sends a packet again. Frequent retransmissions can be
+        associated with packet loss, congestion, unstable paths, or other network
+        reliability problems.
+    </p>
+
+    <p>
+        Retransmissions are identified using Wireshark and TShark analysis logic
+        through the following field:
+    </p>
+
+    <pre><code>tcp.analysis.retransmission</code></pre>
+
+    <p>
+        The parser identified 6,403 TCP retransmissions in the development sample.
+        These events were stored in a separate retransmission dataset and then
+        grouped into the same 100-millisecond windows used for the main feature table.
+    </p>
+
+    <p>
+        The project calculates both raw retransmission count and retransmission rate.
+        The rate is more informative because it normalizes retransmissions according
+        to the amount of TCP traffic in each window.
+    </p>
+
+    <pre><code>retransmission_rate = retransmission_count / tcp_count</code></pre>
+
+    <p>
+        This makes it possible to compare windows fairly, even when they contain
+        different traffic volumes.
+    </p>
+</section>
+
+
+<section id="interactive-dashboard">
+    <h2>Interactive Dashboard</h2>
+
+    <p>
+        The processed data is presented through an interactive Streamlit dashboard.
+        The dashboard is designed to help users understand network behavior without
+        manually opening and filtering the original PCAP file.
+    </p>
+
+    <h3>Current Dashboard Features</h3>
+
+    <ul>
+        <li>
+            Key Performance Indicators
+            <ul>
+                <li>Total packet count</li>
+                <li>Total TCP retransmissions</li>
+                <li>Number of time windows</li>
+                <li>Overall average packet size</li>
+            </ul>
+        </li>
+
+        <li>Packet count over time</li>
+        <li>TCP retransmissions over time</li>
+        <li>Protocol distribution</li>
+        <li>Average packet size over time</li>
+        <li>Unique source and destination IP activity</li>
+        <li>TCP retransmission rate over time</li>
+        <li>Interactive feature dataset preview</li>
+    </ul>
+
+    <p>
+        The dashboard currently serves as the first user interface for the project.
+        It allows the processing pipeline and engineered features to be validated
+        before the system is expanded into a larger full-stack application.
+    </p>
+</section>
+
+
+      <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Technical  Challenges</h2>
+    <h3>Processing Large Packet Captures</h3>
+
+    <p>
+        The original MAWI capture is approximately 19 GB, which makes full-scale
+        experimentation slow and difficult during development. A one-million-packet
+        sample was therefore used to build and validate the initial pipeline before
+        scaling to the complete capture.
+    </p>
+
+    <h3>Handling Different Packet Types</h3>
+
+    <p>
+        Not every packet contains IP-layer fields. The first parser focused on IP
+        traffic because the initial analysis centered on TCP retransmissions,
+        transport protocols, IP addresses, and packet-level performance metrics.
+        Non-IP packets are tracked as a separate planned analysis module rather than
+        being silently ignored.
+    </p>
+
+    <h3>Timestamp Processing</h3>
+
+    <p>
+        Some timestamps included microsecond precision while others ended exactly on
+        a whole second. Pandas therefore required mixed timestamp parsing before the
+        values could be grouped correctly into time windows.
+    </p>
+
+    <pre><code>pd.to_datetime(df["Time"], format="mixed")</code></pre>
+
+    <h3>Selecting the Time-Window Size</h3>
+
+    <p>
+        Initial one-second aggregation produced only four observations because the
+        sample covered slightly more than three seconds. The time-window size was
+        changed to 100 milliseconds, producing 32 observations and providing more
+        detailed temporal behavior for analysis and visualization.
+    </p>
+
+    <h3>Managing Large Generated Files</h3>
+
+    <p>
+        Packet-level CSV files and raw PCAP files can become very large. Git ignore
+        rules were added so that the repository includes source code and smaller
+        processed outputs without storing raw packet captures, virtual environments,
+        or oversized intermediate files.
+    </p>
+
+
+<section id="project-structure">
+        <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Project Structure</h2>
+
+    <pre><code>mawi-network-analysis/
+├── dashboard/
+│   └── app.py
+├── data/
+│   ├── raw/
+│   │   └── sample_1M.pcap
+│   └── processed/
+│       ├── parsed_packets.csv
+│       ├── retransmissions.csv
+│       ├── protocol_summary.csv
+│       ├── ip_summary.csv
+│       └── ml_features_windowed.csv
+├── scripts/
+│   ├── parsingsample1M.py
+│   ├── tcp_retransmissions_parser.py
+│   ├── protocol_ip_summary_parser.py
+│   ├── timewindow_mlfeature_extraction.py
+│   └── check_timestamps.py
+├── .gitignore
+├── requirements.txt
+└── README.md</code></pre>
+
+    <p>
+        The project is organized so that raw data, processed outputs, analysis
+        scripts, and the dashboard remain separate. This structure improves
+        reproducibility and makes it easier to add new components later.
+    </p>
+</section>
+
+
+<section id="technologies-used">
+    <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Technologies Used</h2>
+
+    <h3>Programming and Data Processing</h3>
+
+    <ul>
+        <li>Python</li>
+        <li>Pandas</li>
+        <li>NumPy</li>
+    </ul>
+
+    <h3>Networking and Packet Analysis</h3>
+
+    <ul>
+        <li>Wireshark</li>
+        <li>TShark</li>
+        <li>PyShark</li>
+        <li>TCP/IP</li>
+        <li>PCAP analysis</li>
+    </ul>
+
+    <h3>Visualization and Application Development</h3>
+
+    <ul>
+        <li>Streamlit</li>
+        <li>Matplotlib</li>
+    </ul>
+
+    <h3>Development Tools</h3>
+
+    <ul>
+        <li>Visual Studio Code</li>
+        <li>Git</li>
+        <li>GitHub</li>
+        <li>Rainbow CSV</li>
+    </ul>
+</section>
+
+
+<section id="current-results">
+    <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Current Results</h2>
+
+    <div class="table-wrapper">
+        <table class="project-table">
+            <thead>
+                <tr>
+                    <th>Result</th>
+                    <th>Current Value</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Original packet capture</td>
+                    <td>Approximately 19 GB</td>
+                </tr>
+
+                <tr>
+                    <td>Development sample</td>
+                    <td>Approximately 1,000,000 packets</td>
+                </tr>
+
+                <tr>
+                    <td>Successfully parsed packets</td>
+                    <td>904,720</td>
+                </tr>
+
+                <tr>
+                    <td>TCP retransmissions identified</td>
+                    <td>6,403</td>
+                </tr>
+
+                <tr>
+                    <td>Aggregation interval</td>
+                    <td>100 milliseconds</td>
+                </tr>
+
+                <tr>
+                    <td>Time windows generated</td>
+                    <td>32</td>
+                </tr>
+
+                <tr>
+                    <td>Engineered features</td>
+                    <td>17</td>
+                </tr>
+
+                <tr>
+                    <td>Dashboard technology</td>
+                    <td>Streamlit</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<section id="future-enhancements">
+    <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Future Enhancements</h2>
+
+    <p>
+        The current project is the first phase of a larger network analytics
+        platform. Planned improvements include the following.
+    </p>
+
+    <h3>Dashboard Improvements</h3>
+
+    <ul>
+        <li>Arrange visualizations into a responsive multi-column layout</li>
+        <li>Add protocol and time-range filters</li>
+        <li>Add interactive tooltips and drill-down views</li>
+        <li>Add multi-page navigation</li>
+        <li>Add top source and destination IP analysis</li>
+        <li>Add port and application-level traffic views</li>
+    </ul>
+
+    <h3>Advanced Network Features</h3>
+
+    <ul>
+        <li>Average packet interarrival time</li>
+        <li>Interarrival-time standard deviation</li>
+        <li>Traffic burst scoring</li>
+        <li>Flow-based analysis using the network five-tuple</li>
+        <li>Top-talker concentration metrics</li>
+        <li>Protocol and endpoint entropy</li>
+        <li>TCP flag analysis</li>
+        <li>Non-IP protocol analysis for the remaining packets</li>
+    </ul>
+
+    <h3>Machine Learning</h3>
+
+    <ul>
+        <li>Traffic clustering</li>
+        <li>Network anomaly detection</li>
+        <li>Traffic classification</li>
+        <li>Congestion-pattern analysis</li>
+        <li>Feature comparison across different aggregation intervals</li>
+    </ul>
+
+    <h3>Full-Stack Expansion</h3>
+
+    <ul>
+        <li>Build a REST API using Go or FastAPI</li>
+        <li>Replace or complement Streamlit with a React frontend</li>
+        <li>Serve processed network metrics through API endpoints</li>
+        <li>Containerize the application using Docker</li>
+        <li>Use Docker Compose to run multiple services</li>
+        <li>Deploy the dashboard publicly</li>
+    </ul>
+
+    <h3>Scaling the Dataset</h3>
+
+    <ul>
+        <li>Process larger portions of the original 19 GB capture</li>
+        <li>Implement batch and chunk-based PCAP processing</li>
+        <li>Compare network behavior across longer observation periods</li>
+        <li>Support additional MAWI capture files</li>
+        <li>Explore live packet capture as a later extension</li>
+    </ul>
+</section>
+
+
+<section id="final-thoughts">
+    <h2 class="font-display font-semibold text-ink text-[1.2rem] tracking-tight mt-8">Final Thoughts</h2>
+
+    <p>
+        This project began as an exploration of a large packet capture and has
+        developed into a modular network traffic analytics pipeline. The current
+        system can parse real backbone traffic, identify TCP retransmissions,
+        generate structured network-performance features, and present those results
+        through an interactive dashboard.
+    </p>
+
+    <p>
+        The project combines concepts from computer networking, telecommunications,
+        software engineering, and data engineering. It also demonstrates the process
+        of moving from raw network data to a usable analytics application rather than
+        stopping at packet inspection alone.
+    </p>
+
+    <p>
+        The current one-million-packet implementation serves as the validated
+        prototype. The next stages will focus on improving dashboard interactivity,
+        adding advanced traffic features, scaling to larger portions of the original
+        capture, and evolving the application into a containerized full-stack
+        platform with a REST API and React-based interface.
+    </p>
+</section>
 
     <!-- artifact placeholders -->
     <div class="mt-4 grid sm:grid-cols-2 gap-4">
@@ -85,10 +610,6 @@
       <div class="rounded-xl border border-dashed border-line bg-panel aspect-[4/3] flex items-center justify-center font-mono text-[11.5px] text-muted text-center px-4">
         retransmission timeline<br><span class="text-[10.5px]">add screenshot →</span>
       </div>
-    </div>
-
-    <div class="mt-10 rounded-lg bg-ink text-paper/90 font-mono text-[12.5px] p-4 overflow-x-auto">
-      <span class="text-signal">$</span> tshark -r mawi.pcap -Y "tcp.analysis.retransmission" -T fields -e ip.src -e ip.dst | sort | uniq -c
     </div>
 
     <div class="mt-12 flex items-center justify-between border-t border-line pt-6">
