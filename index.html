@@ -131,6 +131,29 @@
 /* playful interaction layer */
 .command-backdrop{position:fixed;inset:0;background:rgba(2,8,18,.78);backdrop-filter:blur(12px);z-index:90;display:none;align-items:flex-start;justify-content:center;padding:11vh 1rem 1rem}.command-backdrop.open{display:flex}.command-panel{width:min(640px,100%);background:#081522;border:1px solid rgba(79,227,220,.24);border-radius:20px;box-shadow:0 30px 90px rgba(0,0,0,.5);overflow:hidden}.command-input{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(148,163,184,.18);padding:1rem 1.1rem;color:#e7f7f6;font:500 14px 'IBM Plex Mono',monospace;outline:none}.command-list{padding:.55rem;max-height:360px;overflow:auto}.command-item{width:100%;display:flex;align-items:center;justify-content:space-between;padding:.8rem .9rem;border-radius:12px;color:#9fb3c8;text-align:left;font-size:.88rem}.command-item:hover,.command-item.active{background:rgba(10,165,169,.12);color:#dffefd}.command-key{font:500 10px 'IBM Plex Mono',monospace;border:1px solid rgba(148,163,184,.2);border-radius:6px;padding:.18rem .35rem;color:#7f95a8}.floating-tools{position:fixed;right:1rem;bottom:1rem;z-index:55;display:flex;flex-direction:column;gap:.55rem}.float-btn{width:44px;height:44px;border-radius:14px;border:1px solid rgba(79,227,220,.25);background:rgba(6,18,30,.88);backdrop-filter:blur(12px);color:#62e7df;display:grid;place-items:center;font:600 12px 'IBM Plex Mono',monospace;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.2s}.float-btn:hover{transform:translateY(-3px);border-color:#4fe3dc}.terminal-drawer{position:fixed;right:1rem;bottom:4.8rem;width:min(430px,calc(100vw - 2rem));z-index:54;background:#06111d;border:1px solid rgba(79,227,220,.25);border-radius:18px;box-shadow:0 25px 70px rgba(0,0,0,.45);overflow:hidden;transform:translateY(18px) scale(.98);opacity:0;pointer-events:none;transition:.25s}.terminal-drawer.open{transform:none;opacity:1;pointer-events:auto}.terminal-head{display:flex;justify-content:space-between;align-items:center;padding:.7rem .9rem;border-bottom:1px solid rgba(148,163,184,.15);font:500 11px 'IBM Plex Mono',monospace;color:#7f95a8}.terminal-output{height:230px;overflow:auto;padding:.9rem;font:12px/1.7 'IBM Plex Mono',monospace;color:#bcefeb;white-space:pre-wrap}.terminal-form{display:flex;border-top:1px solid rgba(148,163,184,.15)}.terminal-form span{padding:.8rem 0 .8rem .9rem;color:#4fe3dc;font:12px 'IBM Plex Mono',monospace}.terminal-form input{flex:1;background:transparent;border:0;outline:0;color:#dffefd;padding:.8rem;font:12px 'IBM Plex Mono',monospace}.mode-switch{display:inline-flex;padding:.25rem;border:1px solid rgba(79,227,220,.2);background:rgba(6,18,30,.7);border-radius:12px}.mode-switch button{padding:.45rem .7rem;border-radius:9px;font:500 11px 'IBM Plex Mono',monospace;color:#7f95a8}.mode-switch button.active{background:#0aa5a9;color:white}.metric-pop{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:1rem;background:rgba(2,8,18,.72);backdrop-filter:blur(8px)}.metric-pop.open{display:grid}.metric-pop-card{max-width:500px;background:#081522;border:1px solid rgba(79,227,220,.25);border-radius:20px;padding:1.4rem;color:#d9edf2}.metric-pop-card h3{font-family:'Sora',sans-serif;font-size:1.25rem}.metric-pop-card p{margin-top:.7rem;color:#8fa8bb;line-height:1.7}.story-node{position:relative;border:1px solid rgba(79,227,220,.18);background:rgba(7,21,34,.7);border-radius:18px;padding:1.1rem;transition:.25s}.story-node:hover{transform:translateY(-5px);border-color:#4fe3dc;box-shadow:0 18px 45px rgba(0,0,0,.25)}.story-node::after{content:'';position:absolute;left:50%;bottom:-22px;width:2px;height:22px;background:linear-gradient(#4fe3dc,transparent)}.story-node:last-child::after{display:none}.scenario-btn.active{background:#0aa5a9!important;color:white!important;border-color:#0aa5a9!important}.scenario-stage{transition:.25s}.pulse-good{animation:pulseGood 1.5s infinite}@keyframes pulseGood{50%{box-shadow:0 0 0 8px rgba(79,227,220,0)}}.easter-toast{position:fixed;left:50%;top:5rem;transform:translate(-50%,-20px);opacity:0;z-index:100;background:#071522;border:1px solid #4fe3dc;color:#dffefd;border-radius:999px;padding:.65rem 1rem;font:500 12px 'IBM Plex Mono',monospace;transition:.3s}.easter-toast.show{opacity:1;transform:translate(-50%,0)}.network-online .neon-edge{box-shadow:0 0 0 1px rgba(79,227,220,.35),0 0 38px rgba(79,227,220,.18)!important}.network-online .cursor-glow{width:420px;height:420px}.tech-hidden{display:none!important}@media(max-width:640px){.floating-tools{right:.7rem;bottom:.7rem}.float-btn{width:40px;height:40px}.story-node::after{height:16px;bottom:-16px}}
 
+
+/* Packet Run mini-game */
+.game-shell{position:relative;overflow:hidden;border:1px solid rgba(79,227,220,.24);background:linear-gradient(180deg,rgba(8,25,40,.96),rgba(4,14,25,.98));border-radius:24px;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.game-arena{position:relative;height:290px;overflow:hidden;outline:none;cursor:pointer;isolation:isolate;background:linear-gradient(rgba(79,227,220,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(79,227,220,.035) 1px,transparent 1px);background-size:32px 32px}
+.game-arena::before{content:'';position:absolute;inset:auto 0 26px;height:2px;background:linear-gradient(90deg,transparent,#4fe3dc 16%,#4fe3dc 84%,transparent);box-shadow:0 0 18px rgba(79,227,220,.35)}
+.game-arena::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 5px,rgba(255,255,255,.012) 6px);pointer-events:none;z-index:9}
+.game-player{position:absolute;left:72px;bottom:28px;width:38px;height:30px;border:2px solid #79fff7;border-radius:9px;background:linear-gradient(135deg,#0aa5a9,#163b54);box-shadow:0 0 22px rgba(79,227,220,.45);z-index:5;transform-origin:center;will-change:bottom,transform}
+.game-player::before{content:'PKT';position:absolute;inset:0;display:grid;place-items:center;font:700 9px 'IBM Plex Mono',monospace;color:#eaffff;letter-spacing:.08em}
+.game-player::after{content:'';position:absolute;left:-10px;top:10px;width:8px;height:8px;border-radius:50%;background:#4fe3dc;box-shadow:-8px 0 rgba(79,227,220,.55),-16px 0 rgba(79,227,220,.2)}
+.game-obstacle{position:absolute;bottom:28px;width:26px;height:45px;z-index:4;will-change:left}
+.game-obstacle::before,.game-obstacle::after{content:'';position:absolute;bottom:0;width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-bottom:43px solid #ff6b6b;filter:drop-shadow(0 0 7px rgba(255,107,107,.4))}
+.game-obstacle::after{left:12px;transform:scale(.72);transform-origin:bottom}
+.game-orb{position:absolute;width:18px;height:18px;border-radius:50%;background:#ffb35c;box-shadow:0 0 18px rgba(255,179,92,.7);z-index:4;will-change:left}
+.game-orb::after{content:'+';position:absolute;inset:0;display:grid;place-items:center;font:700 11px 'IBM Plex Mono',monospace;color:#07111d}
+.game-cloud{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(79,227,220,.2),transparent);animation:drift 9s linear infinite;pointer-events:none}@keyframes drift{from{transform:translateX(-20%)}to{transform:translateX(120%)}}
+.game-flash{animation:gameHit .35s ease}@keyframes gameHit{50%{filter:brightness(2);background-color:rgba(255,107,107,.12)}}
+.game-jump-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:8;text-align:center;pointer-events:none;transition:.25s}
+.game-jump-hint.hidden{opacity:0;transform:translate(-50%,-42%)}
+.game-chip{border:1px solid rgba(79,227,220,.18);background:rgba(4,14,25,.7);border-radius:12px;padding:.6rem .75rem}
+.game-fact{min-height:3.2rem;color:#9fb3c8;transition:.25s}
+.game-fact.pop{color:#dffefd;transform:translateY(-2px)}
+@media(max-width:640px){.game-arena{height:245px}.game-player{left:42px}.game-shell{border-radius:18px}}
+
 </style>
 </head>
 <body class="font-sans antialiased">
@@ -149,6 +172,7 @@
 </a>
 <nav class="hidden sm:flex items-center gap-6 font-mono text-[12.5px] text-muted">
 <a class="hover:text-signalink transition-colors" href="#projects">projects</a>
+<a class="hover:text-signalink transition-colors" href="#packet-run">packet run</a>
 <a class="hover:text-signalink transition-colors" href="#about">about</a>
 <a class="hover:text-signalink transition-colors" href="#experience">experience</a>
 <a class="hover:text-signalink transition-colors" href="#contact">contact</a>
@@ -411,6 +435,45 @@
 </div>
 </div>
 </section>
+
+<!-- PACKET RUN GAME -->
+<section class="mx-auto max-w-5xl px-5 pt-20" id="packet-run">
+  <div class="reveal mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <p class="eyebrow font-mono text-[12px] text-signalink mb-2">PACKET RUN // MINI GAME</p>
+      <h2 class="font-display font-semibold text-[1.9rem] tracking-tight">Can you outrun a retransmission storm?</h2>
+      <p class="mt-2 max-w-2xl text-muted">Jump the corrupted packets, collect signal boosts, and keep your packet moving. The game unlocks real project facts as your score climbs.</p>
+    </div>
+    <div class="font-mono text-[11px] text-muted">SPACE / ↑ / CLICK TO JUMP</div>
+  </div>
+
+  <div class="game-shell reveal neon-edge">
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-3 md:px-5">
+      <div class="flex flex-wrap gap-2 font-mono text-[11px]">
+        <div class="game-chip">score <span id="gameScore" class="text-signal">000</span></div>
+        <div class="game-chip">shields <span id="gameLives" class="text-amber">◆◆◆</span></div>
+        <div class="game-chip">link <span id="gameSpeed" class="text-signal">1.0×</span></div>
+      </div>
+      <button id="gameStart" class="rounded-lg border border-signal/40 bg-signal/10 px-4 py-2 font-mono text-[11px] text-signal transition hover:bg-signal hover:text-white">START RUN</button>
+    </div>
+
+    <div id="gameArena" class="game-arena" tabindex="0" role="application" aria-label="Packet Run game. Press space, up arrow, or click to jump over retransmission spikes.">
+      <div class="game-cloud" style="top:62px;left:-10%;width:45%"></div>
+      <div class="game-cloud" style="top:118px;left:22%;width:32%;animation-delay:-4s"></div>
+      <div id="gamePlayer" class="game-player"></div>
+      <div id="gameHint" class="game-jump-hint">
+        <p class="font-display text-xl font-semibold text-ink">Route is clear.</p>
+        <p class="mt-2 font-mono text-[11px] text-muted">Press start, then jump over red retransmission spikes.</p>
+      </div>
+    </div>
+
+    <div class="grid gap-3 border-t border-white/10 p-4 md:grid-cols-[1fr_auto] md:items-center md:px-5">
+      <p id="gameFact" class="game-fact text-sm leading-6">First unlock at 5 points: a real metric from the MAWI project.</p>
+      <button id="gameJump" class="rounded-xl bg-ink px-5 py-3 font-mono text-[12px] text-paper transition hover:bg-signal md:min-w-36">JUMP</button>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="mx-auto max-w-5xl px-5 pt-20 pb-24" id="contact">
 <div class="reveal rounded-2xl border border-line bg-panel p-8 md:p-12 text-center">
@@ -503,6 +566,7 @@ const modes=["network observability","5G core integration","energy resilience mo
 (() => {
   const root = location.pathname.includes('/projects/') ? '../' : '';
   const commands = [
+    {label:'Play Packet Run',hint:'game',url:root+'index.html#packet-run'},
     {label:'Open MAWI Traffic Analyzer',hint:'project',url:root+'projects/mawi.html'},
     {label:'Open 5G Integration Lab',hint:'project',url:root+'projects/5g-lab.html'},
     {label:'Open Cell-Site Energy Analyzer',hint:'project',url:root+'projects/energy.html'},
@@ -532,6 +596,88 @@ const modes=["network observability","5G core integration","energy resilience mo
   document.getElementById('closeMetric')?.addEventListener('click',()=>pop.classList.remove('open'));pop?.addEventListener('click',e=>{if(e.target===pop)pop.classList.remove('open')});
 
   let typed=''; addEventListener('keydown',e=>{if(e.key.length===1){typed=(typed+e.key.toLowerCase()).slice(-8);if(typed.endsWith('5g')){document.body.classList.add('network-online');const t=document.getElementById('easterToast');t.classList.add('show');setTimeout(()=>{t.classList.remove('show');document.body.classList.remove('network-online')},2600)}}});
+})();
+</script>
+
+
+<script>
+(() => {
+  const arena=document.getElementById('gameArena');
+  if(!arena) return;
+  const player=document.getElementById('gamePlayer');
+  const startBtn=document.getElementById('gameStart');
+  const jumpBtn=document.getElementById('gameJump');
+  const scoreEl=document.getElementById('gameScore');
+  const livesEl=document.getElementById('gameLives');
+  const speedEl=document.getElementById('gameSpeed');
+  const factEl=document.getElementById('gameFact');
+  const hint=document.getElementById('gameHint');
+  const facts=[
+    [5,'MAWI unlock: 904,720 backbone packets were successfully parsed.'],
+    [10,'Reliability unlock: 6,403 TCP retransmissions were identified.'],
+    [15,'5G unlock: NRF, UDR, UDM, AUSF, and AMF are deployed and registering.'],
+    [20,'Energy unlock: the modeled site used 47.69 kWh over the analyzed day.'],
+    [25,'Resilience unlock: peak-hour battery runtime fell to 2.4 hours.'],
+    [35,'SYSTEM ACE: you connected traffic, 5G integration, and infrastructure resilience.']
+  ];
+  let running=false, raf=0, last=0, spawnClock=0, orbClock=0, score=0, lives=3, y=0, vy=0, invincible=0;
+  let entities=[];
+  const gravity=1900, jumpVelocity=690;
+
+  function updateHud(){
+    scoreEl.textContent=String(Math.floor(score)).padStart(3,'0');
+    livesEl.textContent='◆'.repeat(lives)+'◇'.repeat(3-lives);
+    speedEl.textContent=(1+Math.min(score/50,1.1)).toFixed(1)+'×';
+  }
+  function clearEntities(){entities.forEach(e=>e.el.remove());entities=[]}
+  function setFact(text){factEl.textContent=text;factEl.classList.add('pop');setTimeout(()=>factEl.classList.remove('pop'),350)}
+  function reset(){
+    cancelAnimationFrame(raf);clearEntities();running=false;last=0;spawnClock=0;orbClock=0;score=0;lives=3;y=0;vy=0;invincible=0;
+    player.style.bottom='28px';player.style.opacity='1';player.style.transform='';
+    startBtn.textContent='START RUN';hint.classList.remove('hidden');
+    setFact('First unlock at 5 points: a real metric from the MAWI project.');updateHud();
+  }
+  function start(){
+    clearEntities();running=true;last=performance.now();spawnClock=0;orbClock=0;score=0;lives=3;y=0;vy=0;invincible=0;
+    startBtn.textContent='RESTART';hint.classList.add('hidden');arena.focus();updateHud();raf=requestAnimationFrame(loop);
+  }
+  function jump(){if(!running){start();return}if(y<4){vy=jumpVelocity;player.style.transform='rotate(-8deg) scale(1.05)'}}
+  function spawn(type){
+    const el=document.createElement('div');el.className=type==='obstacle'?'game-obstacle':'game-orb';arena.appendChild(el);
+    const top=type==='orb'?(100+Math.random()*72):null;
+    if(top!==null)el.style.bottom=top+'px';
+    entities.push({el,type,x:arena.clientWidth+40,w:type==='obstacle'?38:20,h:type==='obstacle'?45:20,top});
+  }
+  function hitTest(a,b){return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top}
+  function end(){
+    running=false;cancelAnimationFrame(raf);startBtn.textContent='RUN AGAIN';hint.classList.remove('hidden');
+    hint.innerHTML=`<p class="font-display text-xl font-semibold text-ink">Route dropped at ${Math.floor(score)}.</p><p class="mt-2 font-mono text-[11px] text-muted">Click run again and beat your score.</p>`;
+    setFact(score>=25?'Strong run — you unlocked the traffic, 5G, and energy story.':'Tip: jump a little earlier as the link speed increases.');
+  }
+  function loop(now){
+    if(!running)return;const dt=Math.min((now-last)/1000,.035);last=now;
+    const speed=250*(1+Math.min(score/50,1.1));
+    score+=dt*2.1;spawnClock+=dt;orbClock+=dt;if(invincible>0)invincible-=dt;
+    vy-=gravity*dt;y=Math.max(0,y+vy*dt);if(y===0&&vy<0){vy=0;player.style.transform=''}
+    player.style.bottom=(28+y)+'px';
+    const spawnEvery=Math.max(.72,1.5-score*.012);if(spawnClock>spawnEvery){spawnClock=0;spawn('obstacle')}
+    if(orbClock>3.2){orbClock=0;spawn('orb')}
+    const pr=player.getBoundingClientRect();
+    for(let i=entities.length-1;i>=0;i--){
+      const e=entities[i];e.x-=speed*dt;e.el.style.left=e.x+'px';const er=e.el.getBoundingClientRect();
+      if(e.x<-70){e.el.remove();entities.splice(i,1);continue}
+      if(hitTest(pr,er)){
+        if(e.type==='orb'){score+=3;setFact('Signal boost collected: +3 points.');e.el.remove();entities.splice(i,1);continue}
+        if(invincible<=0){lives--;invincible=1.15;player.style.opacity='.38';setTimeout(()=>player.style.opacity='1',350);arena.classList.add('game-flash');setTimeout(()=>arena.classList.remove('game-flash'),350);e.el.remove();entities.splice(i,1);updateHud();if(lives<=0){end();return}}
+      }
+    }
+    for(const [milestone,text] of facts){if(score-dt*2.1<milestone&&score>=milestone)setFact(text)}
+    updateHud();raf=requestAnimationFrame(loop);
+  }
+  startBtn.addEventListener('click',()=>running?start():start());jumpBtn.addEventListener('click',jump);arena.addEventListener('pointerdown',jump);
+  addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='ArrowUp')&&running){e.preventDefault();jump()}});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)end()});
+  reset();
 })();
 </script>
 

@@ -9,3 +9,5 @@ Portfolio interaction guide
 7. Energy page includes battery sizing interaction in addition to hourly traffic controls.
 8. Typing 5G anywhere triggers a small network-online easter egg.
 9. Click homepage metrics for provenance notes.
+
+9. Packet Run mini-game on the homepage: jump retransmission spikes, collect signal boosts, and unlock real project facts.
