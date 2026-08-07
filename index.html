@@ -105,6 +105,15 @@
         transition: none;
       }
     }
+
+    .project-card { transform-style:preserve-3d; transition:transform .18s ease, border-color .2s ease, box-shadow .2s ease; }
+    .project-card:hover { box-shadow:0 18px 45px -28px rgba(13,27,42,.35); }
+    .nf-dot { width:38px; height:38px; display:grid; place-items:center; border-radius:999px; background:#E8F7F7; color:#0A6E70; font:500 9px "IBM Plex Mono"; border:1px solid #BDE9E9; }
+    .nf-dot.pending { background:#FFF2E8; color:#9A4D12; border-color:#F4C6A4; }
+    .nf-link { height:2px; flex:1; background:linear-gradient(90deg,#0AA5A9 50%,transparent 50%); background-size:10px 2px; animation:flow 1s linear infinite; }
+    @keyframes flow { to { background-position:10px 0; } }
+    .project-filter { transition:.2s ease; }
+    .project-card.filtered-out { opacity:0; transform:scale(.96); pointer-events:none; display:none; }
   </style>
 </head>
 
@@ -143,14 +152,14 @@
     <section
       class="mx-auto max-w-5xl px-5 pt-16 pb-14 md:pt-24 md:pb-20 grid md:grid-cols-[1.05fr_.95fr] gap-12 items-center">
       <div>
-        <p class="eyebrow font-mono text-[12px] text-signalink mb-5">// NETWORK · TELECOM · AUTOMATION</p>
+        <p class="eyebrow font-mono text-[12px] text-signalink mb-5">// NETWORK · 5G · AUTOMATION · POWER</p>
         <h1 class="font-display font-bold text-ink leading-[1.02] text-[2.6rem] sm:text-[3.4rem] tracking-tight">
-          I build and analyze networks.
+          I build systems that connect, measure, and adapt.
         </h1>
         <p class="mt-5 text-[1.05rem] leading-relaxed text-muted max-w-xl">
           MS Telecommunications candidate at the University of Maryland with an electrical-engineering background.
-          I work from the packet up: traffic analysis, routing and protocols, and network automation, backed by
-          real data-analytics depth in Python, SQL, and Power BI.
+          I work across network traffic, 5G systems, automation, and infrastructure resilience — turning real data
+          into tools that explain how systems behave.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-3">
           <a href="#projects"
@@ -227,14 +236,10 @@
     <!-- METRICS STRIP (real project numbers) -->
     <section class="border-y border-line bg-panel">
       <div class="mx-auto max-w-5xl px-5 py-4 grid grid-cols-2 md:grid-cols-4 gap-y-3 font-mono text-[13px]">
-        <div class="flex items-baseline gap-2"><span class="text-ink font-medium">1M+</span><span
-            class="text-muted text-[11.5px]">packets analyzed</span></div>
-        <div class="flex items-baseline gap-2"><span class="text-ink font-medium">6,000+</span><span
-            class="text-muted text-[11.5px]">retransmissions found</span></div>
-        <div class="flex items-baseline gap-2"><span class="text-ink font-medium">100K+</span><span
-            class="text-muted text-[11.5px]">records processed</span></div>
-        <div class="flex items-baseline gap-2"><span class="text-ink font-medium">+20%</span><span
-            class="text-muted text-[11.5px]">UAV comms uplift</span></div>
+        <div class="metric-counter flex items-baseline gap-2" data-target="904720"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">packets parsed</span></div>
+        <div class="metric-counter flex items-baseline gap-2" data-target="6403"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">retransmissions</span></div>
+        <div class="metric-counter flex items-baseline gap-2" data-target="5"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">5G functions live</span></div>
+        <div class="metric-counter flex items-baseline gap-2" data-target="47.69"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">kWh modeled daily</span></div>
       </div>
     </section>
 
@@ -249,91 +254,53 @@
           artifacts, not just bullet points</p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-5">
-        <!-- MAWI -->
-        <a href="projects/mawi.html"
-          class="reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal transition-colors">
-          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4">
-            <span>PERSONAL PROJECT</span><span>ongoing</span>
+      <div class="reveal mb-5 flex flex-wrap gap-2" aria-label="Project filters">
+        <button class="project-filter rounded-full border border-signal bg-signal px-3 py-1.5 font-mono text-[11px] text-white" data-filter="all">all</button>
+        <button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="networking">networking</button>
+        <button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="5g">5G</button>
+        <button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="power">power</button>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5" id="projectGrid">
+        <a href="projects/mawi.html" data-category="networking" class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal">
+          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>NETWORK ANALYTICS</span><span>complete prototype</span></div>
+          <div class="mini-viz mb-5 h-20 rounded-lg border border-line bg-paper p-3 overflow-hidden" aria-hidden="true">
+            <svg viewBox="0 0 320 64" class="h-full w-full"><path class="packet-path" d="M5 48 C55 45,70 14,120 32 S190 55,230 18 S285 20,315 10" fill="none" stroke="#0AA5A9" stroke-width="2"/><circle r="4" fill="#0D1B2A"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#mawi-card-path"/></animateMotion></circle><path id="mawi-card-path" d="M5 48 C55 45,70 14,120 32 S190 55,230 18 S285 20,315 10" fill="none"/></svg>
           </div>
-          <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">
-            Network Traffic Measurement &amp; Analysis</h3>
-          <p class="mt-2 text-[0.95rem] leading-relaxed text-muted">
-            Parsed over a million packets from the MAWI dataset, surfaced 6,000+ TCP retransmissions, and built
-            dashboards to expose bottlenecks and abnormal traffic.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]">
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Python</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Wireshark / tcpdump</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">TCP/IP</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Power BI</span>
-          </div>
-          <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">
-            Read writeup <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </span>
+          <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">MAWI Traffic Analyzer</h3>
+          <p class="mt-2 text-[0.95rem] leading-relaxed text-muted">Transforms real backbone packet captures into reliability metrics, time-windowed features, and an interactive Streamlit analysis platform.</p>
+          <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">904,720 packets</span><span class="rounded border border-line px-2 py-0.5 text-muted">6,403 retransmissions</span><span class="rounded border border-line px-2 py-0.5 text-muted">17 features</span></div>
+          <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Explore project →</span>
         </a>
 
-        <!-- UAV -->
-        <a href="projects/uav.html"
-          class="reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal transition-colors">
-          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4">
-            <span>SENIOR DESIGN · RAYTHEON</span><span>2023–2024</span>
+        <a href="projects/5g-lab.html" data-category="5g" class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal">
+          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>5G SYSTEMS</span><span>in development</span></div>
+          <div class="mini-viz mb-5 h-20 rounded-lg border border-line bg-paper px-3 flex items-center justify-between" aria-hidden="true">
+            <span class="nf-dot">NRF</span><span class="nf-link"></span><span class="nf-dot">AMF</span><span class="nf-link"></span><span class="nf-dot">AUSF</span><span class="nf-link"></span><span class="nf-dot pending">SMF</span>
           </div>
-          <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">
-            UAV Communications</h3>
-          <p class="mt-2 text-[0.95rem] leading-relaxed text-muted">
-            Improved UAV communication performance by 20% through telemetry and ROS optimization, validated across
-            10+ autonomous flight tests with Raytheon engineers.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]">
-            <span class="rounded border border-line px-2 py-0.5 text-muted">ROS</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Telemetry</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">RF / Comms</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Aerospace</span>
-          </div>
-          <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">
-            Read writeup <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </span>
+          <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">5G Integration Lab</h3>
+          <p class="mt-2 text-[0.95rem] leading-relaxed text-muted">A virtual 5G standalone environment for service deployment, network-function discovery, registration, connectivity, and automated validation.</p>
+          <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">Open5GS</span><span class="rounded border border-line px-2 py-0.5 text-muted">srsRAN</span><span class="rounded border border-line px-2 py-0.5 text-muted">Docker</span><span class="rounded border border-line px-2 py-0.5 text-muted">Ansible</span></div>
+          <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Open lab view →</span>
         </a>
 
-        <!-- 5G LAB -->
-        <a href="projects/5g-lab.html"
-          class="reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal transition-colors md:col-span-2">
-          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4">
-            <span>PERSONAL PROJECT · SOFT LAUNCH</span><span>in development</span>
+        <a href="projects/energy.html" data-category="power" class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal md:col-span-2">
+          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>POWER + TELECOM</span><span>complete</span></div>
+          <div class="grid gap-5 md:grid-cols-[1fr_1.2fr] md:items-center">
+            <div>
+              <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">Cell-Site Energy Analyzer</h3>
+              <p class="mt-2 text-[0.95rem] leading-relaxed text-muted">Uses real cellular activity to estimate hourly site power, daily energy demand, and battery backup resilience under changing traffic load.</p>
+              <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">2.3M records</span><span class="rounded border border-line px-2 py-0.5 text-muted">47.69 kWh/day</span><span class="rounded border border-line px-2 py-0.5 text-muted">2.4 h minimum runtime</span></div>
+              <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Test the model →</span>
+            </div>
+            <div class="h-36 rounded-lg border border-line bg-paper p-3" aria-hidden="true"><svg viewBox="0 0 420 130" class="h-full w-full"><line x1="0" y1="98" x2="420" y2="98" stroke="#E8833A" stroke-dasharray="4 4"/><path d="M0 106 C55 108,80 104,115 90 S170 26,220 20 S300 36,350 72 S390 88,420 93" fill="none" stroke="#0AA5A9" stroke-width="3"/><path d="M0 28 C65 26,100 32,135 48 S190 95,230 105 S315 88,360 55 S400 38,420 34" fill="none" stroke="#0D1B2A" stroke-width="2"/><text x="8" y="18" font-size="10" fill="#566573">traffic ↑ / backup ↓</text><text x="325" y="92" font-size="9" fill="#E8833A">4 h target</text></svg></div>
           </div>
-          <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">
-            Automated 5G Standalone Integration &amp; Test Lab</h3>
-          <p class="mt-2 text-[0.95rem] leading-relaxed text-muted max-w-3xl">
-            Building a virtual end-to-end 5G environment to automate deployment, validate UE registration and PDU sessions,
-            measure throughput and latency, and troubleshoot controlled system failures across the RAN and core.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]">
-            <span class="rounded border border-line px-2 py-0.5 text-muted">srsRAN</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Open5GS</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Ansible</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Docker</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Python</span>
-            <span class="rounded border border-line px-2 py-0.5 text-muted">Linux</span>
-          </div>
-          <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">
-            View project preview <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </span>
         </a>
       </div>
 
       <p class="reveal mt-5 font-mono text-[12px] text-muted flex items-center gap-2">
         <span class="w-1.5 h-1.5 rounded-full bg-signal inline-block animate-pulse"></span>
-        now building: an automated 5G standalone integration and test lab with srsRAN, Open5GS, Docker, Ansible, and Python
+        current focus: completing the 5G data path, automating validation, and extending the site-energy resilience model
       </p>
     </section>
 
@@ -407,8 +374,7 @@
             </div>
             <div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
               <dt class="font-mono text-[12px] text-ink pt-0.5">systems</dt>
-              <dd class="text-[0.9rem] text-muted leading-relaxed">Linux, Bash/Shell, VMware, Docker, Kubernetes,
-                Terraform, Git, AWS</dd>
+              <dd class="text-[0.9rem] text-muted leading-relaxed">Linux, Bash/Shell, VMware, Docker, Git, AWS</dd>
             </div>
           </dl>
         </div>
@@ -480,12 +446,42 @@
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
       document.querySelectorAll("svg").forEach(s => { if (s.pauseAnimations) s.pauseAnimations(); });
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
     } else {
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
       }, { threshold: 0.12 });
       document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+      document.querySelectorAll(".project-card").forEach(card => {
+        card.addEventListener("mousemove", e => {
+          const r=card.getBoundingClientRect();
+          const x=(e.clientX-r.left)/r.width-.5;
+          const y=(e.clientY-r.top)/r.height-.5;
+          card.style.transform=`perspective(900px) rotateX(${-y*4}deg) rotateY(${x*5}deg) translateY(-3px)`;
+        });
+        card.addEventListener("mouseleave", ()=> card.style.transform="");
+      });
     }
+
+    document.querySelectorAll(".project-filter").forEach(btn => btn.addEventListener("click", () => {
+      const filter=btn.dataset.filter;
+      document.querySelectorAll(".project-filter").forEach(b => {
+        const active=b===btn;
+        b.classList.toggle("bg-signal",active); b.classList.toggle("text-white",active); b.classList.toggle("border-signal",active);
+        b.classList.toggle("bg-panel",!active); b.classList.toggle("text-muted",!active); b.classList.toggle("border-line",!active);
+      });
+      document.querySelectorAll(".project-card").forEach(card => card.classList.toggle("filtered-out", filter!=="all" && card.dataset.category!==filter));
+    }));
+
+    const counterObs=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      const el=entry.target.querySelector('.counter'); const target=Number(entry.target.dataset.target); const start=performance.now();
+      const fmt=v=> target%1 ? v.toFixed(2) : Math.round(v).toLocaleString();
+      function tick(now){ const p=Math.min((now-start)/1100,1); el.textContent=fmt(target*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(tick); }
+      requestAnimationFrame(tick); counterObs.unobserve(entry.target);
+    }),{threshold:.6});
+    document.querySelectorAll('.metric-counter').forEach(el=>counterObs.observe(el));
   </script>
 </body>
 

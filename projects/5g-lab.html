@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Automated 5G Integration & Test Lab — Philips Akinbami</title>
-  <meta name="description" content="Soft launch preview of a virtual 5G standalone integration and test lab using srsRAN, Open5GS, Docker, Ansible, Python, and Linux." />
+  <title>5G Integration Lab — Philips Akinbami</title>
+  <meta name="description" content="A virtual 5G standalone integration and test lab using srsRAN, Open5GS, Docker, Ansible, Python, and Linux." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,6 +29,11 @@
     .prose-copy li::marker { color:#0AA5A9; }
     .status-planned { color:#9A4D12; background:#FFF2E8; border-color:#F4C6A4; }
     .flow-arrow { color:#0AA5A9; font-size:1.25rem; text-align:center; }
+    .nf-button { width:68px;height:68px;border-radius:999px;border:1px solid #E1E6EA;background:#fff;font:600 12px "IBM Plex Mono";transition:.2s ease;position:relative; }
+    .nf-button::after { content:"";position:absolute;right:5px;top:5px;width:8px;height:8px;border-radius:999px; }
+    .nf-button.live::after { background:#0AA5A9;box-shadow:0 0 0 4px rgba(10,165,169,.12); }
+    .nf-button.next::after { background:#E8833A; }
+    .nf-button:hover,.nf-button.active { transform:translateY(-4px) scale(1.04);border-color:#0AA5A9; }
   </style>
 </head>
 <body class="font-sans antialiased">
@@ -49,13 +54,13 @@
         <div class="mb-5 flex flex-wrap items-center gap-3 font-mono text-[11px] text-muted">
           <span class="eyebrow">PERSONAL PROJECT</span>
           <span class="h-1 w-1 rounded-full bg-signal"></span>
-          <span class="status-planned rounded-full border px-2.5 py-1">IN DEVELOPMENT</span>
+          <span class="status-planned rounded-full border px-2.5 py-1">ACTIVE BUILD</span>
         </div>
         <h1 class="max-w-4xl font-display text-[2.25rem] font-bold leading-[1.04] tracking-tight md:text-[3.6rem]">
-          Automated 5G Standalone Integration &amp; Test Lab
+          5G Integration Lab
         </h1>
         <p class="mt-5 max-w-3xl text-[1.05rem] leading-8 text-muted md:text-[1.14rem]">
-          A virtual end-to-end 5G test environment for automating deployment, validating connectivity, measuring performance, and troubleshooting controlled failures across the RAN, core network, and virtual user equipment.
+          A virtual 5G standalone environment that builds Open5GS from source, deploys core network functions in Docker, validates service discovery and registration, and is progressing toward an end-to-end srsRAN UE-to-core data path.
         </p>
         <div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px]">
           <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">srsRAN</span>
@@ -71,17 +76,31 @@
 
     <section class="mt-6 grid gap-3 sm:grid-cols-3">
       <article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Primary goal</p>
-        <p class="mt-2 font-display text-lg font-semibold">End-to-end 5G integration</p>
+        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Functions deployed</p>
+        <p class="mt-2 font-display text-lg font-semibold">NRF · UDR · UDM · AUSF · AMF</p>
       </article>
       <article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Automation</p>
-        <p class="mt-2 font-display text-lg font-semibold">Repeatable Ansible workflows</p>
+        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Container build</p>
+        <p class="mt-2 font-display text-lg font-semibold">Open5GS built from source</p>
       </article>
       <article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Validation</p>
-        <p class="mt-2 font-display text-lg font-semibold">KPIs and pass/fail reports</p>
+        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Validated</p>
+        <p class="mt-2 font-display text-lg font-semibold">SBI discovery + NGAP listener</p>
       </article>
+    </section>
+
+    <section class="mt-8 section-card">
+      <div class="flex flex-wrap items-end justify-between gap-3"><div><p class="eyebrow font-mono text-[10px] text-signalink">LIVE CORE MAP</p><h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Click a network function</h2></div><span id="coreStatus" class="font-mono text-[11px] text-muted">5 deployed · 2 next</span></div>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3" id="coreMap">
+        <button class="nf-button live" data-name="NRF" data-role="Registers network functions and provides service discovery.">NRF</button>
+        <button class="nf-button live" data-name="UDR" data-role="Stores subscriber and policy data through MongoDB-backed access.">UDR</button>
+        <button class="nf-button live" data-name="UDM" data-role="Manages subscriber identity and authentication data.">UDM</button>
+        <button class="nf-button live" data-name="AUSF" data-role="Handles 5G authentication procedures.">AUSF</button>
+        <button class="nf-button live" data-name="AMF" data-role="Terminates N2/NGAP signaling and manages access and mobility.">AMF</button>
+        <button class="nf-button next" data-name="SMF" data-role="Next: manages PDU sessions and controls the UPF.">SMF</button>
+        <button class="nf-button next" data-name="UPF" data-role="Next: carries user-plane traffic toward external data networks.">UPF</button>
+      </div>
+      <div id="nfDetail" class="mt-5 rounded-xl border border-line bg-paper p-4 text-sm leading-6 text-muted">Select a function to see its role in the lab.</div>
     </section>
 
     <div class="mt-8 space-y-8">
@@ -166,24 +185,26 @@
 
       <section class="section-card">
         <p class="eyebrow font-mono text-[10px] text-signalink">05 — CURRENT STATUS</p>
-        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Soft launch: architecture and build plan</h2>
+        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Core services are live; the user-plane path comes next</h2>
         <div class="mt-5 grid gap-4 md:grid-cols-2">
           <div class="rounded-xl border border-line bg-paper p-5">
-            <span class="inline-flex rounded-full border border-line bg-panel px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em] text-muted">Defined</span>
+            <span class="inline-flex rounded-full border border-[#BDE9E9] bg-[#E8F7F7] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em] text-signalink">Completed</span>
             <ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
-              <li>Project scope and technical story</li>
-              <li>Initial architecture and tool selection</li>
-              <li>Core test scenarios and measurable KPIs</li>
-              <li>Automation responsibilities for Ansible and Python</li>
+              <li>Built Open5GS from source with a multi-stage Docker image</li>
+              <li>Deployed MongoDB, NRF, UDR, UDM, AUSF, and AMF</li>
+              <li>Configured PLMN 001/01, TAC 1, SST 1, SBI, NGAP, and metrics</li>
+              <li>Validated network-function registration and service discovery</li>
+              <li>Confirmed AMF NGAP listening on SCTP port 38412</li>
             </ul>
           </div>
           <div class="rounded-xl border border-line bg-paper p-5">
             <span class="status-planned inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">Next milestones</span>
             <ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
-              <li>Establish the first virtual UE-to-core connection</li>
-              <li>Capture proof of registration and data flow</li>
-              <li>Automate baseline deployment with Ansible</li>
-              <li>Add KPI collection and the first test report</li>
+              <li>Add SMF and UPF for session and user-plane traffic</li>
+              <li>Integrate srsRAN gNB and virtual UE through ZeroMQ</li>
+              <li>Validate UE registration and PDU-session establishment</li>
+              <li>Run ping and iperf3 performance tests</li>
+              <li>Automate failure, recovery, and report generation</li>
             </ul>
           </div>
         </div>
@@ -203,13 +224,21 @@
 
     <div class="mt-12 flex items-center justify-between border-t border-line pt-6">
       <a href="../index.html#projects" class="font-mono text-[12.5px] text-signalink">all projects</a>
-      <a href="mawi.html" class="font-mono text-[12.5px] text-muted transition-colors hover:text-signalink">MAWI Traffic Analysis →</a>
+      <a href="energy.html" class="font-mono text-[12.5px] text-muted transition-colors hover:text-signalink">Cell-Site Energy →</a>
     </div>
   </main>
 
   <footer class="border-t border-line">
     <div class="mx-auto max-w-5xl px-5 py-6 font-mono text-[12px] text-muted">© <span id="yr"></span> Philips Akinbami</div>
   </footer>
-  <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("yr").textContent = new Date().getFullYear();
+    const detail=document.getElementById("nfDetail");
+    document.querySelectorAll(".nf-button").forEach(btn=>btn.addEventListener("click",()=>{
+      document.querySelectorAll(".nf-button").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      detail.innerHTML=`<strong class="text-ink">${btn.dataset.name}</strong> — ${btn.dataset.role}`;
+    }));
+  </script>
 </body>
 </html>
