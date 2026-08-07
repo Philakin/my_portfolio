@@ -109,7 +109,36 @@
 .command-backdrop{position:fixed;inset:0;background:rgba(2,8,18,.78);backdrop-filter:blur(12px);z-index:90;display:none;align-items:flex-start;justify-content:center;padding:11vh 1rem 1rem}.command-backdrop.open{display:flex}.command-panel{width:min(640px,100%);background:#081522;border:1px solid rgba(79,227,220,.24);border-radius:20px;box-shadow:0 30px 90px rgba(0,0,0,.5);overflow:hidden}.command-input{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(148,163,184,.18);padding:1rem 1.1rem;color:#e7f7f6;font:500 14px 'IBM Plex Mono',monospace;outline:none}.command-list{padding:.55rem;max-height:360px;overflow:auto}.command-item{width:100%;display:flex;align-items:center;justify-content:space-between;padding:.8rem .9rem;border-radius:12px;color:#9fb3c8;text-align:left;font-size:.88rem}.command-item:hover,.command-item.active{background:rgba(10,165,169,.12);color:#dffefd}.command-key{font:500 10px 'IBM Plex Mono',monospace;border:1px solid rgba(148,163,184,.2);border-radius:6px;padding:.18rem .35rem;color:#7f95a8}.floating-tools{position:fixed;right:1rem;bottom:1rem;z-index:55;display:flex;flex-direction:column;gap:.55rem}.float-btn{width:44px;height:44px;border-radius:14px;border:1px solid rgba(79,227,220,.25);background:rgba(6,18,30,.88);backdrop-filter:blur(12px);color:#62e7df;display:grid;place-items:center;font:600 12px 'IBM Plex Mono',monospace;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.2s}.float-btn:hover{transform:translateY(-3px);border-color:#4fe3dc}.terminal-drawer{position:fixed;right:1rem;bottom:4.8rem;width:min(430px,calc(100vw - 2rem));z-index:54;background:#06111d;border:1px solid rgba(79,227,220,.25);border-radius:18px;box-shadow:0 25px 70px rgba(0,0,0,.45);overflow:hidden;transform:translateY(18px) scale(.98);opacity:0;pointer-events:none;transition:.25s}.terminal-drawer.open{transform:none;opacity:1;pointer-events:auto}.terminal-head{display:flex;justify-content:space-between;align-items:center;padding:.7rem .9rem;border-bottom:1px solid rgba(148,163,184,.15);font:500 11px 'IBM Plex Mono',monospace;color:#7f95a8}.terminal-output{height:230px;overflow:auto;padding:.9rem;font:12px/1.7 'IBM Plex Mono',monospace;color:#bcefeb;white-space:pre-wrap}.terminal-form{display:flex;border-top:1px solid rgba(148,163,184,.15)}.terminal-form span{padding:.8rem 0 .8rem .9rem;color:#4fe3dc;font:12px 'IBM Plex Mono',monospace}.terminal-form input{flex:1;background:transparent;border:0;outline:0;color:#dffefd;padding:.8rem;font:12px 'IBM Plex Mono',monospace}.mode-switch{display:inline-flex;padding:.25rem;border:1px solid rgba(79,227,220,.2);background:rgba(6,18,30,.7);border-radius:12px}.mode-switch button{padding:.45rem .7rem;border-radius:9px;font:500 11px 'IBM Plex Mono',monospace;color:#7f95a8}.mode-switch button.active{background:#0aa5a9;color:white}.metric-pop{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:1rem;background:rgba(2,8,18,.72);backdrop-filter:blur(8px)}.metric-pop.open{display:grid}.metric-pop-card{max-width:500px;background:#081522;border:1px solid rgba(79,227,220,.25);border-radius:20px;padding:1.4rem;color:#d9edf2}.metric-pop-card h3{font-family:'Sora',sans-serif;font-size:1.25rem}.metric-pop-card p{margin-top:.7rem;color:#8fa8bb;line-height:1.7}.story-node{position:relative;border:1px solid rgba(79,227,220,.18);background:rgba(7,21,34,.7);border-radius:18px;padding:1.1rem;transition:.25s}.story-node:hover{transform:translateY(-5px);border-color:#4fe3dc;box-shadow:0 18px 45px rgba(0,0,0,.25)}.story-node::after{content:'';position:absolute;left:50%;bottom:-22px;width:2px;height:22px;background:linear-gradient(#4fe3dc,transparent)}.story-node:last-child::after{display:none}.scenario-btn.active{background:#0aa5a9!important;color:white!important;border-color:#0aa5a9!important}.scenario-stage{transition:.25s}.pulse-good{animation:pulseGood 1.5s infinite}@keyframes pulseGood{50%{box-shadow:0 0 0 8px rgba(79,227,220,0)}}.easter-toast{position:fixed;left:50%;top:5rem;transform:translate(-50%,-20px);opacity:0;z-index:100;background:#071522;border:1px solid #4fe3dc;color:#dffefd;border-radius:999px;padding:.65rem 1rem;font:500 12px 'IBM Plex Mono',monospace;transition:.3s}.easter-toast.show{opacity:1;transform:translate(-50%,0)}.network-online .neon-edge{box-shadow:0 0 0 1px rgba(79,227,220,.35),0 0 38px rgba(79,227,220,.18)!important}.network-online .cursor-glow{width:420px;height:420px}.tech-hidden{display:none!important}@media(max-width:640px){.floating-tools{right:.7rem;bottom:.7rem}.float-btn{width:40px;height:40px}.story-node::after{height:16px;bottom:-16px}}
 
 </style>
-</head>
+<style>
+/* Fullscreen project gallery + dashboard expansion */
+.expand-panel-btn,.image-expand-btn{
+  display:inline-flex;align-items:center;gap:.45rem;border:1px solid rgba(79,227,220,.28);
+  background:rgba(6,18,30,.82);color:#8ff5ef;border-radius:10px;padding:.55rem .75rem;
+  font:500 11px "IBM Plex Mono",monospace;transition:.2s;cursor:pointer
+}
+.expand-panel-btn:hover,.image-expand-btn:hover{transform:translateY(-2px);border-color:#4fe3dc;background:rgba(10,165,169,.14)}
+.expand-panel-toolbar{display:flex;justify-content:flex-end;margin-bottom:1rem}
+.expandable-panel.is-expanded{
+  position:fixed!important;inset:1rem!important;z-index:120!important;margin:0!important;max-width:none!important;
+  overflow:auto!important;background:#06111d!important;border:1px solid rgba(79,227,220,.42)!important;
+  border-radius:22px!important;padding:1.25rem!important;box-shadow:0 35px 120px rgba(0,0,0,.72)!important
+}
+.expandable-panel.is-expanded .expand-panel-toolbar{position:sticky;top:0;z-index:4;padding:.35rem 0 .8rem;background:linear-gradient(#06111d 72%,transparent)}
+body.panel-expanded{overflow:hidden}
+.zoom-figure{position:relative}
+.zoom-figure img{cursor:zoom-in;transition:transform .25s ease,filter .25s ease}
+.zoom-figure:hover img{transform:scale(1.015);filter:brightness(1.08)}
+.zoom-figure .image-expand-btn{position:absolute;right:.75rem;top:.75rem;z-index:3;backdrop-filter:blur(10px)}
+.image-lightbox{position:fixed;inset:0;z-index:140;display:none;align-items:center;justify-content:center;padding:1rem;background:rgba(1,7,14,.92);backdrop-filter:blur(14px)}
+.image-lightbox.open{display:flex}
+.image-lightbox-inner{position:relative;width:min(1500px,96vw);height:min(92vh,1000px);display:flex;flex-direction:column}
+.image-lightbox-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.1rem 0 .7rem;color:#bfece9;font:500 12px "IBM Plex Mono",monospace}
+.image-lightbox-stage{flex:1;min-height:0;overflow:auto;border:1px solid rgba(79,227,220,.25);border-radius:18px;background:#020811;padding:1rem;display:flex;align-items:flex-start;justify-content:center}
+.image-lightbox-stage img{display:block;max-width:none;width:auto;height:auto;min-width:min(1200px,100%);object-fit:contain}
+.image-lightbox-close{border:1px solid rgba(79,227,220,.3);border-radius:10px;padding:.45rem .7rem;color:#8ff5ef;background:#071522}
+.image-lightbox-hint{color:#718da3;font-size:10px}
+@media(max-width:640px){.expandable-panel.is-expanded{inset:.4rem!important;padding:.8rem!important}.image-lightbox{padding:.4rem}.image-lightbox-stage{padding:.5rem}.image-lightbox-stage img{min-width:1050px}}
+</style></head>
 <body class="font-sans antialiased">
 <header class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur">
 <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
@@ -170,10 +199,9 @@
 <div class="mt-5 rounded-xl border border-line bg-navy/80 p-3 lab-console text-[11px]">$ tshark → pandas → 17 features → Streamlit V2 <span class="text-amber">[pipeline ready]</span></div></div>
 </section>
 <div class="mt-5 flex items-center justify-between gap-3 rounded-xl border border-line bg-paper/50 p-2">
-  <span class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Reading mode</span>
-  <div class="mode-switch"><button class="active" data-view="overview">Overview</button><button data-view="technical">Technical view</button></div>
+<span class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Reading mode</span>
+<div class="mode-switch"><button class="active" data-view="overview">Overview</button><button data-view="technical">Technical view</button></div>
 </div>
-
 <!-- KPI grid -->
 <section class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
 <article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="Structured packet records with the required IP-layer fields after parsing the one-million-packet sample.">
@@ -397,7 +425,7 @@
 <p class="font-mono text-[12px]">retransmission_rate = retransmission_count / tcp_count</p>
 </div>
 </section>
-<section class="scroll-mt-24" id="dashboard">
+<section class="scroll-mt-24" data-expand-panel="true" id="dashboard">
 <div class="mb-5">
 <p class="eyebrow font-mono text-[10px] text-signalink">06 — INTERACTIVE DASHBOARD</p>
 <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Streamlit Version 2: a more complete analytics application</h2>
@@ -407,25 +435,25 @@
 </div>
 <div class="grid gap-4 md:grid-cols-2">
 <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
-<img alt="MAWI Streamlit Version 2 overview with filters and KPI cards" class="aspect-[16/10] w-full object-cover" src="../assets/overview.png"/>
+<img alt="MAWI Streamlit Version 2 overview with filters and KPI cards" class="aspect-[16/10] w-full object-cover" data-zoom-image="true" src="../assets/overview.png"/>
 <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
                 Wide-layout header, filtered KPI cards, analysis controls, and tab-based navigation.
               </figcaption>
 </figure>
 <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
-<img alt="MAWI reliability view showing TCP retransmission count and rate" class="aspect-[16/10] w-full object-cover" src="../assets/reliability.png"/>
+<img alt="MAWI reliability view showing TCP retransmission count and rate" class="aspect-[16/10] w-full object-cover" data-zoom-image="true" src="../assets/reliability.png"/>
 <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
                 Retransmission count, normalized rate, peak reliability metrics, and highest-retransmission windows.
               </figcaption>
 </figure>
 <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
-<img alt="MAWI traffic analysis showing protocol share and endpoint diversity" class="aspect-[16/10] w-full object-cover" src="../assets/traffic.png"/>
+<img alt="MAWI traffic analysis showing protocol share and endpoint diversity" class="aspect-[16/10] w-full object-cover" data-zoom-image="true" src="../assets/traffic.png"/>
 <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
                 Protocol composition, packet-length behavior, and unique source and destination IP activity.
               </figcaption>
 </figure>
 <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
-<img alt="MAWI engineered feature table with feature-group selection" class="aspect-[16/10] w-full object-cover" src="../assets/data.png"/>
+<img alt="MAWI engineered feature table with feature-group selection" class="aspect-[16/10] w-full object-cover" data-zoom-image="true" src="../assets/data.png"/>
 <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
                 Filterable engineered features, data-quality notes, and downloadable CSV output.
               </figcaption>
@@ -552,14 +580,12 @@
 </section>
 </div>
 </div>
-
 <section class="section-card" id="scenario-lab">
-  <p class="eyebrow font-mono text-[10px] text-signalink">INTERACTIVE LAB</p><h2 class="mt-2 font-display text-2xl font-semibold">Run a traffic scenario</h2>
-  <div class="mt-5 flex flex-wrap gap-2"><button class="scenario-btn active rounded-lg border border-signal bg-signal px-3 py-2 font-mono text-[11px] text-white" data-mawi="normal">Normal traffic</button><button class="scenario-btn rounded-lg border border-line bg-paper px-3 py-2 font-mono text-[11px] text-muted" data-mawi="spike">Retransmission spike</button><button class="scenario-btn rounded-lg border border-line bg-paper px-3 py-2 font-mono text-[11px] text-muted" data-mawi="shift">Protocol shift</button></div>
-  <div class="scenario-stage mt-5 rounded-2xl border border-line bg-paper p-5"><div class="flex items-center justify-between"><span id="mawiLabel" class="font-mono text-xs text-muted">baseline packet flow</span><span id="mawiValue" class="font-display text-2xl font-bold">0.71%</span></div><div class="mt-4 h-28 flex items-end gap-2" id="mawiBars"></div><p id="mawiExplain" class="mt-4 text-sm leading-6 text-muted">A balanced mix of traffic with a low retransmission rate.</p></div>
+<p class="eyebrow font-mono text-[10px] text-signalink">INTERACTIVE LAB</p><h2 class="mt-2 font-display text-2xl font-semibold">Run a traffic scenario</h2>
+<div class="mt-5 flex flex-wrap gap-2"><button class="scenario-btn active rounded-lg border border-signal bg-signal px-3 py-2 font-mono text-[11px] text-white" data-mawi="normal">Normal traffic</button><button class="scenario-btn rounded-lg border border-line bg-paper px-3 py-2 font-mono text-[11px] text-muted" data-mawi="spike">Retransmission spike</button><button class="scenario-btn rounded-lg border border-line bg-paper px-3 py-2 font-mono text-[11px] text-muted" data-mawi="shift">Protocol shift</button></div>
+<div class="scenario-stage mt-5 rounded-2xl border border-line bg-paper p-5"><div class="flex items-center justify-between"><span class="font-mono text-xs text-muted" id="mawiLabel">baseline packet flow</span><span class="font-display text-2xl font-bold" id="mawiValue">0.71%</span></div><div class="mt-4 h-28 flex items-end gap-2" id="mawiBars"></div><p class="mt-4 text-sm leading-6 text-muted" id="mawiExplain">A balanced mix of traffic with a low retransmission rate.</p></div>
 </section>
 <script>(()=>{const bars=document.getElementById('mawiBars');const data={normal:{v:[28,35,32,46,41,50,44,56,48,52],label:'baseline packet flow',value:'0.71%',text:'A balanced mix of traffic with a low retransmission rate.'},spike:{v:[24,30,28,33,42,92,66,48,39,35],label:'tcp.analysis.retransmission',value:'spike',text:'A sharp reliability event stands out from the surrounding windows and becomes a troubleshooting target.'},shift:{v:[18,24,38,54,69,73,65,58,51,44],label:'protocol composition change',value:'UDP ↑',text:'A protocol-share change alters the traffic profile even when total packet volume remains similar.'}};function draw(k){const d=data[k];bars.innerHTML=d.v.map((v,i)=>`<span style="height:${v}%;animation-delay:${i*.04}s" class="flex-1 rounded-t bg-signal/70 transition-all"></span>`).join('');document.getElementById('mawiLabel').textContent=d.label;document.getElementById('mawiValue').textContent=d.value;document.getElementById('mawiExplain').textContent=d.text}document.querySelectorAll('[data-mawi]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mawi]').forEach(x=>x.classList.remove('active'));b.classList.add('active');draw(b.dataset.mawi)});draw('normal')})();</script>
-
 <div class="mt-12 flex items-center justify-between border-t border-line pt-6">
 <a class="font-mono text-[12.5px] text-muted transition-colors hover:text-signalink" href="energy.html">← Cell-Site Energy</a>
 <a class="font-mono text-[12.5px] text-signalink" href="../index.html#projects">all projects</a>
@@ -598,28 +624,24 @@
     window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
     document.querySelectorAll('[data-magnetic]').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.05}px,${(e.clientY-r.top-r.height/2)*.08}px)`});el.addEventListener('pointerleave',()=>el.style.transform='');});
 </script>
-
 <script>(()=>{const btns=document.querySelectorAll('[data-view]');if(!btns.length)return;const technicalIds=['architecture','pipeline','features','automation','scenario-lab','progress-map','battery-lab'];function apply(mode){btns.forEach(b=>b.classList.toggle('active',b.dataset.view===mode));technicalIds.forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('tech-hidden',mode==='overview')})}btns.forEach(b=>b.onclick=()=>apply(b.dataset.view));apply('overview')})();</script>
-
-
-<div class="floating-tools" aria-label="Portfolio tools">
-  <button class="float-btn" id="openCommand" title="Command palette (Ctrl+K)">⌘K</button>
-  <button class="float-btn" id="openTerminal" title="Engineering terminal">&gt;_</button>
+<div aria-label="Portfolio tools" class="floating-tools">
+<button class="float-btn" id="openCommand" title="Command palette (Ctrl+K)">⌘K</button>
+<button class="float-btn" id="openTerminal" title="Engineering terminal">&gt;_</button>
 </div>
-<div class="command-backdrop" id="commandPalette" aria-hidden="true">
-  <div class="command-panel" role="dialog" aria-modal="true" aria-label="Command palette">
-    <input class="command-input" id="commandInput" placeholder="Search projects, résumé, contact…" autocomplete="off" />
-    <div class="command-list" id="commandList"></div>
-  </div>
+<div aria-hidden="true" class="command-backdrop" id="commandPalette">
+<div aria-label="Command palette" aria-modal="true" class="command-panel" role="dialog">
+<input autocomplete="off" class="command-input" id="commandInput" placeholder="Search projects, résumé, contact…"/>
+<div class="command-list" id="commandList"></div>
 </div>
-<div class="terminal-drawer" id="terminalDrawer" aria-label="Engineering terminal">
-  <div class="terminal-head"><span>philips@portfolio:~</span><button id="closeTerminal">close</button></div>
-  <div class="terminal-output" id="terminalOutput">[OK] portfolio initialized\n[OK] 3 engineering projects indexed\nType help to view commands.</div>
-  <div class="terminal-form"><span>$</span><input id="terminalInput" aria-label="Terminal command" autocomplete="off" /></div>
 </div>
-<div class="metric-pop" id="metricPop"><div class="metric-pop-card"><button id="closeMetric" class="float-right font-mono text-xs text-muted">close</button><h3 id="metricTitle"></h3><p id="metricBody"></p></div></div>
+<div aria-label="Engineering terminal" class="terminal-drawer" id="terminalDrawer">
+<div class="terminal-head"><span>philips@portfolio:~</span><button id="closeTerminal">close</button></div>
+<div class="terminal-output" id="terminalOutput">[OK] portfolio initialized\n[OK] 3 engineering projects indexed\nType help to view commands.</div>
+<div class="terminal-form"><span>$</span><input aria-label="Terminal command" autocomplete="off" id="terminalInput"/></div>
+</div>
+<div class="metric-pop" id="metricPop"><div class="metric-pop-card"><button class="float-right font-mono text-xs text-muted" id="closeMetric">close</button><h3 id="metricTitle"></h3><p id="metricBody"></p></div></div>
 <div class="easter-toast" id="easterToast">5G core online · all portfolio links healthy</div>
-
 <script>
 (() => {
   const root = location.pathname.includes('/projects/') ? '../' : '';
@@ -656,5 +678,89 @@
 })();
 </script>
 
+<div aria-hidden="true" aria-label="Expanded project screenshot" aria-modal="true" class="image-lightbox" id="imageLightbox" role="dialog">
+<div class="image-lightbox-inner">
+<div class="image-lightbox-toolbar">
+<div><span id="lightboxTitle">Project screenshot</span><span class="image-lightbox-hint"> · scroll horizontally and vertically to inspect the full dashboard</span></div>
+<button class="image-lightbox-close" id="lightboxClose" type="button">Close ✕</button>
+</div>
+<div class="image-lightbox-stage"><img alt="Expanded project screenshot" id="lightboxImage"/></div>
+</div>
+</div>
+
+<script>
+(() => {
+  const body = document.body;
+
+  document.querySelectorAll('[data-expand-panel]').forEach(panel => {
+    panel.classList.add('expandable-panel');
+    const toolbar = document.createElement('div');
+    toolbar.className = 'expand-panel-toolbar';
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'expand-panel-btn';
+    button.innerHTML = '<span aria-hidden="true">⛶</span><span>Expand dashboard</span>';
+    button.setAttribute('aria-expanded', 'false');
+    toolbar.appendChild(button);
+    panel.insertBefore(toolbar, panel.firstChild);
+
+    button.addEventListener('click', () => {
+      const expanded = panel.classList.toggle('is-expanded');
+      body.classList.toggle('panel-expanded', expanded);
+      button.setAttribute('aria-expanded', String(expanded));
+      button.querySelector('span:last-child').textContent = expanded ? 'Exit full screen' : 'Expand dashboard';
+      if (expanded) panel.scrollTop = 0;
+    });
+  });
+
+  const lightbox = document.getElementById('imageLightbox');
+  const lightboxImg = document.getElementById('lightboxImage');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    body.classList.remove('panel-expanded');
+  };
+
+  document.querySelectorAll('[data-zoom-image]').forEach(img => {
+    const figure = img.closest('figure');
+    if (figure) {
+      figure.classList.add('zoom-figure');
+      if (!figure.querySelector('.image-expand-btn')) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'image-expand-btn';
+        button.innerHTML = '<span aria-hidden="true">⛶</span> View full dashboard';
+        figure.appendChild(button);
+        button.addEventListener('click', () => img.click());
+      }
+    }
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt || 'Expanded project screenshot';
+      lightboxTitle.textContent = img.alt || 'Project screenshot';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      body.classList.add('panel-expanded');
+    });
+  });
+
+  document.getElementById('lightboxClose')?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (lightbox?.classList.contains('open')) closeLightbox();
+    document.querySelectorAll('.expandable-panel.is-expanded').forEach(panel => {
+      panel.classList.remove('is-expanded');
+      const button = panel.querySelector('.expand-panel-btn');
+      if (button) {
+        button.setAttribute('aria-expanded', 'false');
+        button.querySelector('span:last-child').textContent = 'Expand dashboard';
+      }
+    });
+    body.classList.remove('panel-expanded');
+  });
+})();
+</script>
 </body>
 </html>

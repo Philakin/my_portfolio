@@ -21,27 +21,53 @@
 /* playful interaction layer */
 .command-backdrop{position:fixed;inset:0;background:rgba(2,8,18,.78);backdrop-filter:blur(12px);z-index:90;display:none;align-items:flex-start;justify-content:center;padding:11vh 1rem 1rem}.command-backdrop.open{display:flex}.command-panel{width:min(640px,100%);background:#081522;border:1px solid rgba(79,227,220,.24);border-radius:20px;box-shadow:0 30px 90px rgba(0,0,0,.5);overflow:hidden}.command-input{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(148,163,184,.18);padding:1rem 1.1rem;color:#e7f7f6;font:500 14px 'IBM Plex Mono',monospace;outline:none}.command-list{padding:.55rem;max-height:360px;overflow:auto}.command-item{width:100%;display:flex;align-items:center;justify-content:space-between;padding:.8rem .9rem;border-radius:12px;color:#9fb3c8;text-align:left;font-size:.88rem}.command-item:hover,.command-item.active{background:rgba(10,165,169,.12);color:#dffefd}.command-key{font:500 10px 'IBM Plex Mono',monospace;border:1px solid rgba(148,163,184,.2);border-radius:6px;padding:.18rem .35rem;color:#7f95a8}.floating-tools{position:fixed;right:1rem;bottom:1rem;z-index:55;display:flex;flex-direction:column;gap:.55rem}.float-btn{width:44px;height:44px;border-radius:14px;border:1px solid rgba(79,227,220,.25);background:rgba(6,18,30,.88);backdrop-filter:blur(12px);color:#62e7df;display:grid;place-items:center;font:600 12px 'IBM Plex Mono',monospace;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.2s}.float-btn:hover{transform:translateY(-3px);border-color:#4fe3dc}.terminal-drawer{position:fixed;right:1rem;bottom:4.8rem;width:min(430px,calc(100vw - 2rem));z-index:54;background:#06111d;border:1px solid rgba(79,227,220,.25);border-radius:18px;box-shadow:0 25px 70px rgba(0,0,0,.45);overflow:hidden;transform:translateY(18px) scale(.98);opacity:0;pointer-events:none;transition:.25s}.terminal-drawer.open{transform:none;opacity:1;pointer-events:auto}.terminal-head{display:flex;justify-content:space-between;align-items:center;padding:.7rem .9rem;border-bottom:1px solid rgba(148,163,184,.15);font:500 11px 'IBM Plex Mono',monospace;color:#7f95a8}.terminal-output{height:230px;overflow:auto;padding:.9rem;font:12px/1.7 'IBM Plex Mono',monospace;color:#bcefeb;white-space:pre-wrap}.terminal-form{display:flex;border-top:1px solid rgba(148,163,184,.15)}.terminal-form span{padding:.8rem 0 .8rem .9rem;color:#4fe3dc;font:12px 'IBM Plex Mono',monospace}.terminal-form input{flex:1;background:transparent;border:0;outline:0;color:#dffefd;padding:.8rem;font:12px 'IBM Plex Mono',monospace}.mode-switch{display:inline-flex;padding:.25rem;border:1px solid rgba(79,227,220,.2);background:rgba(6,18,30,.7);border-radius:12px}.mode-switch button{padding:.45rem .7rem;border-radius:9px;font:500 11px 'IBM Plex Mono',monospace;color:#7f95a8}.mode-switch button.active{background:#0aa5a9;color:white}.metric-pop{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:1rem;background:rgba(2,8,18,.72);backdrop-filter:blur(8px)}.metric-pop.open{display:grid}.metric-pop-card{max-width:500px;background:#081522;border:1px solid rgba(79,227,220,.25);border-radius:20px;padding:1.4rem;color:#d9edf2}.metric-pop-card h3{font-family:'Sora',sans-serif;font-size:1.25rem}.metric-pop-card p{margin-top:.7rem;color:#8fa8bb;line-height:1.7}.story-node{position:relative;border:1px solid rgba(79,227,220,.18);background:rgba(7,21,34,.7);border-radius:18px;padding:1.1rem;transition:.25s}.story-node:hover{transform:translateY(-5px);border-color:#4fe3dc;box-shadow:0 18px 45px rgba(0,0,0,.25)}.story-node::after{content:'';position:absolute;left:50%;bottom:-22px;width:2px;height:22px;background:linear-gradient(#4fe3dc,transparent)}.story-node:last-child::after{display:none}.scenario-btn.active{background:#0aa5a9!important;color:white!important;border-color:#0aa5a9!important}.scenario-stage{transition:.25s}.pulse-good{animation:pulseGood 1.5s infinite}@keyframes pulseGood{50%{box-shadow:0 0 0 8px rgba(79,227,220,0)}}.easter-toast{position:fixed;left:50%;top:5rem;transform:translate(-50%,-20px);opacity:0;z-index:100;background:#071522;border:1px solid #4fe3dc;color:#dffefd;border-radius:999px;padding:.65rem 1rem;font:500 12px 'IBM Plex Mono',monospace;transition:.3s}.easter-toast.show{opacity:1;transform:translate(-50%,0)}.network-online .neon-edge{box-shadow:0 0 0 1px rgba(79,227,220,.35),0 0 38px rgba(79,227,220,.18)!important}.network-online .cursor-glow{width:420px;height:420px}.tech-hidden{display:none!important}@media(max-width:640px){.floating-tools{right:.7rem;bottom:.7rem}.float-btn{width:40px;height:40px}.story-node::after{height:16px;bottom:-16px}}
 
+</style><style>
+/* Fullscreen project gallery + dashboard expansion */
+.expand-panel-btn,.image-expand-btn{
+  display:inline-flex;align-items:center;gap:.45rem;border:1px solid rgba(79,227,220,.28);
+  background:rgba(6,18,30,.82);color:#8ff5ef;border-radius:10px;padding:.55rem .75rem;
+  font:500 11px "IBM Plex Mono",monospace;transition:.2s;cursor:pointer
+}
+.expand-panel-btn:hover,.image-expand-btn:hover{transform:translateY(-2px);border-color:#4fe3dc;background:rgba(10,165,169,.14)}
+.expand-panel-toolbar{display:flex;justify-content:flex-end;margin-bottom:1rem}
+.expandable-panel.is-expanded{
+  position:fixed!important;inset:1rem!important;z-index:120!important;margin:0!important;max-width:none!important;
+  overflow:auto!important;background:#06111d!important;border:1px solid rgba(79,227,220,.42)!important;
+  border-radius:22px!important;padding:1.25rem!important;box-shadow:0 35px 120px rgba(0,0,0,.72)!important
+}
+.expandable-panel.is-expanded .expand-panel-toolbar{position:sticky;top:0;z-index:4;padding:.35rem 0 .8rem;background:linear-gradient(#06111d 72%,transparent)}
+body.panel-expanded{overflow:hidden}
+.zoom-figure{position:relative}
+.zoom-figure img{cursor:zoom-in;transition:transform .25s ease,filter .25s ease}
+.zoom-figure:hover img{transform:scale(1.015);filter:brightness(1.08)}
+.zoom-figure .image-expand-btn{position:absolute;right:.75rem;top:.75rem;z-index:3;backdrop-filter:blur(10px)}
+.image-lightbox{position:fixed;inset:0;z-index:140;display:none;align-items:center;justify-content:center;padding:1rem;background:rgba(1,7,14,.92);backdrop-filter:blur(14px)}
+.image-lightbox.open{display:flex}
+.image-lightbox-inner{position:relative;width:min(1500px,96vw);height:min(92vh,1000px);display:flex;flex-direction:column}
+.image-lightbox-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.1rem 0 .7rem;color:#bfece9;font:500 12px "IBM Plex Mono",monospace}
+.image-lightbox-stage{flex:1;min-height:0;overflow:auto;border:1px solid rgba(79,227,220,.25);border-radius:18px;background:#020811;padding:1rem;display:flex;align-items:flex-start;justify-content:center}
+.image-lightbox-stage img{display:block;max-width:none;width:auto;height:auto;min-width:min(1200px,100%);object-fit:contain}
+.image-lightbox-close{border:1px solid rgba(79,227,220,.3);border-radius:10px;padding:.45rem .7rem;color:#8ff5ef;background:#071522}
+.image-lightbox-hint{color:#718da3;font-size:10px}
+@media(max-width:640px){.expandable-panel.is-expanded{inset:.4rem!important;padding:.8rem!important}.image-lightbox{padding:.4rem}.image-lightbox-stage{padding:.5rem}.image-lightbox-stage img{min-width:1050px}}
 </style></head>
 <body class="font-sans antialiased"><header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur"><div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-5"><a class="font-mono text-[12px] text-muted hover:text-signalink" href="../index.html">← back to portfolio</a><a class="rounded border border-line px-2.5 py-1 font-mono text-[12px]" href="../assets/resume.pdf">résumé</a></div></header>
 <main class="mx-auto max-w-5xl px-5 py-10 md:py-16"><section class="relative overflow-hidden rounded-[28px] border border-line bg-panel px-6 py-8 md:px-10 md:py-12 scanline neon-edge"><div class="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-signal/10 blur-3xl"></div><div class="relative"><p class="eyebrow font-mono text-[10px] text-signalink">POWER + TELECOM</p><h1 class="mt-3 font-display text-[2.35rem] font-bold leading-tight md:text-[3.7rem]">Cell-Site Energy Analyzer</h1><p class="mt-5 max-w-3xl text-lg leading-8 text-muted">An interactive engineering model that uses real Telecom Italia cellular activity to estimate hourly site power, daily energy demand, and battery backup resilience.</p><div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded-full border border-line bg-paper px-3 py-1">Python</span><span class="rounded-full border border-line bg-paper px-3 py-1">Pandas</span><span class="rounded-full border border-line bg-paper px-3 py-1">Matplotlib</span><span class="rounded-full border border-line bg-paper px-3 py-1">2.3M records</span></div><a class="github-pill mt-5" data-magnetic="" href="https://github.com/Philakin/5g-site-energy-analyzer" rel="noopener noreferrer" target="_blank">View source on GitHub ↗</a></div></section>
 <div class="mt-5 flex items-center justify-between gap-3 rounded-xl border border-line bg-paper/50 p-2">
-  <span class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Reading mode</span>
-  <div class="mode-switch"><button class="active" data-view="overview">Overview</button><button data-view="technical">Technical view</button></div>
+<span class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Reading mode</span>
+<div class="mode-switch"><button class="active" data-view="overview">Overview</button><button data-view="technical">Technical view</button></div>
 </div>
-
 <section class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4"><article class="metric"><p class="font-mono text-[10px] text-muted">RECORDS INSPECTED</p><p class="mt-2 font-display text-2xl font-bold">2.3M</p></article><article class="metric"><p class="font-mono text-[10px] text-muted">GRID CELLS COMPARED</p><p class="mt-2 font-display text-2xl font-bold">10,000</p></article><article class="metric"><p class="font-mono text-[10px] text-muted">DAILY ENERGY</p><p class="mt-2 font-display text-2xl font-bold">47.69 kWh</p></article><article class="metric"><p class="font-mono text-[10px] text-muted">MINIMUM RUNTIME</p><p class="mt-2 font-display text-2xl font-bold">2.4 h</p></article></section>
-<section class="mt-6 rounded-2xl border border-line bg-panel/70 p-5 neon-edge"><div class="flex flex-wrap items-center justify-between gap-3"><div><p class="font-mono text-[10px] tracking-[.15em] text-signalink">QUICK SCENARIOS</p><p class="mt-1 text-sm text-muted">Jump to representative hours and watch power and runtime react.</p></div><div class="flex flex-wrap gap-2"><button class="scenario github-pill" data-hour="4">low load · 4 AM</button><button class="scenario github-pill" data-hour="13">peak · 1 PM</button><button class="scenario github-pill" data-hour="21">recovery · 9 PM</button></div></div></section><section class="section-card mt-8"><div class="grid gap-8 lg:grid-cols-[1.2fr_.8fr]"><div><p class="eyebrow font-mono text-[10px] text-signalink">INTERACTIVE DAY</p><h2 class="mt-2 font-display text-2xl font-semibold">Move through the 24-hour profile</h2><div class="mt-8 flex h-56 items-end gap-1 rounded-xl border border-line bg-paper p-4" id="bars"></div><div class="mt-5"><label class="font-mono text-[11px] text-muted" for="hourSlider">Hour: <span class="text-ink" id="hourLabel">13:00</span></label><input class="mt-3 w-full" id="hourSlider" max="23" min="0" type="range" value="13"/></div></div><div><div class="grid gap-3"><article class="metric"><p class="font-mono text-[10px] text-muted">TRAFFIC UTILIZATION</p><p class="mt-2 font-display text-3xl font-bold" id="trafficValue">100%</p></article><article class="metric"><p class="font-mono text-[10px] text-muted">ESTIMATED SITE POWER</p><p class="mt-2 font-display text-3xl font-bold" id="powerValue">3.00 kW</p></article><article class="metric"><p class="font-mono text-[10px] text-muted">BACKUP RUNTIME</p><p class="mt-2 font-display text-3xl font-bold" id="backupValue">2.40 h</p></article><article class="metric risk" id="statusCard"><p class="font-mono text-[10px]">4-HOUR RESILIENCE TARGET</p><p class="mt-2 font-display text-2xl font-bold" id="statusValue">RISK</p></article></div></div></div></section>
+<section class="mt-6 rounded-2xl border border-line bg-panel/70 p-5 neon-edge"><div class="flex flex-wrap items-center justify-between gap-3"><div><p class="font-mono text-[10px] tracking-[.15em] text-signalink">QUICK SCENARIOS</p><p class="mt-1 text-sm text-muted">Jump to representative hours and watch power and runtime react.</p></div><div class="flex flex-wrap gap-2"><button class="scenario github-pill" data-hour="4">low load · 4 AM</button><button class="scenario github-pill" data-hour="13">peak · 1 PM</button><button class="scenario github-pill" data-hour="21">recovery · 9 PM</button></div></div></section><section class="section-card mt-8" data-expand-panel="true" id="energy-dashboard"><div class="grid gap-8 lg:grid-cols-[1.2fr_.8fr]"><div><p class="eyebrow font-mono text-[10px] text-signalink">INTERACTIVE DAY</p><h2 class="mt-2 font-display text-2xl font-semibold">Move through the 24-hour profile</h2><div class="mt-8 flex h-56 items-end gap-1 rounded-xl border border-line bg-paper p-4" id="bars"></div><div class="mt-5"><label class="font-mono text-[11px] text-muted" for="hourSlider">Hour: <span class="text-ink" id="hourLabel">13:00</span></label><input class="mt-3 w-full" id="hourSlider" max="23" min="0" type="range" value="13"/></div></div><div><div class="grid gap-3"><article class="metric"><p class="font-mono text-[10px] text-muted">TRAFFIC UTILIZATION</p><p class="mt-2 font-display text-3xl font-bold" id="trafficValue">100%</p></article><article class="metric"><p class="font-mono text-[10px] text-muted">ESTIMATED SITE POWER</p><p class="mt-2 font-display text-3xl font-bold" id="powerValue">3.00 kW</p></article><article class="metric"><p class="font-mono text-[10px] text-muted">BACKUP RUNTIME</p><p class="mt-2 font-display text-3xl font-bold" id="backupValue">2.40 h</p></article><article class="metric risk" id="statusCard"><p class="font-mono text-[10px]">4-HOUR RESILIENCE TARGET</p><p class="mt-2 font-display text-2xl font-bold" id="statusValue">RISK</p></article></div></div></div></section>
 <section class="mt-8 grid gap-5 md:grid-cols-2"><article class="section-card"><p class="eyebrow font-mono text-[10px] text-signalink">MODEL</p><h2 class="mt-2 font-display text-xl font-semibold">How demand becomes power</h2><p class="mt-3 leading-7 text-muted">The real hourly activity pattern is normalized between 0 and 1. Equipment power is interpolated between the assumed idle and peak values, then increased by a 20% site-overhead factor.</p><div class="mt-5 rounded-xl bg-navy p-4 font-mono text-[12px] text-slate-200">idle + (peak − idle) × utilization</div></article><article class="section-card"><p class="eyebrow font-mono text-[10px] text-signalink">ASSUMPTIONS</p><h2 class="mt-2 font-display text-xl font-semibold">Configurable electrical inputs</h2><dl class="mt-4 space-y-3 text-sm"><div class="flex justify-between border-b border-line pb-2"><dt class="text-muted">Idle / peak equipment power</dt><dd>1.0 / 2.5 kW</dd></div><div class="flex justify-between border-b border-line pb-2"><dt class="text-muted">Battery capacity</dt><dd>10 kWh</dd></div><div class="flex justify-between border-b border-line pb-2"><dt class="text-muted">Usable depth of discharge</dt><dd>80%</dd></div><div class="flex justify-between border-b border-line pb-2"><dt class="text-muted">Conversion efficiency</dt><dd>90%</dd></div><div class="flex justify-between"><dt class="text-muted">Required backup time</dt><dd>4 hours</dd></div></dl></article></section>
 <section class="section-card mt-8"><p class="eyebrow font-mono text-[10px] text-signalink">RESULT</p><h2 class="mt-2 font-display text-2xl font-semibold">Traffic increases the resilience risk</h2><p class="mt-3 leading-7 text-muted">The modeled battery meets the target overnight and during lower-load periods, but falls below four hours from 9:00 AM through 8:00 PM. At the 1:00 PM traffic peak, site power reaches 3.0 kW and estimated runtime drops to 2.4 hours.</p><div class="mt-5 grid gap-3 sm:grid-cols-3"><div class="rounded-xl border border-line bg-paper p-4"><p class="font-mono text-[10px] text-muted">RISK WINDOW</p><p class="mt-2 font-display text-xl font-semibold">12 hours</p></div><div class="rounded-xl border border-line bg-paper p-4"><p class="font-mono text-[10px] text-muted">PEAK HOUR</p><p class="mt-2 font-display text-xl font-semibold">1:00 PM</p></div><div class="rounded-xl border border-line bg-paper p-4"><p class="font-mono text-[10px] text-muted">USABLE BATTERY</p><p class="mt-2 font-display text-xl font-semibold">7.2 kWh</p></div></div></section>
-
 <section class="section-card" id="battery-lab">
-  <p class="eyebrow font-mono text-[10px] text-signalink">INTERACTIVE LAB</p><h2 class="mt-2 font-display text-2xl font-semibold">Resize the backup system</h2>
-  <p class="mt-3 text-sm leading-6 text-muted">Change the modeled battery capacity to see how peak-hour runtime and the resilience verdict respond.</p>
-  <label class="mt-5 block font-mono text-[11px] text-muted">Battery capacity: <strong id="batteryCap">10 kWh</strong></label><input id="batteryRange" type="range" min="6" max="24" value="10" step="1" class="mt-3 w-full accent-teal-500" />
-  <div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3"><div class="rounded-xl border border-line bg-paper p-4"><small class="font-mono text-muted">usable energy</small><strong id="usableEnergy" class="mt-2 block font-display text-2xl">7.2 kWh</strong></div><div class="rounded-xl border border-line bg-paper p-4"><small class="font-mono text-muted">peak runtime</small><strong id="peakRuntime" class="mt-2 block font-display text-2xl">2.4 h</strong></div><div class="rounded-xl border border-line bg-paper p-4 col-span-2 sm:col-span-1"><small class="font-mono text-muted">4-hour target</small><strong id="batteryVerdict" class="mt-2 block font-display text-2xl text-amber">RISK</strong></div></div>
+<p class="eyebrow font-mono text-[10px] text-signalink">INTERACTIVE LAB</p><h2 class="mt-2 font-display text-2xl font-semibold">Resize the backup system</h2>
+<p class="mt-3 text-sm leading-6 text-muted">Change the modeled battery capacity to see how peak-hour runtime and the resilience verdict respond.</p>
+<label class="mt-5 block font-mono text-[11px] text-muted">Battery capacity: <strong id="batteryCap">10 kWh</strong></label><input class="mt-3 w-full accent-teal-500" id="batteryRange" max="24" min="6" step="1" type="range" value="10"/>
+<div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3"><div class="rounded-xl border border-line bg-paper p-4"><small class="font-mono text-muted">usable energy</small><strong class="mt-2 block font-display text-2xl" id="usableEnergy">7.2 kWh</strong></div><div class="rounded-xl border border-line bg-paper p-4"><small class="font-mono text-muted">peak runtime</small><strong class="mt-2 block font-display text-2xl" id="peakRuntime">2.4 h</strong></div><div class="rounded-xl border border-line bg-paper p-4 col-span-2 sm:col-span-1"><small class="font-mono text-muted">4-hour target</small><strong class="mt-2 block font-display text-2xl text-amber" id="batteryVerdict">RISK</strong></div></div>
 </section>
 <script>(()=>{const r=document.getElementById('batteryRange');function calc(){const cap=+r.value, usable=cap*.8*.9, runtime=usable/3;document.getElementById('batteryCap').textContent=cap+' kWh';document.getElementById('usableEnergy').textContent=usable.toFixed(1)+' kWh';document.getElementById('peakRuntime').textContent=runtime.toFixed(1)+' h';const v=document.getElementById('batteryVerdict');v.textContent=runtime>=4?'PASS':'RISK';v.className='mt-2 block font-display text-2xl '+(runtime>=4?'text-signalink':'text-amber')}r.oninput=calc;calc()})();</script>
-
 <div class="mt-12 flex items-center justify-between border-t border-line pt-6"><a class="font-mono text-[12px] text-muted" href="5g-lab.html">← 5G Integration Lab</a><a class="font-mono text-[12px] text-signalink" href="mawi.html">MAWI Traffic Analyzer →</a></div></main><footer class="border-t border-line"><div class="mx-auto max-w-5xl px-5 py-6 font-mono text-[12px] text-muted">© <span id="yr"></span> Philips Akinbami</div></footer>
 <script>const data=[{hour:0,traffic:0.057454,power:1.303417,backup:5.523941},{hour:1,traffic:0.051525,power:1.292744,backup:5.569547},{hour:2,traffic:0.047011,power:1.28462,backup:5.604771},{hour:3,traffic:0.043864,power:1.278954,backup:5.629598},{hour:4,traffic:0.04214,power:1.275852,backup:5.64329},{hour:5,traffic:0.042296,power:1.276133,backup:5.642045},{hour:6,traffic:0.046967,power:1.284541,backup:5.605113},{hour:7,traffic:0.086556,power:1.3558,backup:5.310516},{hour:8,traffic:0.264354,power:1.675837,backup:4.296362},{hour:9,traffic:0.587618,power:2.257713,backup:3.189068},{hour:10,traffic:0.754805,power:2.558649,backup:2.813985},{hour:11,traffic:0.793431,power:2.628176,backup:2.739542},{hour:12,traffic:0.919533,power:2.85516,backup:2.52175},{hour:13,traffic:1,power:3,backup:2.4},{hour:14,traffic:0.945913,power:2.902643,backup:2.480498},{hour:15,traffic:0.938731,power:2.889715,backup:2.491595},{hour:16,traffic:0.797075,power:2.634735,backup:2.732723},{hour:17,traffic:0.824424,power:2.683963,backup:2.682601},{hour:18,traffic:0.710761,power:2.47937,backup:2.903963},{hour:19,traffic:0.494229,power:2.089612,backup:3.445615},{hour:20,traffic:0.338383,power:1.80909,backup:3.979902},{hour:21,traffic:0.29541,power:1.731738,backup:4.157672},{hour:22,traffic:0.234633,power:1.622339,backup:4.438038},{hour:23,traffic:0.179177,power:1.522519,backup:4.729006}];const bars=document.getElementById('bars');const slider=document.getElementById('hourSlider');function fmtHour(h){const d=new Date(2020,0,1,h);return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}data.forEach((d,i)=>{const b=document.createElement('button');b.className='bar flex-1 rounded-t-sm bg-signal/45 hover:bg-signal';b.style.height=(10+d.traffic*90)+'%';b.title=fmtHour(i);b.dataset.hour=i;b.addEventListener('click',()=>{slider.value=i;update(i)});bars.appendChild(b)});function update(i){const d=data[i];document.getElementById('hourLabel').textContent=fmtHour(i);document.getElementById('trafficValue').textContent=(d.traffic*100).toFixed(1)+'%';document.getElementById('powerValue').textContent=d.power.toFixed(2)+' kW';document.getElementById('backupValue').textContent=d.backup.toFixed(2)+' h';const risk=d.backup<4;const card=document.getElementById('statusCard');card.classList.toggle('risk',risk);card.classList.toggle('pass',!risk);document.getElementById('statusValue').textContent=risk?'RISK':'PASS';document.querySelectorAll('.bar').forEach((b,j)=>{b.style.opacity=j==i?'1':'.45';b.style.background=j==i?'#38E8E1':''})}slider.addEventListener('input',e=>update(+e.target.value));update(13);document.getElementById('yr').textContent=new Date().getFullYear();
 document.querySelectorAll('.scenario').forEach(btn=>btn.addEventListener('click',()=>{const h=+btn.dataset.hour;slider.value=h;update(h);document.getElementById('hourSlider').scrollIntoView({behavior:'smooth',block:'center'});}));</script><script>
@@ -49,28 +75,24 @@ document.querySelectorAll('.scenario').forEach(btn=>btn.addEventListener('click'
     window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
     document.querySelectorAll('[data-magnetic]').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.05}px,${(e.clientY-r.top-r.height/2)*.08}px)`});el.addEventListener('pointerleave',()=>el.style.transform='');});
 </script>
-
 <script>(()=>{const btns=document.querySelectorAll('[data-view]');if(!btns.length)return;const technicalIds=['architecture','pipeline','features','automation','scenario-lab','progress-map','battery-lab'];function apply(mode){btns.forEach(b=>b.classList.toggle('active',b.dataset.view===mode));technicalIds.forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('tech-hidden',mode==='overview')})}btns.forEach(b=>b.onclick=()=>apply(b.dataset.view));apply('overview')})();</script>
-
-
-<div class="floating-tools" aria-label="Portfolio tools">
-  <button class="float-btn" id="openCommand" title="Command palette (Ctrl+K)">⌘K</button>
-  <button class="float-btn" id="openTerminal" title="Engineering terminal">&gt;_</button>
+<div aria-label="Portfolio tools" class="floating-tools">
+<button class="float-btn" id="openCommand" title="Command palette (Ctrl+K)">⌘K</button>
+<button class="float-btn" id="openTerminal" title="Engineering terminal">&gt;_</button>
 </div>
-<div class="command-backdrop" id="commandPalette" aria-hidden="true">
-  <div class="command-panel" role="dialog" aria-modal="true" aria-label="Command palette">
-    <input class="command-input" id="commandInput" placeholder="Search projects, résumé, contact…" autocomplete="off" />
-    <div class="command-list" id="commandList"></div>
-  </div>
+<div aria-hidden="true" class="command-backdrop" id="commandPalette">
+<div aria-label="Command palette" aria-modal="true" class="command-panel" role="dialog">
+<input autocomplete="off" class="command-input" id="commandInput" placeholder="Search projects, résumé, contact…"/>
+<div class="command-list" id="commandList"></div>
 </div>
-<div class="terminal-drawer" id="terminalDrawer" aria-label="Engineering terminal">
-  <div class="terminal-head"><span>philips@portfolio:~</span><button id="closeTerminal">close</button></div>
-  <div class="terminal-output" id="terminalOutput">[OK] portfolio initialized\n[OK] 3 engineering projects indexed\nType help to view commands.</div>
-  <div class="terminal-form"><span>$</span><input id="terminalInput" aria-label="Terminal command" autocomplete="off" /></div>
 </div>
-<div class="metric-pop" id="metricPop"><div class="metric-pop-card"><button id="closeMetric" class="float-right font-mono text-xs text-muted">close</button><h3 id="metricTitle"></h3><p id="metricBody"></p></div></div>
+<div aria-label="Engineering terminal" class="terminal-drawer" id="terminalDrawer">
+<div class="terminal-head"><span>philips@portfolio:~</span><button id="closeTerminal">close</button></div>
+<div class="terminal-output" id="terminalOutput">[OK] portfolio initialized\n[OK] 3 engineering projects indexed\nType help to view commands.</div>
+<div class="terminal-form"><span>$</span><input aria-label="Terminal command" autocomplete="off" id="terminalInput"/></div>
+</div>
+<div class="metric-pop" id="metricPop"><div class="metric-pop-card"><button class="float-right font-mono text-xs text-muted" id="closeMetric">close</button><h3 id="metricTitle"></h3><p id="metricBody"></p></div></div>
 <div class="easter-toast" id="easterToast">5G core online · all portfolio links healthy</div>
-
 <script>
 (() => {
   const root = location.pathname.includes('/projects/') ? '../' : '';
@@ -107,4 +129,88 @@ document.querySelectorAll('.scenario').forEach(btn=>btn.addEventListener('click'
 })();
 </script>
 
+<div aria-hidden="true" aria-label="Expanded project screenshot" aria-modal="true" class="image-lightbox" id="imageLightbox" role="dialog">
+<div class="image-lightbox-inner">
+<div class="image-lightbox-toolbar">
+<div><span id="lightboxTitle">Project screenshot</span><span class="image-lightbox-hint"> · scroll horizontally and vertically to inspect the full dashboard</span></div>
+<button class="image-lightbox-close" id="lightboxClose" type="button">Close ✕</button>
+</div>
+<div class="image-lightbox-stage"><img alt="Expanded project screenshot" id="lightboxImage"/></div>
+</div>
+</div>
+
+<script>
+(() => {
+  const body = document.body;
+
+  document.querySelectorAll('[data-expand-panel]').forEach(panel => {
+    panel.classList.add('expandable-panel');
+    const toolbar = document.createElement('div');
+    toolbar.className = 'expand-panel-toolbar';
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'expand-panel-btn';
+    button.innerHTML = '<span aria-hidden="true">⛶</span><span>Expand dashboard</span>';
+    button.setAttribute('aria-expanded', 'false');
+    toolbar.appendChild(button);
+    panel.insertBefore(toolbar, panel.firstChild);
+
+    button.addEventListener('click', () => {
+      const expanded = panel.classList.toggle('is-expanded');
+      body.classList.toggle('panel-expanded', expanded);
+      button.setAttribute('aria-expanded', String(expanded));
+      button.querySelector('span:last-child').textContent = expanded ? 'Exit full screen' : 'Expand dashboard';
+      if (expanded) panel.scrollTop = 0;
+    });
+  });
+
+  const lightbox = document.getElementById('imageLightbox');
+  const lightboxImg = document.getElementById('lightboxImage');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    body.classList.remove('panel-expanded');
+  };
+
+  document.querySelectorAll('[data-zoom-image]').forEach(img => {
+    const figure = img.closest('figure');
+    if (figure) {
+      figure.classList.add('zoom-figure');
+      if (!figure.querySelector('.image-expand-btn')) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'image-expand-btn';
+        button.innerHTML = '<span aria-hidden="true">⛶</span> View full dashboard';
+        figure.appendChild(button);
+        button.addEventListener('click', () => img.click());
+      }
+    }
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt || 'Expanded project screenshot';
+      lightboxTitle.textContent = img.alt || 'Project screenshot';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      body.classList.add('panel-expanded');
+    });
+  });
+
+  document.getElementById('lightboxClose')?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (lightbox?.classList.contains('open')) closeLightbox();
+    document.querySelectorAll('.expandable-panel.is-expanded').forEach(panel => {
+      panel.classList.remove('is-expanded');
+      const button = panel.querySelector('.expand-panel-btn');
+      if (button) {
+        button.setAttribute('aria-expanded', 'false');
+        button.querySelector('span:last-child').textContent = 'Expand dashboard';
+      }
+    });
+    body.classList.remove('panel-expanded');
+  });
+})();
+</script>
 </body></html>

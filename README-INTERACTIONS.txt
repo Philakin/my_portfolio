@@ -11,3 +11,9 @@ Portfolio interaction guide
 9. Click homepage metrics for provenance notes.
 
 9. Packet Run mini-game on the homepage: jump retransmission spikes, collect signal boosts, and unlock real project facts.
+
+
+SCREENSHOT / DASHBOARD VIEWING
+- MAWI dashboard screenshots can be clicked and opened at full resolution.
+- Each project has an Expand dashboard control for full-screen inspection.
+- Press Escape to close expanded dashboards or screenshots.
