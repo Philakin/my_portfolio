@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Philips Akinbami — Network & Telecom Engineer</title>
-  <meta name="description"
-    content="Philips Akinbami — MS Telecommunications candidate at the University of Maryland. Network performance, protocols, and automation, with data-analytics depth." />
-  <link rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Philips Akinbami — Network &amp; Telecom Engineer</title>
+<meta content="Philips Akinbami — MS Telecommunications candidate at the University of Maryland. Network performance, protocols, and automation, with data-analytics depth." name="description"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            paper: "#F5F7F8",
-            panel: "#FFFFFF",
-            ink: "#0D1B2A",
-            muted: "#566573",
-            line: "#E1E6EA",
-            signal: "#0AA5A9",
-            signalink: "#0A6E70",
-            amber: "#E8833A",
+            paper: "#07111F",
+            panel: "#0C1929",
+            ink: "#EAF4FF",
+            muted: "#8FA4B8",
+            line: "#20344A",
+            signal: "#38E8E1",
+            signalink: "#8AFFF8",
+            amber: "#FFB35C",
           },
           fontFamily: {
             display: ["Sora", "sans-serif"],
@@ -38,18 +34,18 @@
       },
     };
   </script>
-  <style>
+<style>
     html {
       scroll-behavior: smooth;
     }
 
     body {
-      background: #F5F7F8;
-      color: #0D1B2A;
+      background: #07111F;
+      color: #EAF4FF;
     }
 
     ::selection {
-      background: #0AA5A9;
+      background: #38E8E1;
       color: #fff;
     }
 
@@ -84,7 +80,7 @@
 
     a:focus-visible,
     button:focus-visible {
-      outline: 2px solid #0AA5A9;
+      outline: 2px solid #38E8E1;
       outline-offset: 3px;
       border-radius: 2px;
     }
@@ -108,340 +104,316 @@
 
     .project-card { transform-style:preserve-3d; transition:transform .18s ease, border-color .2s ease, box-shadow .2s ease; }
     .project-card:hover { box-shadow:0 18px 45px -28px rgba(13,27,42,.35); }
-    .nf-dot { width:38px; height:38px; display:grid; place-items:center; border-radius:999px; background:#E8F7F7; color:#0A6E70; font:500 9px "IBM Plex Mono"; border:1px solid #BDE9E9; }
+    .nf-dot { width:38px; height:38px; display:grid; place-items:center; border-radius:999px; background:#E8F7F7; color:#8AFFF8; font:500 9px "IBM Plex Mono"; border:1px solid #BDE9E9; }
     .nf-dot.pending { background:#FFF2E8; color:#9A4D12; border-color:#F4C6A4; }
-    .nf-link { height:2px; flex:1; background:linear-gradient(90deg,#0AA5A9 50%,transparent 50%); background-size:10px 2px; animation:flow 1s linear infinite; }
+    .nf-link { height:2px; flex:1; background:linear-gradient(90deg,#38E8E1 50%,transparent 50%); background-size:10px 2px; animation:flow 1s linear infinite; }
     @keyframes flow { to { background-position:10px 0; } }
     .project-filter { transition:.2s ease; }
     .project-card.filtered-out { opacity:0; transform:scale(.96); pointer-events:none; display:none; }
+  
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
+      background-image:radial-gradient(circle at 20% 20%,rgba(56,232,225,.10),transparent 28%),radial-gradient(circle at 82% 15%,rgba(124,92,255,.12),transparent 26%),radial-gradient(circle at 55% 80%,rgba(255,179,92,.06),transparent 24%); }
+    body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:60; opacity:.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E"); }
+    .cursor-glow { position:fixed; width:320px; height:320px; border-radius:999px; pointer-events:none; z-index:-1; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(56,232,225,.11),transparent 68%); transition:opacity .25s ease; }
+    .scanline { position:relative; overflow:hidden; }
+    .scanline::after { content:""; position:absolute; left:0; right:0; height:1px; top:-10%; background:linear-gradient(90deg,transparent,rgba(56,232,225,.75),transparent); animation:scan 5s linear infinite; }
+    @keyframes scan { to { top:110%; } }
+    .neon-edge { box-shadow:0 0 0 1px rgba(56,232,225,.05),0 18px 55px -32px rgba(56,232,225,.45); }
+    .github-pill { display:inline-flex; align-items:center; gap:.45rem; border:1px solid #20344A; border-radius:999px; padding:.48rem .75rem; font:500 11px "IBM Plex Mono",monospace; color:#8FA4B8; transition:.2s ease; }
+    .github-pill:hover { color:#EAF4FF; border-color:#38E8E1; background:rgba(56,232,225,.08); transform:translateY(-1px); }
+    .project-link { display:inline-flex; align-items:center; gap:.45rem; font:500 12px "IBM Plex Mono",monospace; color:#8AFFF8; }
+    .project-link:hover { color:#fff; }
+    .lab-console { font-family:"IBM Plex Mono",monospace; color:#8AFFF8; text-shadow:0 0 14px rgba(56,232,225,.25); }
+    @media (prefers-reduced-motion:reduce){ .scanline::after{animation:none}.cursor-glow{display:none} }
+
   </style>
 </head>
-
 <body class="font-sans antialiased">
-
-  <!-- NAV -->
-  <header class="sticky top-0 z-40 bg-paper/85 backdrop-blur border-b border-line">
-    <div class="mx-auto max-w-5xl px-5 h-14 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-2.5 group">
-        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#0AA5A9" stroke-width="2"
-          aria-hidden="true">
-          <circle cx="6" cy="16" r="3" />
-          <circle cx="16" cy="6" r="3" />
-          <circle cx="26" cy="16" r="3" />
-          <circle cx="16" cy="26" r="3" />
-          <path d="M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6" />
-        </svg>
-        <span class="font-display font-semibold tracking-tight text-[15px] text-ink">Philips Akinbami</span>
-      </a>
-      <nav class="hidden sm:flex items-center gap-6 font-mono text-[12.5px] text-muted">
-        <a href="#projects" class="hover:text-signalink transition-colors">projects</a>
-        <a href="#about" class="hover:text-signalink transition-colors">about</a>
-        <a href="#experience" class="hover:text-signalink transition-colors">experience</a>
-        <a href="#contact" class="hover:text-signalink transition-colors">contact</a>
-        <a href="assets/resume.pdf"
-          class="text-ink border border-line rounded px-2.5 py-1 hover:border-signal hover:text-signalink transition-colors">resume</a>
-      </nav>
-      <a href="assets/resume.pdf"
-        class="sm:hidden font-mono text-[12.5px] text-ink border border-line rounded px-2.5 py-1">resume</a>
-    </div>
-  </header>
-
-  <main id="top">
-
-    <!-- HERO -->
-    <section
-      class="mx-auto max-w-5xl px-5 pt-16 pb-14 md:pt-24 md:pb-20 grid md:grid-cols-[1.05fr_.95fr] gap-12 items-center">
-      <div>
-        <p class="eyebrow font-mono text-[12px] text-signalink mb-5">// NETWORK · 5G · AUTOMATION · POWER</p>
-        <h1 class="font-display font-bold text-ink leading-[1.02] text-[2.6rem] sm:text-[3.4rem] tracking-tight">
+<!-- NAV -->
+<header class="sticky top-0 z-40 bg-paper/85 backdrop-blur border-b border-line">
+<div class="mx-auto max-w-5xl px-5 h-14 flex items-center justify-between">
+<a class="flex items-center gap-2.5 group" href="#top">
+<svg aria-hidden="true" fill="none" height="22" stroke="#38E8E1" stroke-width="2" viewbox="0 0 32 32" width="22">
+<circle cx="6" cy="16" r="3"></circle>
+<circle cx="16" cy="6" r="3"></circle>
+<circle cx="26" cy="16" r="3"></circle>
+<circle cx="16" cy="26" r="3"></circle>
+<path d="M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6"></path>
+</svg>
+<span class="font-display font-semibold tracking-tight text-[15px] text-ink">Philips Akinbami</span>
+</a>
+<nav class="hidden sm:flex items-center gap-6 font-mono text-[12.5px] text-muted">
+<a class="hover:text-signalink transition-colors" href="#projects">projects</a>
+<a class="hover:text-signalink transition-colors" href="#about">about</a>
+<a class="hover:text-signalink transition-colors" href="#experience">experience</a>
+<a class="hover:text-signalink transition-colors" href="#contact">contact</a>
+<a class="text-ink border border-line rounded px-2.5 py-1 hover:border-signal hover:text-signalink transition-colors" href="assets/resume.pdf">resume</a>
+</nav>
+<a class="sm:hidden font-mono text-[12.5px] text-ink border border-line rounded px-2.5 py-1" href="assets/resume.pdf">resume</a>
+</div>
+</header>
+<main id="top">
+<!-- HERO -->
+<section class="mx-auto max-w-5xl px-5 pt-16 pb-14 md:pt-24 md:pb-20 grid md:grid-cols-[1.05fr_.95fr] gap-12 items-center">
+<div>
+<p class="eyebrow font-mono text-[12px] text-signalink mb-5">// NETWORK · 5G · AUTOMATION · POWER</p>
+<h1 class="font-display font-bold text-ink leading-[1.02] text-[2.6rem] sm:text-[3.4rem] tracking-tight">
           I build systems that connect, measure, and adapt.
         </h1>
-        <p class="mt-5 text-[1.05rem] leading-relaxed text-muted max-w-xl">
+<p class="mt-5 text-[1.05rem] leading-relaxed text-muted max-w-xl">
           MS Telecommunications candidate at the University of Maryland with an electrical-engineering background.
           I work across network traffic, 5G systems, automation, and infrastructure resilience — turning real data
           into tools that explain how systems behave.
         </p>
-        <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a href="#projects"
-            class="inline-flex items-center gap-2 bg-ink text-paper font-medium text-sm rounded-lg px-4 py-2.5 hover:bg-signalink transition-colors">
+<div class="mt-8 flex flex-wrap items-center gap-3">
+<a class="inline-flex items-center gap-2 bg-ink text-paper font-medium text-sm rounded-lg px-4 py-2.5 hover:bg-signalink transition-colors" href="#projects">
             View projects
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </a>
-          <a href="assets/resume.pdf"
-            class="inline-flex items-center gap-2 border border-line text-ink font-medium text-sm rounded-lg px-4 py-2.5 hover:border-signal hover:text-signalink transition-colors">
+            <svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="15">
+<path d="M5 12h14M13 6l6 6-6 6"></path>
+</svg>
+</a>
+<a class="inline-flex items-center gap-2 border border-line text-ink font-medium text-sm rounded-lg px-4 py-2.5 hover:border-signal hover:text-signalink transition-colors" href="assets/resume.pdf">
             Download resume
           </a>
-          <a href="https://www.linkedin.com/in/philips-akinbami" target="_blank" rel="noopener"
-            class="font-mono text-[13px] text-muted hover:text-signalink transition-colors px-1">LinkedIn</a>
-          <a href="https://github.com/Philakin" target="_blank" rel="noopener"
-            class="font-mono text-[13px] text-muted hover:text-signalink transition-colors px-1">GitHub</a>
-        </div>
-      </div>
-
-      <!-- SIGNATURE: packet-monitor panel drawn from the MAWI project -->
-      <div class="reveal">
-        <div
-          class="rounded-xl border border-line bg-panel shadow-[0_1px_0_rgba(13,27,42,.02),0_18px_40px_-24px_rgba(13,27,42,.25)] overflow-hidden">
-          <div class="flex items-center gap-2 px-3.5 h-9 border-b border-line bg-paper/60">
-            <span class="w-2.5 h-2.5 rounded-full bg-line"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-line"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-line"></span>
-            <span class="ml-2 font-mono text-[11px] text-muted">mawi.pcap · tcp.analysis.retransmission</span>
-          </div>
-          <div class="p-3">
-            <svg viewBox="0 0 400 240" class="w-full h-auto" role="img"
-              aria-label="Signal trace of captured network traffic with a highlighted retransmission spike">
-              <!-- grid -->
-              <g stroke="#EDF1F3" stroke-width="1">
-                <line x1="0" y1="48" x2="400" y2="48" />
-                <line x1="0" y1="96" x2="400" y2="96" />
-                <line x1="0" y1="144" x2="400" y2="144" />
-                <line x1="0" y1="192" x2="400" y2="192" />
-              </g>
-              <!-- y labels -->
-              <g fill="#9AA7B2" font-family="IBM Plex Mono, monospace" font-size="9">
-                <text x="4" y="44">1M</text><text x="4" y="92">750k</text><text x="4" y="140">500k</text><text x="4"
-                  y="188">250k</text>
-              </g>
-              <!-- filled area under trace -->
-              <path
-                d="M0,196 L40,180 L80,186 L120,150 L160,158 L200,120 L232,60 L248,132 L300,110 L340,118 L400,92 L400,240 L0,240 Z"
-                fill="#0AA5A9" fill-opacity="0.06" />
-              <!-- trace -->
-              <path id="tracePath" class="trace"
-                d="M0,196 L40,180 L80,186 L120,150 L160,158 L200,120 L232,60 L248,132 L300,110 L340,118 L400,92"
-                fill="none" stroke="#0AA5A9" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" />
-              <!-- retransmission spike marker -->
-              <circle cx="232" cy="60" r="4" fill="#E8833A" />
-              <line x1="232" y1="60" x2="232" y2="24" stroke="#E8833A" stroke-width="1" stroke-dasharray="2 3" />
-              <text x="232" y="18" fill="#E8833A" font-family="IBM Plex Mono, monospace" font-size="9.5"
-                text-anchor="middle">6,000+ retransmits</text>
-              <!-- traveling packet -->
-              <circle r="4.5" fill="#0D1B2A">
-                <animateMotion dur="6.5s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#tracePath" />
-                </animateMotion>
-              </circle>
-            </svg>
-            <div class="flex items-center justify-between px-1 pt-1 font-mono text-[10.5px] text-muted">
-              <span>packets: 1,000,000+</span><span>proto: TCP/IP</span><span class="text-signalink">● live</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- METRICS STRIP (real project numbers) -->
-    <section class="border-y border-line bg-panel">
-      <div class="mx-auto max-w-5xl px-5 py-4 grid grid-cols-2 md:grid-cols-4 gap-y-3 font-mono text-[13px]">
-        <div class="metric-counter flex items-baseline gap-2" data-target="904720"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">packets parsed</span></div>
-        <div class="metric-counter flex items-baseline gap-2" data-target="6403"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">retransmissions</span></div>
-        <div class="metric-counter flex items-baseline gap-2" data-target="5"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">5G functions live</span></div>
-        <div class="metric-counter flex items-baseline gap-2" data-target="47.69"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">kWh modeled daily</span></div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="mx-auto max-w-5xl px-5 pt-20 pb-6">
-      <div class="reveal flex items-end justify-between mb-8">
-        <div>
-          <p class="eyebrow font-mono text-[12px] text-signalink mb-2">PROJECTS</p>
-          <h2 class="font-display font-semibold text-[1.9rem] tracking-tight">Selected work</h2>
-        </div>
-        <p class="hidden sm:block font-mono text-[12px] text-muted max-w-[16rem] text-right">writeups with real
+<a class="font-mono text-[13px] text-muted hover:text-signalink transition-colors px-1" href="https://www.linkedin.com/in/philips-akinbami" rel="noopener" target="_blank">LinkedIn</a>
+<a class="font-mono text-[13px] text-muted hover:text-signalink transition-colors px-1" href="https://github.com/Philakin" rel="noopener" target="_blank">GitHub</a>
+</div>
+<div class="mt-6 inline-flex items-center gap-3 rounded-full border border-line bg-panel/70 px-3 py-2 font-mono text-[11px] text-muted neon-edge scanline"><span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-75"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-signal"></span></span><span id="heroMode">system mode: network observability</span></div></div>
+<!-- SIGNATURE: packet-monitor panel drawn from the MAWI project -->
+<div class="reveal">
+<div class="rounded-xl border border-line bg-panel shadow-[0_1px_0_rgba(13,27,42,.02),0_18px_40px_-24px_rgba(13,27,42,.25)] overflow-hidden">
+<div class="flex items-center gap-2 px-3.5 h-9 border-b border-line bg-paper/60">
+<span class="w-2.5 h-2.5 rounded-full bg-line"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-line"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-line"></span>
+<span class="ml-2 font-mono text-[11px] text-muted">mawi.pcap · tcp.analysis.retransmission</span>
+</div>
+<div class="p-3">
+<svg aria-label="Signal trace of captured network traffic with a highlighted retransmission spike" class="w-full h-auto" role="img" viewbox="0 0 400 240">
+<!-- grid -->
+<g stroke="#16273A" stroke-width="1">
+<line x1="0" x2="400" y1="48" y2="48"></line>
+<line x1="0" x2="400" y1="96" y2="96"></line>
+<line x1="0" x2="400" y1="144" y2="144"></line>
+<line x1="0" x2="400" y1="192" y2="192"></line>
+</g>
+<!-- y labels -->
+<g fill="#71879C" font-family="IBM Plex Mono, monospace" font-size="9">
+<text x="4" y="44">1M</text><text x="4" y="92">750k</text><text x="4" y="140">500k</text><text x="4" y="188">250k</text>
+</g>
+<!-- filled area under trace -->
+<path d="M0,196 L40,180 L80,186 L120,150 L160,158 L200,120 L232,60 L248,132 L300,110 L340,118 L400,92 L400,240 L0,240 Z" fill="#38E8E1" fill-opacity="0.06"></path>
+<!-- trace -->
+<path class="trace" d="M0,196 L40,180 L80,186 L120,150 L160,158 L200,120 L232,60 L248,132 L300,110 L340,118 L400,92" fill="none" id="tracePath" stroke="#38E8E1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25"></path>
+<!-- retransmission spike marker -->
+<circle cx="232" cy="60" fill="#FFB35C" r="4"></circle>
+<line stroke="#FFB35C" stroke-dasharray="2 3" stroke-width="1" x1="232" x2="232" y1="60" y2="24"></line>
+<text fill="#FFB35C" font-family="IBM Plex Mono, monospace" font-size="9.5" text-anchor="middle" x="232" y="18">6,000+ retransmits</text>
+<!-- traveling packet -->
+<circle fill="#EAF4FF" r="4.5">
+<animatemotion dur="6.5s" repeatcount="indefinite" rotate="auto">
+<mpath href="#tracePath"></mpath>
+</animatemotion>
+</circle>
+</svg>
+<div class="flex items-center justify-between px-1 pt-1 font-mono text-[10.5px] text-muted">
+<span>packets: 1,000,000+</span><span>proto: TCP/IP</span><span class="text-signalink">● live</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- METRICS STRIP (real project numbers) -->
+<section class="border-y border-line bg-panel">
+<div class="mx-auto max-w-5xl px-5 py-4 grid grid-cols-2 md:grid-cols-4 gap-y-3 font-mono text-[13px]">
+<div class="metric-counter flex items-baseline gap-2" data-target="904720"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">packets parsed</span></div>
+<div class="metric-counter flex items-baseline gap-2" data-target="6403"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">retransmissions</span></div>
+<div class="metric-counter flex items-baseline gap-2" data-target="5"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">5G functions live</span></div>
+<div class="metric-counter flex items-baseline gap-2" data-target="47.69"><span class="counter text-ink font-medium">0</span><span class="text-muted text-[11.5px]">kWh modeled daily</span></div>
+</div>
+</section>
+<!-- PROJECTS -->
+<section class="mx-auto max-w-5xl px-5 pt-20 pb-6" id="projects">
+<div class="reveal flex items-end justify-between mb-8">
+<div>
+<p class="eyebrow font-mono text-[12px] text-signalink mb-2">PROJECTS</p>
+<h2 class="font-display font-semibold text-[1.9rem] tracking-tight">Selected work</h2>
+</div>
+<p class="hidden sm:block font-mono text-[12px] text-muted max-w-[16rem] text-right">writeups with real
           artifacts, not just bullet points</p>
-      </div>
-
-      <div class="reveal mb-5 flex flex-wrap gap-2" aria-label="Project filters">
-        <button class="project-filter rounded-full border border-signal bg-signal px-3 py-1.5 font-mono text-[11px] text-white" data-filter="all">all</button>
-        <button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="networking">networking</button>
-        <button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="5g">5G</button>
-        <button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="power">power</button>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-5" id="projectGrid">
-        <a href="projects/mawi.html" data-category="networking" class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal">
-          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>NETWORK ANALYTICS</span><span>complete prototype</span></div>
-          <div class="mini-viz mb-5 h-20 rounded-lg border border-line bg-paper p-3 overflow-hidden" aria-hidden="true">
-            <svg viewBox="0 0 320 64" class="h-full w-full"><path class="packet-path" d="M5 48 C55 45,70 14,120 32 S190 55,230 18 S285 20,315 10" fill="none" stroke="#0AA5A9" stroke-width="2"/><circle r="4" fill="#0D1B2A"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#mawi-card-path"/></animateMotion></circle><path id="mawi-card-path" d="M5 48 C55 45,70 14,120 32 S190 55,230 18 S285 20,315 10" fill="none"/></svg>
-          </div>
-          <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">MAWI Traffic Analyzer</h3>
-          <p class="mt-2 text-[0.95rem] leading-relaxed text-muted">Transforms real backbone packet captures into reliability metrics, time-windowed features, and an interactive Streamlit analysis platform.</p>
-          <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">904,720 packets</span><span class="rounded border border-line px-2 py-0.5 text-muted">6,403 retransmissions</span><span class="rounded border border-line px-2 py-0.5 text-muted">17 features</span></div>
-          <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Explore project →</span>
-        </a>
-
-        <a href="projects/5g-lab.html" data-category="5g" class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal">
-          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>5G SYSTEMS</span><span>in development</span></div>
-          <div class="mini-viz mb-5 h-20 rounded-lg border border-line bg-paper px-3 flex items-center justify-between" aria-hidden="true">
-            <span class="nf-dot">NRF</span><span class="nf-link"></span><span class="nf-dot">AMF</span><span class="nf-link"></span><span class="nf-dot">AUSF</span><span class="nf-link"></span><span class="nf-dot pending">SMF</span>
-          </div>
-          <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">5G Integration Lab</h3>
-          <p class="mt-2 text-[0.95rem] leading-relaxed text-muted">A virtual 5G standalone environment for service deployment, network-function discovery, registration, connectivity, and automated validation.</p>
-          <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">Open5GS</span><span class="rounded border border-line px-2 py-0.5 text-muted">srsRAN</span><span class="rounded border border-line px-2 py-0.5 text-muted">Docker</span><span class="rounded border border-line px-2 py-0.5 text-muted">Ansible</span></div>
-          <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Open lab view →</span>
-        </a>
-
-        <a href="projects/energy.html" data-category="power" class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal md:col-span-2">
-          <div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>POWER + TELECOM</span><span>complete</span></div>
-          <div class="grid gap-5 md:grid-cols-[1fr_1.2fr] md:items-center">
-            <div>
-              <h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">Cell-Site Energy Analyzer</h3>
-              <p class="mt-2 text-[0.95rem] leading-relaxed text-muted">Uses real cellular activity to estimate hourly site power, daily energy demand, and battery backup resilience under changing traffic load.</p>
-              <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">2.3M records</span><span class="rounded border border-line px-2 py-0.5 text-muted">47.69 kWh/day</span><span class="rounded border border-line px-2 py-0.5 text-muted">2.4 h minimum runtime</span></div>
-              <span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Test the model →</span>
-            </div>
-            <div class="h-36 rounded-lg border border-line bg-paper p-3" aria-hidden="true"><svg viewBox="0 0 420 130" class="h-full w-full"><line x1="0" y1="98" x2="420" y2="98" stroke="#E8833A" stroke-dasharray="4 4"/><path d="M0 106 C55 108,80 104,115 90 S170 26,220 20 S300 36,350 72 S390 88,420 93" fill="none" stroke="#0AA5A9" stroke-width="3"/><path d="M0 28 C65 26,100 32,135 48 S190 95,230 105 S315 88,360 55 S400 38,420 34" fill="none" stroke="#0D1B2A" stroke-width="2"/><text x="8" y="18" font-size="10" fill="#566573">traffic ↑ / backup ↓</text><text x="325" y="92" font-size="9" fill="#E8833A">4 h target</text></svg></div>
-          </div>
-        </a>
-      </div>
-
-      <p class="reveal mt-5 font-mono text-[12px] text-muted flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-signal inline-block animate-pulse"></span>
+</div>
+<div aria-label="Project filters" class="reveal mb-5 flex flex-wrap gap-2">
+<button class="project-filter rounded-full border border-signal bg-signal px-3 py-1.5 font-mono text-[11px] text-white" data-filter="all">all</button>
+<button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="networking">networking</button>
+<button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="5g">5G</button>
+<button class="project-filter rounded-full border border-line bg-panel px-3 py-1.5 font-mono text-[11px] text-muted" data-filter="power">power</button>
+</div>
+<div class="grid md:grid-cols-2 gap-5" id="projectGrid">
+<article class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal" data-category="networking">
+<div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>NETWORK ANALYTICS</span><span>complete prototype</span></div>
+<div aria-hidden="true" class="mini-viz mb-5 h-20 rounded-lg border border-line bg-paper p-3 overflow-hidden">
+<svg class="h-full w-full" viewbox="0 0 320 64"><path class="packet-path" d="M5 48 C55 45,70 14,120 32 S190 55,230 18 S285 20,315 10" fill="none" stroke="#38E8E1" stroke-width="2"></path><circle fill="#EAF4FF" r="4"><animatemotion dur="4.5s" repeatcount="indefinite"><mpath href="#mawi-card-path"></mpath></animatemotion></circle><path d="M5 48 C55 45,70 14,120 32 S190 55,230 18 S285 20,315 10" fill="none" id="mawi-card-path"></path></svg>
+</div>
+<h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">MAWI Traffic Analyzer</h3>
+<p class="mt-2 text-[0.95rem] leading-relaxed text-muted">Transforms real backbone packet captures into reliability metrics, time-windowed features, and an interactive Streamlit analysis platform.</p>
+<div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">904,720 packets</span><span class="rounded border border-line px-2 py-0.5 text-muted">6,403 retransmissions</span><span class="rounded border border-line px-2 py-0.5 text-muted">17 features</span></div>
+<span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Explore project →</span>
+<div class="mt-5 flex flex-wrap items-center gap-3"><a class="project-link" data-magnetic="" href="projects/mawi.html">Open case study →</a><a class="github-pill" data-magnetic="" href="https://github.com/Philakin/mawi-network-analytics" rel="noopener noreferrer" target="_blank">GitHub ↗</a></div></article>
+<article class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal" data-category="5g">
+<div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>5G SYSTEMS</span><span>in development</span></div>
+<div aria-hidden="true" class="mini-viz mb-5 h-20 rounded-lg border border-line bg-paper px-3 flex items-center justify-between">
+<span class="nf-dot">NRF</span><span class="nf-link"></span><span class="nf-dot">AMF</span><span class="nf-link"></span><span class="nf-dot">AUSF</span><span class="nf-link"></span><span class="nf-dot pending">SMF</span>
+</div>
+<h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">5G Integration Lab</h3>
+<p class="mt-2 text-[0.95rem] leading-relaxed text-muted">A virtual 5G standalone environment for service deployment, network-function discovery, registration, connectivity, and automated validation.</p>
+<div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">Open5GS</span><span class="rounded border border-line px-2 py-0.5 text-muted">srsRAN</span><span class="rounded border border-line px-2 py-0.5 text-muted">Docker</span><span class="rounded border border-line px-2 py-0.5 text-muted">Ansible</span></div>
+<span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Open lab view →</span>
+<div class="mt-5 flex flex-wrap items-center gap-3"><a class="project-link" data-magnetic="" href="projects/5g-lab.html">Open lab →</a><a class="github-pill" data-magnetic="" href="https://github.com/Philakin/automated-5g-test-lab" rel="noopener noreferrer" target="_blank">GitHub ↗</a></div></article>
+<article class="project-card reveal group block rounded-xl border border-line bg-panel p-6 hover:border-signal md:col-span-2" data-category="power">
+<div class="flex items-center justify-between font-mono text-[11.5px] text-muted mb-4"><span>POWER + TELECOM</span><span>complete</span></div>
+<div class="grid gap-5 md:grid-cols-[1fr_1.2fr] md:items-center">
+<div>
+<h3 class="font-display font-semibold text-[1.25rem] text-ink group-hover:text-signalink transition-colors">Cell-Site Energy Analyzer</h3>
+<p class="mt-2 text-[0.95rem] leading-relaxed text-muted">Uses real cellular activity to estimate hourly site power, daily energy demand, and battery backup resilience under changing traffic load.</p>
+<div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]"><span class="rounded border border-line px-2 py-0.5 text-muted">2.3M records</span><span class="rounded border border-line px-2 py-0.5 text-muted">47.69 kWh/day</span><span class="rounded border border-line px-2 py-0.5 text-muted">2.4 h minimum runtime</span></div>
+<span class="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-signalink">Test the model →</span>
+</div>
+<div aria-hidden="true" class="h-36 rounded-lg border border-line bg-paper p-3"><svg class="h-full w-full" viewbox="0 0 420 130"><line stroke="#FFB35C" stroke-dasharray="4 4" x1="0" x2="420" y1="98" y2="98"></line><path d="M0 106 C55 108,80 104,115 90 S170 26,220 20 S300 36,350 72 S390 88,420 93" fill="none" stroke="#38E8E1" stroke-width="3"></path><path d="M0 28 C65 26,100 32,135 48 S190 95,230 105 S315 88,360 55 S400 38,420 34" fill="none" stroke="#EAF4FF" stroke-width="2"></path><text fill="#8FA4B8" font-size="10" x="8" y="18">traffic ↑ / backup ↓</text><text fill="#FFB35C" font-size="9" x="325" y="92">4 h target</text></svg></div>
+</div>
+<div class="mt-5 flex flex-wrap items-center gap-3"><a class="project-link" data-magnetic="" href="projects/energy.html">Open analyzer →</a><a class="github-pill" data-magnetic="" href="https://github.com/Philakin/5g-site-energy-analyzer" rel="noopener noreferrer" target="_blank">GitHub ↗</a></div></article>
+</div>
+<p class="reveal mt-5 font-mono text-[12px] text-muted flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-signal inline-block animate-pulse"></span>
         current focus: completing the 5G data path, automating validation, and extending the site-energy resilience model
       </p>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="mx-auto max-w-5xl px-5 pt-20">
-      <div class="grid md:grid-cols-[1fr_1.1fr] gap-12">
-        <div class="reveal">
-          <div class="flex items-center gap-5 mb-5">
-            <div class="relative w-[122px] h-[122px] rounded-full overflow-hidden border border-line shrink-0 bg-ink ring-2 ring-signal/30">
-              <div
-                class="absolute inset-0 flex items-center justify-center font-display font-semibold text-paper text-2xl tracking-tight">
+<div class="reveal mt-8 grid gap-3 sm:grid-cols-3"><div class="rounded-xl border border-line bg-panel/60 p-4 scanline"><p class="font-mono text-[10px] text-signalink">01 / TRACE</p><p class="mt-2 text-sm text-muted">Follow packets, services, and energy signals across each project.</p></div><div class="rounded-xl border border-line bg-panel/60 p-4 scanline"><p class="font-mono text-[10px] text-signalink">02 / INTERACT</p><p class="mt-2 text-sm text-muted">Hover, filter, click metrics, and move through live project models.</p></div><div class="rounded-xl border border-line bg-panel/60 p-4 scanline"><p class="font-mono text-[10px] text-signalink">03 / VERIFY</p><p class="mt-2 text-sm text-muted">Every highlighted result links back to code, data, or an engineering assumption.</p></div></div></section>
+<!-- ABOUT -->
+<section class="mx-auto max-w-5xl px-5 pt-20" id="about">
+<div class="grid md:grid-cols-[1fr_1.1fr] gap-12">
+<div class="reveal">
+<div class="flex items-center gap-5 mb-5">
+<div class="relative w-[122px] h-[122px] rounded-full overflow-hidden border border-line shrink-0 bg-ink ring-2 ring-signal/30">
+<div class="absolute inset-0 flex items-center justify-center font-display font-semibold text-paper text-2xl tracking-tight">
                 PA</div>
-              <img src="assets/headshot.jpg" alt="Philips Akinbami" class="relative w-full h-full object-cover"
-                onerror="this.remove()" />
-            </div>
-            <div>
-              <p class="eyebrow font-mono text-[12px] text-signalink mb-2">ABOUT</p>
-              <h2 class="font-display font-semibold text-[1.9rem] tracking-tight leading-tight">Where I'm coming from
+<img alt="Philips Akinbami" class="relative w-full h-full object-cover" onerror="this.remove()" src="assets/headshot.jpg"/>
+</div>
+<div>
+<p class="eyebrow font-mono text-[12px] text-signalink mb-2">ABOUT</p>
+<h2 class="font-display font-semibold text-[1.9rem] tracking-tight leading-tight">Where I'm coming from
               </h2>
-            </div>
-          </div>
-          <p class="text-[0.98rem] leading-relaxed text-muted">
+</div>
+</div>
+<p class="text-[0.98rem] leading-relaxed text-muted">
             I'm finishing an MS in Telecommunications at the University of Maryland, built on an electrical-engineering
             degree from Howard. My coursework runs from protocols and 5G system design to AI for 6G, and my hands-on
             interest sits in network performance and automation.
           </p>
-          <p class="mt-4 text-[0.98rem] leading-relaxed text-muted">
+<p class="mt-4 text-[0.98rem] leading-relaxed text-muted">
             Before grad school I spent two summers at Cummins turning messy engineering data into dashboards
             engineers actually used. That analytics habit is what I now point at network traffic.
           </p>
-
-          <div class="mt-7 space-y-3">
-            <div class="flex justify-between items-baseline border-b border-line pb-2">
-              <div>
-                <p class="font-medium text-ink text-[0.95rem]">M.S. Telecommunications</p>
-                <p class="font-mono text-[12px] text-muted">University of Maryland</p>
-              </div>
-              <span class="font-mono text-[12px] text-muted">2026</span>
-            </div>
-            <div class="flex justify-between items-baseline border-b border-line pb-2">
-              <div>
-                <p class="font-medium text-ink text-[0.95rem]">B.S. Electrical Engineering</p>
-                <p class="font-mono text-[12px] text-muted">Howard University · GPA 3.70</p>
-              </div>
-              <span class="font-mono text-[12px] text-muted">2024</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- SKILLS -->
-        <div class="reveal">
-          <p class="eyebrow font-mono text-[12px] text-signalink mb-4">STACK</p>
-          <dl class="space-y-4">
-            <div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start">
-              <dt class="font-mono text-[12px] text-ink pt-0.5">networking</dt>
-              <dd class="text-[0.9rem] text-muted leading-relaxed">TCP/IP, IPv4/IPv6, VLANs, STP, SDN, DHCP, DNS, LLDP,
+<div class="mt-7 space-y-3">
+<div class="flex justify-between items-baseline border-b border-line pb-2">
+<div>
+<p class="font-medium text-ink text-[0.95rem]">M.S. Telecommunications</p>
+<p class="font-mono text-[12px] text-muted">University of Maryland</p>
+</div>
+<span class="font-mono text-[12px] text-muted">2026</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-line pb-2">
+<div>
+<p class="font-medium text-ink text-[0.95rem]">B.S. Electrical Engineering</p>
+<p class="font-mono text-[12px] text-muted">Howard University · GPA 3.70</p>
+</div>
+<span class="font-mono text-[12px] text-muted">2024</span>
+</div>
+</div>
+</div>
+<!-- SKILLS -->
+<div class="reveal">
+<p class="eyebrow font-mono text-[12px] text-signalink mb-4">STACK</p>
+<dl class="space-y-4">
+<div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start">
+<dt class="font-mono text-[12px] text-ink pt-0.5">networking</dt>
+<dd class="text-[0.9rem] text-muted leading-relaxed">TCP/IP, IPv4/IPv6, VLANs, STP, SDN, DHCP, DNS, LLDP,
                 SNMP, routing &amp; switching</dd>
-            </div>
-            <div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
-              <dt class="font-mono text-[12px] text-ink pt-0.5">automation</dt>
-              <dd class="text-[0.9rem] text-muted leading-relaxed">Ansible, NETCONF, RESTCONF, RESTful APIs</dd>
-            </div>
-            <div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
-              <dt class="font-mono text-[12px] text-ink pt-0.5">analysis</dt>
-              <dd class="text-[0.9rem] text-muted leading-relaxed">Wireshark, tcpdump, GNS3, Juniper Junos</dd>
-            </div>
-            <div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
-              <dt class="font-mono text-[12px] text-ink pt-0.5">data</dt>
-              <dd class="text-[0.9rem] text-muted leading-relaxed">Python, SQL, MATLAB, Pandas, NumPy, Matplotlib, Power
+</div>
+<div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
+<dt class="font-mono text-[12px] text-ink pt-0.5">automation</dt>
+<dd class="text-[0.9rem] text-muted leading-relaxed">Ansible, NETCONF, RESTCONF, RESTful APIs</dd>
+</div>
+<div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
+<dt class="font-mono text-[12px] text-ink pt-0.5">analysis</dt>
+<dd class="text-[0.9rem] text-muted leading-relaxed">Wireshark, tcpdump, GNS3, Juniper Junos</dd>
+</div>
+<div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
+<dt class="font-mono text-[12px] text-ink pt-0.5">data</dt>
+<dd class="text-[0.9rem] text-muted leading-relaxed">Python, SQL, MATLAB, Pandas, NumPy, Matplotlib, Power
                 BI, Excel</dd>
-            </div>
-            <div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
-              <dt class="font-mono text-[12px] text-ink pt-0.5">systems</dt>
-              <dd class="text-[0.9rem] text-muted leading-relaxed">Linux, Bash/Shell, VMware, Docker, Git, AWS</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="mx-auto max-w-5xl px-5 pt-20">
-      <div class="reveal mb-8">
-        <p class="eyebrow font-mono text-[12px] text-signalink mb-2">EXPERIENCE</p>
-        <h2 class="font-display font-semibold text-[1.9rem] tracking-tight">Cummins</h2>
-        <p class="font-mono text-[12px] text-muted mt-1">Columbus, IN</p>
-      </div>
-      <div class="space-y-8">
-        <div class="reveal grid md:grid-cols-[10rem_1fr] gap-x-6 gap-y-2">
-          <div class="font-mono text-[12px] text-muted">May – Aug 2023</div>
-          <div>
-            <h3 class="font-medium text-ink">System Analytics and Modeling Intern</h3>
-            <ul class="mt-2 space-y-1.5 text-[0.92rem] text-muted leading-relaxed list-disc pl-4">
-              <li>Built Power BI dashboards used by 20+ engineers to track KPIs and drive decisions.</li>
-              <li>Processed and consolidated 100,000+ records, improving reporting accuracy.</li>
-              <li>Documented the team's migration from MATLAB to Power BI.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="reveal grid md:grid-cols-[10rem_1fr] gap-x-6 gap-y-2 border-t border-line pt-8">
-          <div class="font-mono text-[12px] text-muted">May – Aug 2022</div>
-          <div>
-            <h3 class="font-medium text-ink">Reliability Engineering Intern</h3>
-            <ul class="mt-2 space-y-1.5 text-[0.92rem] text-muted leading-relaxed list-disc pl-4">
-              <li>Validated components with MATLAB/Excel reliability models across 10+ design cycles.</li>
-              <li>Produced 8+ technical reports on failure trends and system performance.</li>
-              <li>Designed an onboarding database that streamlined training for a 15+ person team.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="mx-auto max-w-5xl px-5 pt-20 pb-24">
-      <div class="reveal rounded-2xl border border-line bg-panel p-8 md:p-12 text-center">
-        <p class="eyebrow font-mono text-[12px] text-signalink mb-3">CONTACT</p>
-        <h2 class="font-display font-semibold text-[1.9rem] md:text-[2.3rem] tracking-tight">Let's talk networks.</h2>
-        <p class="mt-3 text-muted max-w-md mx-auto">Open to roles in network performance, automation, and telecom. Reach
+</div>
+<div class="grid grid-cols-[9.5rem_1fr] gap-x-4 items-start border-t border-line pt-4">
+<dt class="font-mono text-[12px] text-ink pt-0.5">systems</dt>
+<dd class="text-[0.9rem] text-muted leading-relaxed">Linux, Bash/Shell, VMware, Docker, Git, AWS</dd>
+</div>
+</dl>
+</div>
+</div>
+</section>
+<!-- EXPERIENCE -->
+<section class="mx-auto max-w-5xl px-5 pt-20" id="experience">
+<div class="reveal mb-8">
+<p class="eyebrow font-mono text-[12px] text-signalink mb-2">EXPERIENCE</p>
+<h2 class="font-display font-semibold text-[1.9rem] tracking-tight">Cummins</h2>
+<p class="font-mono text-[12px] text-muted mt-1">Columbus, IN</p>
+</div>
+<div class="space-y-8">
+<div class="reveal grid md:grid-cols-[10rem_1fr] gap-x-6 gap-y-2">
+<div class="font-mono text-[12px] text-muted">May – Aug 2023</div>
+<div>
+<h3 class="font-medium text-ink">System Analytics and Modeling Intern</h3>
+<ul class="mt-2 space-y-1.5 text-[0.92rem] text-muted leading-relaxed list-disc pl-4">
+<li>Built Power BI dashboards used by 20+ engineers to track KPIs and drive decisions.</li>
+<li>Processed and consolidated 100,000+ records, improving reporting accuracy.</li>
+<li>Documented the team's migration from MATLAB to Power BI.</li>
+</ul>
+</div>
+</div>
+<div class="reveal grid md:grid-cols-[10rem_1fr] gap-x-6 gap-y-2 border-t border-line pt-8">
+<div class="font-mono text-[12px] text-muted">May – Aug 2022</div>
+<div>
+<h3 class="font-medium text-ink">Reliability Engineering Intern</h3>
+<ul class="mt-2 space-y-1.5 text-[0.92rem] text-muted leading-relaxed list-disc pl-4">
+<li>Validated components with MATLAB/Excel reliability models across 10+ design cycles.</li>
+<li>Produced 8+ technical reports on failure trends and system performance.</li>
+<li>Designed an onboarding database that streamlined training for a 15+ person team.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTACT -->
+<section class="mx-auto max-w-5xl px-5 pt-20 pb-24" id="contact">
+<div class="reveal rounded-2xl border border-line bg-panel p-8 md:p-12 text-center">
+<p class="eyebrow font-mono text-[12px] text-signalink mb-3">CONTACT</p>
+<h2 class="font-display font-semibold text-[1.9rem] md:text-[2.3rem] tracking-tight">Let's talk networks.</h2>
+<p class="mt-3 text-muted max-w-md mx-auto">Open to roles in network performance, automation, and telecom. Reach
           out any time.</p>
-        <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
-          <a href="mailto:phil.akinbami@gmail.com"
-            class="bg-ink text-paper font-medium text-sm rounded-lg px-5 py-2.5 hover:bg-signalink transition-colors">phil.akinbami@gmail.com</a>
-          <a href="https://www.linkedin.com/in/philips-akinbami" target="_blank" rel="noopener"
-            class="border border-line font-medium text-sm rounded-lg px-5 py-2.5 hover:border-signal hover:text-signalink transition-colors">LinkedIn</a>
-          <a href="https://github.com/Philakin" target="_blank" rel="noopener"
-            class="border border-line font-medium text-sm rounded-lg px-5 py-2.5 hover:border-signal hover:text-signalink transition-colors">GitHub</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-line">
-    <div
-      class="mx-auto max-w-5xl px-5 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[12px] text-muted">
-      <span>© <span id="yr"></span> Philips Akinbami · College Park, MD</span>
-      <span>built with plain HTML + Tailwind</span>
-    </div>
-  </footer>
-
-  <script>
+<div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+<a class="bg-ink text-paper font-medium text-sm rounded-lg px-5 py-2.5 hover:bg-signalink transition-colors" href="mailto:phil.akinbami@gmail.com">phil.akinbami@gmail.com</a>
+<a class="border border-line font-medium text-sm rounded-lg px-5 py-2.5 hover:border-signal hover:text-signalink transition-colors" href="https://www.linkedin.com/in/philips-akinbami" rel="noopener" target="_blank">LinkedIn</a>
+<a class="border border-line font-medium text-sm rounded-lg px-5 py-2.5 hover:border-signal hover:text-signalink transition-colors" href="https://github.com/Philakin" rel="noopener" target="_blank">GitHub</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-line">
+<div class="mx-auto max-w-5xl px-5 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[12px] text-muted">
+<span>© <span id="yr"></span> Philips Akinbami · College Park, MD</span>
+<span>built with plain HTML + Tailwind</span>
+</div>
+</footer>
+<script>
     document.getElementById("yr").textContent = new Date().getFullYear();
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
@@ -482,7 +454,12 @@
       requestAnimationFrame(tick); counterObs.unobserve(entry.target);
     }),{threshold:.6});
     document.querySelectorAll('.metric-counter').forEach(el=>counterObs.observe(el));
-  </script>
+  
+const modes=["network observability","5G core integration","energy resilience modeling"];let modeIndex=0;setInterval(()=>{modeIndex=(modeIndex+1)%modes.length;const el=document.getElementById("heroMode");if(el)el.textContent="system mode: "+modes[modeIndex];},2200);</script>
+<script>
+    const glow=document.createElement('div'); glow.className='cursor-glow'; document.body.appendChild(glow);
+    window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
+    document.querySelectorAll('[data-magnetic]').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.05}px,${(e.clientY-r.top-r.height/2)*.08}px)`});el.addEventListener('pointerleave',()=>el.style.transform='');});
+</script>
 </body>
-
 </html>

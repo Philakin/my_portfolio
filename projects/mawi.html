@@ -1,31 +1,30 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MAWI Traffic Analyzer — Philips Akinbami</title>
-  <meta name="description" content="An end-to-end network traffic analytics platform built with PyShark, Pandas, and Streamlit Version 2, processing 904,720 MAWI backbone packets and identifying 6,403 TCP retransmissions." />
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAWI Traffic Analyzer — Philips Akinbami</title>
+<meta content="An end-to-end network traffic analytics platform built with PyShark, Pandas, and Streamlit Version 2, processing 904,720 MAWI backbone packets and identifying 6,403 TCP retransmissions." name="description"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            paper: "#F5F7F8",
-            panel: "#FFFFFF",
-            ink: "#0D1B2A",
-            muted: "#566573",
-            line: "#E1E6EA",
-            signal: "#0AA5A9",
-            signalink: "#0A6E70",
-            amber: "#E8833A",
-            navy: "#102A43"
+            paper: "#07111F",
+            panel: "#0C1929",
+            ink: "#EAF4FF",
+            muted: "#8FA4B8",
+            line: "#20344A",
+            signal: "#38E8E1",
+            signalink: "#8AFFF8",
+            amber: "#FFB35C",
+            navy: "#06101C"
           },
           fontFamily: {
             display: ["Sora", "sans-serif"],
@@ -39,22 +38,21 @@
       }
     };
   </script>
-
-  <style>
+<style>
     html { scroll-behavior: smooth; }
-    body { background:#F5F7F8; color:#0D1B2A; }
-    ::selection { background:#0AA5A9; color:#fff; }
-    a:focus-visible { outline:2px solid #0AA5A9; outline-offset:3px; border-radius:4px; }
+    body { background:#07111F; color:#EAF4FF; }
+    ::selection { background:#38E8E1; color:#fff; }
+    a:focus-visible { outline:2px solid #38E8E1; outline-offset:3px; border-radius:4px; }
     .eyebrow { letter-spacing:.18em; }
     .prose-copy p { margin-top:.9rem; line-height:1.78; }
     .prose-copy ul { margin-top:.8rem; padding-left:1.25rem; }
     .prose-copy li { margin:.42rem 0; line-height:1.65; }
-    .prose-copy li::marker { color:#0AA5A9; }
-    .section-card { background:#fff; border:1px solid #E1E6EA; border-radius:18px; padding:1.4rem; }
+    .prose-copy li::marker { color:#38E8E1; }
+    .section-card { background:#0C1929; border:1px solid #20344A; border-radius:18px; padding:1.4rem; }
     .metric-value { font-variant-numeric: tabular-nums; }
-    .toc-link.active { color:#0A6E70; font-weight:600; }
-    .code-card { background:#102A43; color:#D9EAF2; border-radius:14px; overflow:auto; }
-    .signal-line { background:linear-gradient(90deg,#0AA5A9,#64D8D8); }
+    .toc-link.active { color:#8AFFF8; font-weight:600; }
+    .code-card { background:#06101C; color:#D9EAF2; border-radius:14px; overflow:auto; }
+    .signal-line { background:linear-gradient(90deg,#38E8E1,#7C5CFF); }
     .step-number { box-shadow:0 0 0 5px #E8F7F7; }
     .project-button {
       display:inline-flex;
@@ -69,18 +67,18 @@
       transition:.2s ease;
     }
     .project-button-primary {
-      background:#0AA5A9;
+      background:#38E8E1;
       color:#fff;
-      border:1px solid #0AA5A9;
+      border:1px solid #38E8E1;
     }
-    .project-button-primary:hover { background:#0A6E70; border-color:#0A6E70; }
+    .project-button-primary:hover { background:#8AFFF8; border-color:#8AFFF8; }
     .project-button-secondary {
-      background:#fff;
-      color:#0D1B2A;
-      border:1px solid #E1E6EA;
+      background:#0C1929;
+      color:#EAF4FF;
+      border:1px solid #20344A;
     }
-    .project-button-secondary:hover { color:#0A6E70; border-color:#0AA5A9; }
-    .status-complete { color:#0A6E70; background:#E8F7F7; border-color:#BDE9E9; }
+    .project-button-secondary:hover { color:#8AFFF8; border-color:#38E8E1; }
+    .status-complete { color:#8AFFF8; background:#E8F7F7; border-color:#BDE9E9; }
     .status-progress { color:#9A4D12; background:#FFF2E8; border-color:#F4C6A4; }
     .chart-placeholder {
       background:
@@ -88,521 +86,474 @@
         repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(13,27,42,.05) 32px);
     }
     .kpi-card { transition:transform .18s ease,border-color .18s ease; }
-    .kpi-card:hover,.kpi-card.active { transform:translateY(-3px); border-color:#0AA5A9; }
+    .kpi-card:hover,.kpi-card.active { transform:translateY(-3px); border-color:#38E8E1; }
+  
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
+      background-image:radial-gradient(circle at 20% 20%,rgba(56,232,225,.10),transparent 28%),radial-gradient(circle at 82% 15%,rgba(124,92,255,.12),transparent 26%),radial-gradient(circle at 55% 80%,rgba(255,179,92,.06),transparent 24%); }
+    body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:60; opacity:.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E"); }
+    .cursor-glow { position:fixed; width:320px; height:320px; border-radius:999px; pointer-events:none; z-index:-1; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(56,232,225,.11),transparent 68%); transition:opacity .25s ease; }
+    .scanline { position:relative; overflow:hidden; }
+    .scanline::after { content:""; position:absolute; left:0; right:0; height:1px; top:-10%; background:linear-gradient(90deg,transparent,rgba(56,232,225,.75),transparent); animation:scan 5s linear infinite; }
+    @keyframes scan { to { top:110%; } }
+    .neon-edge { box-shadow:0 0 0 1px rgba(56,232,225,.05),0 18px 55px -32px rgba(56,232,225,.45); }
+    .github-pill { display:inline-flex; align-items:center; gap:.45rem; border:1px solid #20344A; border-radius:999px; padding:.48rem .75rem; font:500 11px "IBM Plex Mono",monospace; color:#8FA4B8; transition:.2s ease; }
+    .github-pill:hover { color:#EAF4FF; border-color:#38E8E1; background:rgba(56,232,225,.08); transform:translateY(-1px); }
+    .project-link { display:inline-flex; align-items:center; gap:.45rem; font:500 12px "IBM Plex Mono",monospace; color:#8AFFF8; }
+    .project-link:hover { color:#fff; }
+    .lab-console { font-family:"IBM Plex Mono",monospace; color:#8AFFF8; text-shadow:0 0 14px rgba(56,232,225,.25); }
+    @media (prefers-reduced-motion:reduce){ .scanline::after{animation:none}.cursor-glow{display:none} }
+
   </style>
 </head>
-
 <body class="font-sans antialiased">
-
-  <header class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur">
-    <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
-      <a href="../index.html" class="inline-flex items-center gap-2 font-mono text-[12.5px] text-muted transition-colors hover:text-signalink">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M19 12H5M11 18l-6-6 6-6"/>
-        </svg>
+<header class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur">
+<div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
+<a class="inline-flex items-center gap-2 font-mono text-[12.5px] text-muted transition-colors hover:text-signalink" href="../index.html">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14">
+<path d="M19 12H5M11 18l-6-6 6-6"></path>
+</svg>
         back to portfolio
       </a>
-
-      <div class="flex items-center gap-2">
-        <a href="../index.html#projects" class="hidden rounded border border-line px-2.5 py-1 font-mono text-[12px] text-muted transition hover:border-signal hover:text-signalink sm:inline-flex">all projects</a>
-        <a href="../assets/resume.pdf" class="rounded border border-line px-2.5 py-1 font-mono text-[12px] text-ink transition hover:border-signal hover:text-signalink">résumé</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="mx-auto max-w-6xl px-5 py-10 md:py-16">
-
-    <!-- Hero -->
-    <section class="relative overflow-hidden rounded-[28px] border border-line bg-panel px-6 py-8 shadow-soft md:px-10 md:py-12">
-      <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-signal/10 blur-3xl"></div>
-
-      <div class="relative grid gap-8 lg:grid-cols-[1.35fr_.65fr] lg:items-end">
-        <div>
-          <div class="mb-5 flex flex-wrap items-center gap-3 font-mono text-[11px] text-muted">
-            <span class="eyebrow">PERSONAL PROJECT</span>
-            <span class="h-1 w-1 rounded-full bg-signal"></span>
-            <span>ONGOING</span>
-          </div>
-
-          <h1 class="max-w-3xl font-display text-[2.25rem] font-bold leading-[1.04] tracking-tight text-ink md:text-[3.7rem]">
+<div class="flex items-center gap-2">
+<a class="hidden rounded border border-line px-2.5 py-1 font-mono text-[12px] text-muted transition hover:border-signal hover:text-signalink sm:inline-flex" href="../index.html#projects">all projects</a>
+<a class="rounded border border-line px-2.5 py-1 font-mono text-[12px] text-ink transition hover:border-signal hover:text-signalink" href="../assets/resume.pdf">résumé</a>
+</div>
+</div>
+</header>
+<main class="mx-auto max-w-6xl px-5 py-10 md:py-16">
+<!-- Hero -->
+<section class="relative overflow-hidden rounded-[28px] border border-line bg-panel px-6 py-8 shadow-soft md:px-10 md:py-12 scanline neon-edge">
+<div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-signal/10 blur-3xl"></div>
+<div class="relative grid gap-8 lg:grid-cols-[1.35fr_.65fr] lg:items-end">
+<div>
+<div class="mb-5 flex flex-wrap items-center gap-3 font-mono text-[11px] text-muted">
+<span class="eyebrow">PERSONAL PROJECT</span>
+<span class="h-1 w-1 rounded-full bg-signal"></span>
+<span>ONGOING</span>
+</div>
+<h1 class="max-w-3xl font-display text-[2.25rem] font-bold leading-[1.04] tracking-tight text-ink md:text-[3.7rem]">
             MAWI Traffic Analyzer
           </h1>
-
-          <p class="mt-5 max-w-3xl text-[1.05rem] leading-8 text-muted md:text-[1.16rem]">
+<p class="mt-5 max-w-3xl text-[1.05rem] leading-8 text-muted md:text-[1.16rem]">
             An end-to-end system that transforms real backbone packet captures into structured network features, reliability metrics, and an interactive Streamlit dashboard.
           </p>
-
-          <div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px]">
-            <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Python</span>
-            <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">PyShark / TShark</span>
-            <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Pandas</span>
-            <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Streamlit</span>
-            <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">TCP/IP</span>
-            <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Git / GitHub</span>
-          </div>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <!-- Replace this URL with the exact MAWI repository URL if the repository name differs. -->
-            <a href="https://github.com/Philakin/mawi-network-analysis" target="_blank" rel="noopener noreferrer"
-               class="project-button project-button-primary">
+<div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px]">
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Python</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">PyShark / TShark</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Pandas</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Streamlit</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">TCP/IP</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Git / GitHub</span>
+</div>
+<div class="mt-6 flex flex-wrap gap-3">
+<!-- Replace this URL with the exact MAWI repository URL if the repository name differs. -->
+<a class="project-button project-button-primary" href="https://github.com/Philakin/mawi-network-analytics" rel="noopener noreferrer" target="_blank">
               View GitHub
             </a>
-            <!-- Replace #dashboard with the deployed Streamlit URL after deployment. -->
-            <a href="#dashboard" class="project-button project-button-secondary">
+<!-- Replace #dashboard with the deployed Streamlit URL after deployment. -->
+<a class="project-button project-button-secondary" href="#dashboard">
               View Dashboard Details
             </a>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-line bg-paper p-5">
-          <p class="font-mono text-[10.5px] uppercase tracking-[.16em] text-muted">Project focus</p>
-          <p class="mt-3 text-sm leading-6 text-ink">
+</div>
+</div>
+<div class="rounded-2xl border border-line bg-paper p-5">
+<p class="font-mono text-[10.5px] uppercase tracking-[.16em] text-muted">Project focus</p>
+<p class="mt-3 text-sm leading-6 text-ink">
             Network reliability, retransmission behavior, protocol composition, time-window feature engineering, and scalable PCAP analysis.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- KPI grid -->
-    <section class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
-      <article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="Structured packet records with the required IP-layer fields after parsing the one-million-packet sample.">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Packets parsed</p>
-        <p class="metric-value mt-2 font-display text-2xl font-bold">904,720</p>
-      </article>
-      <article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="TCP events isolated with Wireshark's tcp.analysis.retransmission field.">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Retransmissions</p>
-        <p class="metric-value mt-2 font-display text-2xl font-bold">6,403</p>
-      </article>
-      <article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="Explainable features spanning volume, protocol composition, endpoint activity, packet size, and reliability.">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Engineered features</p>
-        <p class="metric-value mt-2 font-display text-2xl font-bold">17</p>
-      </article>
-      <article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="The 3.12-second sample was divided into 32 high-resolution observations for trend analysis.">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">100 ms windows</p>
-        <p class="metric-value mt-2 font-display text-2xl font-bold">32</p>
-      </article>
-    </section>
-    <p id="kpiDetail" class="mt-3 min-h-6 text-center font-mono text-[11px] text-muted">Click a metric to see what it represents.</p>
-
-    <div class="mt-10 grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
-
-      <!-- Sidebar -->
-      <aside class="hidden lg:block">
-        <div class="sticky top-24 rounded-2xl border border-line bg-panel p-4">
-          <p class="mb-3 font-mono text-[10px] uppercase tracking-[.15em] text-muted">On this page</p>
-          <nav class="space-y-1 text-sm">
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#overview">Overview</a>
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#status">Current status</a>
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#architecture">Architecture</a>
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#pipeline">Pipeline</a>
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#features">Features</a>
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#dashboard">Dashboard</a>
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#results">Results</a>
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#challenges">Challenges</a>
-            <a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#roadmap">Roadmap</a>
-          </nav>
-        </div>
-      </aside>
-
-      <!-- Main case study -->
-      <div class="min-w-0 space-y-8">
-
-        <section id="overview" class="section-card prose-copy scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">01 — OVERVIEW</p>
-          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">From raw backbone traffic to usable network insight</h2>
-
-          <p class="text-muted">
+</div>
+<div class="mt-5 rounded-xl border border-line bg-navy/80 p-3 lab-console text-[11px]">$ tshark → pandas → 17 features → Streamlit V2 <span class="text-amber">[pipeline ready]</span></div></div>
+</section>
+<!-- KPI grid -->
+<section class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+<article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="Structured packet records with the required IP-layer fields after parsing the one-million-packet sample.">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Packets parsed</p>
+<p class="metric-value mt-2 font-display text-2xl font-bold">904,720</p>
+</article>
+<article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="TCP events isolated with Wireshark's tcp.analysis.retransmission field.">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Retransmissions</p>
+<p class="metric-value mt-2 font-display text-2xl font-bold">6,403</p>
+</article>
+<article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="Explainable features spanning volume, protocol composition, endpoint activity, packet size, and reliability.">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Engineered features</p>
+<p class="metric-value mt-2 font-display text-2xl font-bold">17</p>
+</article>
+<article class="kpi-card cursor-pointer rounded-2xl border border-line bg-panel p-5 shadow-soft" data-detail="The 3.12-second sample was divided into 32 high-resolution observations for trend analysis.">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">100 ms windows</p>
+<p class="metric-value mt-2 font-display text-2xl font-bold">32</p>
+</article>
+</section>
+<p class="mt-3 min-h-6 text-center font-mono text-[11px] text-muted" id="kpiDetail">Click a metric to see what it represents.</p>
+<div class="mt-10 grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
+<!-- Sidebar -->
+<aside class="hidden lg:block">
+<div class="sticky top-24 rounded-2xl border border-line bg-panel p-4">
+<p class="mb-3 font-mono text-[10px] uppercase tracking-[.15em] text-muted">On this page</p>
+<nav class="space-y-1 text-sm">
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#overview">Overview</a>
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#status">Current status</a>
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#architecture">Architecture</a>
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#pipeline">Pipeline</a>
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#features">Features</a>
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#dashboard">Dashboard</a>
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#results">Results</a>
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#challenges">Challenges</a>
+<a class="toc-link block rounded-lg px-2 py-1.5 text-muted hover:bg-paper hover:text-signalink" href="#roadmap">Roadmap</a>
+</nav>
+</div>
+</aside>
+<!-- Main case study -->
+<div class="min-w-0 space-y-8">
+<section class="section-card prose-copy scroll-mt-24" id="overview">
+<p class="eyebrow font-mono text-[10px] text-signalink">01 — OVERVIEW</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">From raw backbone traffic to usable network insight</h2>
+<p class="text-muted">
             Modern backbone networks can generate hundreds of thousands of packets per second. Wireshark is excellent for inspecting individual frames, but manually reviewing nearly one million packets is not a practical way to understand traffic behavior, reliability, or protocol trends.
           </p>
-
-          <p class="text-muted">
+<p class="text-muted">
             This project builds a repeatable analytics pipeline around a public MAWI backbone capture. It parses packet-level data, identifies TCP retransmissions, engineers time-windowed features, and exposes the results through an interactive dashboard designed for exploratory network analysis.
           </p>
-
-          <div class="mt-6 grid gap-4 md:grid-cols-2">
-            <div class="rounded-xl border border-line bg-paper p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Problem</p>
-              <p class="mt-2 text-sm leading-6 text-ink">Raw PCAP files are detailed but difficult to summarize at scale.</p>
-            </div>
-            <div class="rounded-xl border border-line bg-paper p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Solution</p>
-              <p class="mt-2 text-sm leading-6 text-ink">Convert packets into structured features and interactive network visualizations.</p>
-            </div>
-          </div>
-        </section>
-
-
-        <section id="status" class="section-card scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">02 — CURRENT STATUS</p>
-          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What is complete and what comes next</h2>
-          <p class="mt-3 leading-7 text-muted">
+<div class="mt-6 grid gap-4 md:grid-cols-2">
+<div class="rounded-xl border border-line bg-paper p-4">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Problem</p>
+<p class="mt-2 text-sm leading-6 text-ink">Raw PCAP files are detailed but difficult to summarize at scale.</p>
+</div>
+<div class="rounded-xl border border-line bg-paper p-4">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Solution</p>
+<p class="mt-2 text-sm leading-6 text-ink">Convert packets into structured features and interactive network visualizations.</p>
+</div>
+</div>
+</section>
+<section class="section-card scroll-mt-24" id="status">
+<p class="eyebrow font-mono text-[10px] text-signalink">02 — CURRENT STATUS</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What is complete and what comes next</h2>
+<p class="mt-3 leading-7 text-muted">
             The one-million-packet prototype is now fully connected from packet parsing through Streamlit Version 2. Future components are clearly separated from the capabilities already implemented.
           </p>
-
-          <div class="mt-6 grid gap-4 md:grid-cols-2">
-            <div class="rounded-xl border border-line bg-paper p-5">
-              <span class="status-complete inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">Completed</span>
-              <ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
-                <li>One-million-packet MAWI development sample</li>
-                <li>904,720 successfully parsed packet records</li>
-                <li>6,403 TCP retransmissions identified</li>
-                <li>17 features across 32 windows at 100 ms resolution</li>
-                <li>Streamlit Version 2 with tabs, filters, KPI cards, charts, data tables, and CSV export</li>
-                <li>Clean GitHub repository structure and reproducible scripts</li>
-              </ul>
-            </div>
-
-            <div class="rounded-xl border border-line bg-paper p-5">
-              <span class="status-progress inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">In progress / planned</span>
-              <ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
-                <li>Public deployment of the Streamlit dashboard</li>
-                <li>Top talkers, port analytics, flow-level features, and non-IP packet handling</li>
-                <li>Batch processing for larger portions of the original 19 GB capture</li>
-                <li>REST API, React frontend, and Docker deployment</li>
-                <li>Machine-learning experiments after a larger observation dataset is available</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section id="architecture" class="section-card scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">03 — SYSTEM ARCHITECTURE</p>
-          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">A modular analytics pipeline</h2>
-          <p class="mt-3 max-w-3xl leading-7 text-muted">
+<div class="mt-6 grid gap-4 md:grid-cols-2">
+<div class="rounded-xl border border-line bg-paper p-5">
+<span class="status-complete inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">Completed</span>
+<ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
+<li>One-million-packet MAWI development sample</li>
+<li>904,720 successfully parsed packet records</li>
+<li>6,403 TCP retransmissions identified</li>
+<li>17 features across 32 windows at 100 ms resolution</li>
+<li>Streamlit Version 2 with tabs, filters, KPI cards, charts, data tables, and CSV export</li>
+<li>Clean GitHub repository structure and reproducible scripts</li>
+</ul>
+</div>
+<div class="rounded-xl border border-line bg-paper p-5">
+<span class="status-progress inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">In progress / planned</span>
+<ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
+<li>Public deployment of the Streamlit dashboard</li>
+<li>Top talkers, port analytics, flow-level features, and non-IP packet handling</li>
+<li>Batch processing for larger portions of the original 19 GB capture</li>
+<li>REST API, React frontend, and Docker deployment</li>
+<li>Machine-learning experiments after a larger observation dataset is available</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section-card scroll-mt-24" id="architecture">
+<p class="eyebrow font-mono text-[10px] text-signalink">03 — SYSTEM ARCHITECTURE</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">A modular analytics pipeline</h2>
+<p class="mt-3 max-w-3xl leading-7 text-muted">
             Each stage is separated so the parser, feature engineering logic, and dashboard can be tested and improved independently.
           </p>
-
-          <div class="mt-6 grid gap-3 md:grid-cols-7 md:items-center">
-            <div class="rounded-xl border border-line bg-paper p-4 text-center">
-              <p class="font-mono text-[10px] text-muted">INPUT</p>
-              <p class="mt-2 text-sm font-semibold">MAWI PCAP</p>
-            </div>
-            <div class="hidden text-center text-xl text-signal md:block">→</div>
-            <div class="rounded-xl border border-line bg-paper p-4 text-center">
-              <p class="font-mono text-[10px] text-muted">PARSE</p>
-              <p class="mt-2 text-sm font-semibold">PyShark</p>
-            </div>
-            <div class="hidden text-center text-xl text-signal md:block">→</div>
-            <div class="rounded-xl border border-line bg-paper p-4 text-center">
-              <p class="font-mono text-[10px] text-muted">ENGINEER</p>
-              <p class="mt-2 text-sm font-semibold">Pandas</p>
-            </div>
-            <div class="hidden text-center text-xl text-signal md:block">→</div>
-            <div class="rounded-xl border border-line bg-paper p-4 text-center">
-              <p class="font-mono text-[10px] text-muted">PRESENT</p>
-              <p class="mt-2 text-sm font-semibold">Streamlit</p>
-            </div>
-          </div>
-
-          <div class="mt-5 rounded-xl border border-line bg-paper p-4">
-            <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] text-muted">
-              <span>PCAP</span><span class="text-signal">→</span>
-              <span>packet-level CSV</span><span class="text-signal">→</span>
-              <span>retransmission + protocol summaries</span><span class="text-signal">→</span>
-              <span>100 ms feature windows</span><span class="text-signal">→</span>
-              <span>dashboard</span>
-            </div>
-          </div>
-        </section>
-
-        <section id="pipeline" class="scroll-mt-24">
-          <div class="mb-5">
-            <p class="eyebrow font-mono text-[10px] text-signalink">04 — PROCESSING PIPELINE</p>
-            <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">How the first 1M-packet sample was processed</h2>
-          </div>
-
-          <div class="space-y-4">
-            <article class="section-card">
-              <div class="flex gap-4">
-                <div class="step-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal font-mono text-sm font-semibold text-white">1</div>
-                <div>
-                  <h3 class="font-display text-lg font-semibold">Sample the original capture</h3>
-                  <p class="mt-2 leading-7 text-muted">
+<div class="mt-6 grid gap-3 md:grid-cols-7 md:items-center">
+<div class="rounded-xl border border-line bg-paper p-4 text-center">
+<p class="font-mono text-[10px] text-muted">INPUT</p>
+<p class="mt-2 text-sm font-semibold">MAWI PCAP</p>
+</div>
+<div class="hidden text-center text-xl text-signal md:block">→</div>
+<div class="rounded-xl border border-line bg-paper p-4 text-center">
+<p class="font-mono text-[10px] text-muted">PARSE</p>
+<p class="mt-2 text-sm font-semibold">PyShark</p>
+</div>
+<div class="hidden text-center text-xl text-signal md:block">→</div>
+<div class="rounded-xl border border-line bg-paper p-4 text-center">
+<p class="font-mono text-[10px] text-muted">ENGINEER</p>
+<p class="mt-2 text-sm font-semibold">Pandas</p>
+</div>
+<div class="hidden text-center text-xl text-signal md:block">→</div>
+<div class="rounded-xl border border-line bg-paper p-4 text-center">
+<p class="font-mono text-[10px] text-muted">PRESENT</p>
+<p class="mt-2 text-sm font-semibold">Streamlit</p>
+</div>
+</div>
+<div class="mt-5 rounded-xl border border-line bg-paper p-4">
+<div class="flex flex-wrap items-center gap-2 font-mono text-[11px] text-muted">
+<span>PCAP</span><span class="text-signal">→</span>
+<span>packet-level CSV</span><span class="text-signal">→</span>
+<span>retransmission + protocol summaries</span><span class="text-signal">→</span>
+<span>100 ms feature windows</span><span class="text-signal">→</span>
+<span>dashboard</span>
+</div>
+</div>
+</section>
+<section class="scroll-mt-24" id="pipeline">
+<div class="mb-5">
+<p class="eyebrow font-mono text-[10px] text-signalink">04 — PROCESSING PIPELINE</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">How the first 1M-packet sample was processed</h2>
+</div>
+<div class="space-y-4">
+<article class="section-card">
+<div class="flex gap-4">
+<div class="step-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal font-mono text-sm font-semibold text-white">1</div>
+<div>
+<h3 class="font-display text-lg font-semibold">Sample the original capture</h3>
+<p class="mt-2 leading-7 text-muted">
                     Development began with approximately one million packets extracted from the original 19 GB MAWI capture. This kept iteration manageable while preserving realistic backbone traffic characteristics.
                   </p>
-                </div>
-              </div>
-            </article>
-
-            <article class="section-card">
-              <div class="flex gap-4">
-                <div class="step-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal font-mono text-sm font-semibold text-white">2</div>
-                <div>
-                  <h3 class="font-display text-lg font-semibold">Parse packet fields</h3>
-                  <p class="mt-2 leading-7 text-muted">
+</div>
+</div>
+</article>
+<article class="section-card">
+<div class="flex gap-4">
+<div class="step-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal font-mono text-sm font-semibold text-white">2</div>
+<div>
+<h3 class="font-display text-lg font-semibold">Parse packet fields</h3>
+<p class="mt-2 leading-7 text-muted">
                     PyShark and TShark extracted packet number, capture time, source and destination IPs, transport protocol, and packet length. The resulting structured dataset contained 904,720 packets with the required IP-layer fields.
                   </p>
-                </div>
-              </div>
-            </article>
-
-            <article class="section-card">
-              <div class="flex gap-4">
-                <div class="step-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal font-mono text-sm font-semibold text-white">3</div>
-                <div>
-                  <h3 class="font-display text-lg font-semibold">Identify TCP retransmissions</h3>
-                  <p class="mt-2 leading-7 text-muted">
+</div>
+</div>
+</article>
+<article class="section-card">
+<div class="flex gap-4">
+<div class="step-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal font-mono text-sm font-semibold text-white">3</div>
+<div>
+<h3 class="font-display text-lg font-semibold">Identify TCP retransmissions</h3>
+<p class="mt-2 leading-7 text-muted">
                     Wireshark’s TCP analysis field <code class="rounded bg-paper px-1.5 py-0.5 font-mono text-[12px] text-signalink">tcp.analysis.retransmission</code> was used to isolate 6,403 retransmission events for reliability analysis.
                   </p>
-                </div>
-              </div>
-            </article>
-
-            <article class="section-card">
-              <div class="flex gap-4">
-                <div class="step-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal font-mono text-sm font-semibold text-white">4</div>
-                <div>
-                  <h3 class="font-display text-lg font-semibold">Aggregate into 100 ms windows</h3>
-                  <p class="mt-2 leading-7 text-muted">
+</div>
+</div>
+</article>
+<article class="section-card">
+<div class="flex gap-4">
+<div class="step-number flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal font-mono text-sm font-semibold text-white">4</div>
+<div>
+<h3 class="font-display text-lg font-semibold">Aggregate into 100 ms windows</h3>
+<p class="mt-2 leading-7 text-muted">
                     The sample spans about 3.12 seconds. One-second aggregation produced only four observations, so 100-millisecond windows were selected to create 32 higher-resolution observations.
                   </p>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="features" class="section-card scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">04 — FEATURE ENGINEERING</p>
-          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Seventeen explainable network features</h2>
-          <p class="mt-3 leading-7 text-muted">
+</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section-card scroll-mt-24" id="features">
+<p class="eyebrow font-mono text-[10px] text-signalink">04 — FEATURE ENGINEERING</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Seventeen explainable network features</h2>
+<p class="mt-3 leading-7 text-muted">
             The feature table summarizes what happened during each 100 ms interval, making the capture easier to visualize and suitable for future machine-learning experiments.
           </p>
-
-          <div class="mt-6 grid gap-4 md:grid-cols-2">
-            <div class="rounded-xl border border-line bg-paper p-5">
-              <h3 class="font-display font-semibold">Traffic volume</h3>
-              <ul class="mt-3 space-y-2 text-sm text-muted">
-                <li>Packet count</li>
-                <li>Total bytes</li>
-                <li>Average, minimum, and maximum packet length</li>
-                <li>Packet-length standard deviation</li>
-              </ul>
-            </div>
-
-            <div class="rounded-xl border border-line bg-paper p-5">
-              <h3 class="font-display font-semibold">Protocol composition</h3>
-              <ul class="mt-3 space-y-2 text-sm text-muted">
-                <li>TCP, UDP, ICMP, and other counts</li>
-                <li>TCP percentage</li>
-                <li>UDP percentage</li>
-              </ul>
-            </div>
-
-            <div class="rounded-xl border border-line bg-paper p-5">
-              <h3 class="font-display font-semibold">Endpoint activity</h3>
-              <ul class="mt-3 space-y-2 text-sm text-muted">
-                <li>Unique source IP count</li>
-                <li>Unique destination IP count</li>
-              </ul>
-            </div>
-
-            <div class="rounded-xl border border-line bg-paper p-5">
-              <h3 class="font-display font-semibold">Reliability</h3>
-              <ul class="mt-3 space-y-2 text-sm text-muted">
-                <li>TCP retransmission count</li>
-                <li>TCP retransmission rate</li>
-                <li>Time-window timestamp</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="code-card mt-5 p-4">
-            <p class="font-mono text-[12px]">retransmission_rate = retransmission_count / tcp_count</p>
-          </div>
-        </section>
-
-        <section id="dashboard" class="scroll-mt-24">
-          <div class="mb-5">
-            <p class="eyebrow font-mono text-[10px] text-signalink">06 — INTERACTIVE DASHBOARD</p>
-            <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Streamlit Version 2: a more complete analytics application</h2>
-            <p class="mt-3 leading-7 text-muted">
+<div class="mt-6 grid gap-4 md:grid-cols-2">
+<div class="rounded-xl border border-line bg-paper p-5">
+<h3 class="font-display font-semibold">Traffic volume</h3>
+<ul class="mt-3 space-y-2 text-sm text-muted">
+<li>Packet count</li>
+<li>Total bytes</li>
+<li>Average, minimum, and maximum packet length</li>
+<li>Packet-length standard deviation</li>
+</ul>
+</div>
+<div class="rounded-xl border border-line bg-paper p-5">
+<h3 class="font-display font-semibold">Protocol composition</h3>
+<ul class="mt-3 space-y-2 text-sm text-muted">
+<li>TCP, UDP, ICMP, and other counts</li>
+<li>TCP percentage</li>
+<li>UDP percentage</li>
+</ul>
+</div>
+<div class="rounded-xl border border-line bg-paper p-5">
+<h3 class="font-display font-semibold">Endpoint activity</h3>
+<ul class="mt-3 space-y-2 text-sm text-muted">
+<li>Unique source IP count</li>
+<li>Unique destination IP count</li>
+</ul>
+</div>
+<div class="rounded-xl border border-line bg-paper p-5">
+<h3 class="font-display font-semibold">Reliability</h3>
+<ul class="mt-3 space-y-2 text-sm text-muted">
+<li>TCP retransmission count</li>
+<li>TCP retransmission rate</li>
+<li>Time-window timestamp</li>
+</ul>
+</div>
+</div>
+<div class="code-card mt-5 p-4">
+<p class="font-mono text-[12px]">retransmission_rate = retransmission_count / tcp_count</p>
+</div>
+</section>
+<section class="scroll-mt-24" id="dashboard">
+<div class="mb-5">
+<p class="eyebrow font-mono text-[10px] text-signalink">06 — INTERACTIVE DASHBOARD</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Streamlit Version 2: a more complete analytics application</h2>
+<p class="mt-3 leading-7 text-muted">
               Version 2 reorganizes the dashboard into focused views rather than one long sequence of charts. A shared time-range filter updates the dashboard, while protocol controls and feature-group selectors make the interface more useful for exploratory analysis.
             </p>
-          </div>
-
-          <div class="grid gap-4 md:grid-cols-2">
-            <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
-              <img src="../assets/overview.png"
-                   alt="MAWI Streamlit Version 2 overview with filters and KPI cards"
-                   class="aspect-[16/10] w-full object-cover" /> 
-              <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
+</div>
+<div class="grid gap-4 md:grid-cols-2">
+<figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
+<img alt="MAWI Streamlit Version 2 overview with filters and KPI cards" class="aspect-[16/10] w-full object-cover" src="../assets/overview.png"/>
+<figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
                 Wide-layout header, filtered KPI cards, analysis controls, and tab-based navigation.
               </figcaption>
-            </figure>
-
-            <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
-              <img src="../assets/reliability.png"
-                   alt="MAWI reliability view showing TCP retransmission count and rate"
-                   class="aspect-[16/10] w-full object-cover" /> 
-              <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
+</figure>
+<figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
+<img alt="MAWI reliability view showing TCP retransmission count and rate" class="aspect-[16/10] w-full object-cover" src="../assets/reliability.png"/>
+<figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
                 Retransmission count, normalized rate, peak reliability metrics, and highest-retransmission windows.
               </figcaption>
-            </figure>
-
-            <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
-              <img src="../assets/traffic.png"
-                   alt="MAWI traffic analysis showing protocol share and endpoint diversity"
-                   class="aspect-[16/10] w-full object-cover" /> 
-              <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
+</figure>
+<figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
+<img alt="MAWI traffic analysis showing protocol share and endpoint diversity" class="aspect-[16/10] w-full object-cover" src="../assets/traffic.png"/>
+<figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
                 Protocol composition, packet-length behavior, and unique source and destination IP activity.
               </figcaption>
-            </figure>
-
-            <figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
-              <img src="../assets/data.png"
-                   alt="MAWI engineered feature table with feature-group selection"
-                   class="aspect-[16/10] w-full object-cover" />
-              <figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
+</figure>
+<figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-soft">
+<img alt="MAWI engineered feature table with feature-group selection" class="aspect-[16/10] w-full object-cover" src="../assets/data.png"/>
+<figcaption class="border-t border-line px-4 py-3 text-sm text-muted">
                 Filterable engineered features, data-quality notes, and downloadable CSV output.
               </figcaption>
-            </figure>
-          </div>
-
-          <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div class="rounded-xl border border-line bg-panel p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Overview</p>
-              <p class="mt-2 text-sm font-semibold">Traffic and reliability KPIs</p>
-            </div>
-            <div class="rounded-xl border border-line bg-panel p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Traffic</p>
-              <p class="mt-2 text-sm font-semibold">Protocols, endpoints, and sizes</p>
-            </div>
-            <div class="rounded-xl border border-line bg-panel p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Reliability</p>
-              <p class="mt-2 text-sm font-semibold">Retransmission count and rate</p>
-            </div>
-            <div class="rounded-xl border border-line bg-panel p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Feature data</p>
-              <p class="mt-2 text-sm font-semibold">Grouped columns and CSV export</p>
-            </div>
-          </div>
-
-          <div class="mt-5 rounded-2xl border border-line bg-panel p-5">
-            <h3 class="font-display font-semibold">Version 2 capabilities</h3>
-            <ul class="mt-3 grid gap-x-8 gap-y-2 text-sm leading-6 text-muted md:grid-cols-2">
-              <li>Global 100 ms time-window range filter</li>
-              <li>Protocol selection controls</li>
-              <li>Five dynamically updated KPI cards</li>
-              <li>Overview, traffic, reliability, and feature-data tabs</li>
-              <li>Packet volume and packet-size trend views</li>
-              <li>Endpoint-diversity and protocol-share views</li>
-              <li>Peak retransmission and traffic metrics</li>
-              <li>Ranked high-retransmission window table</li>
-              <li>Feature-group selection</li>
-              <li>Filtered CSV download</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="results" class="section-card scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">07 — CURRENT RESULTS</p>
-          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Validated outputs from the prototype</h2>
-
-          <div class="mt-6 overflow-x-auto rounded-xl border border-line">
-            <table class="w-full min-w-[560px] border-collapse text-left">
-              <thead class="bg-paper">
-                <tr>
-                  <th class="border-b border-line px-4 py-3 font-mono text-[11px] uppercase tracking-[.12em] text-muted">Metric</th>
-                  <th class="border-b border-line px-4 py-3 font-mono text-[11px] uppercase tracking-[.12em] text-muted">Result</th>
-                  <th class="border-b border-line px-4 py-3 font-mono text-[11px] uppercase tracking-[.12em] text-muted">Purpose</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-line">
-                <tr><td class="px-4 py-3 text-sm">Original capture</td><td class="px-4 py-3 font-mono text-sm">~19 GB</td><td class="px-4 py-3 text-sm text-muted">Full-scale source dataset</td></tr>
-                <tr><td class="px-4 py-3 text-sm">Development sample</td><td class="px-4 py-3 font-mono text-sm">~1M packets</td><td class="px-4 py-3 text-sm text-muted">Fast, repeatable prototyping</td></tr>
-                <tr><td class="px-4 py-3 text-sm">Parsed packets</td><td class="px-4 py-3 font-mono text-sm">904,720</td><td class="px-4 py-3 text-sm text-muted">Structured packet analysis</td></tr>
-                <tr><td class="px-4 py-3 text-sm">TCP retransmissions</td><td class="px-4 py-3 font-mono text-sm">6,403</td><td class="px-4 py-3 text-sm text-muted">Reliability monitoring</td></tr>
-                <tr><td class="px-4 py-3 text-sm">Aggregation interval</td><td class="px-4 py-3 font-mono text-sm">100 ms</td><td class="px-4 py-3 text-sm text-muted">Higher temporal resolution</td></tr>
-                <tr><td class="px-4 py-3 text-sm">Feature windows</td><td class="px-4 py-3 font-mono text-sm">32</td><td class="px-4 py-3 text-sm text-muted">Dashboard observations</td></tr>
-                <tr><td class="px-4 py-3 text-sm">Engineered features</td><td class="px-4 py-3 font-mono text-sm">17</td><td class="px-4 py-3 text-sm text-muted">Structured analytics and future ML input</td></tr>
-                <tr><td class="px-4 py-3 text-sm">Dashboard release</td><td class="px-4 py-3 font-mono text-sm">Streamlit V2</td><td class="px-4 py-3 text-sm text-muted">Tabs, filters, charts, tables, and export</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section id="challenges" class="scroll-mt-24">
-          <div class="mb-5">
-            <p class="eyebrow font-mono text-[10px] text-signalink">08 — ENGINEERING CHALLENGES</p>
-            <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What required the most reasoning</h2>
-          </div>
-
-          <div class="grid gap-4 md:grid-cols-2">
-            <article class="section-card">
-              <h3 class="font-display font-semibold">Large files</h3>
-              <p class="mt-2 text-sm leading-6 text-muted">The 19 GB source capture required a smaller representative sample for rapid iteration and debugging.</p>
-            </article>
-            <article class="section-card">
-              <h3 class="font-display font-semibold">Mixed timestamp formats</h3>
-              <p class="mt-2 text-sm leading-6 text-muted">Some values included microseconds while others ended on exact seconds, requiring mixed-format datetime parsing.</p>
-            </article>
-            <article class="section-card">
-              <h3 class="font-display font-semibold">Window selection</h3>
-              <p class="mt-2 text-sm leading-6 text-muted">A 100 ms interval was selected after one-second windows produced too few observations for useful trend analysis.</p>
-            </article>
-            <article class="section-card">
-              <h3 class="font-display font-semibold">Data and Git hygiene</h3>
-              <p class="mt-2 text-sm leading-6 text-muted">Raw PCAPs, virtual environments, and the large packet-level CSV are excluded from source control while reproducible scripts remain versioned.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="roadmap" class="section-card scroll-mt-24">
-          <p class="eyebrow font-mono text-[10px] text-signalink">09 — ROADMAP</p>
-          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Planned evolution of the platform</h2>
-
-          <div class="mt-6 space-y-5">
-            <div class="relative pl-8">
-              <span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-signal"></span>
-              <div class="absolute left-[5px] top-5 h-[calc(100%+10px)] w-px bg-line"></div>
-              <h3 class="font-display font-semibold">Deploy and extend Streamlit Version 2</h3>
-              <p class="mt-1 text-sm leading-6 text-muted">Publish the current dashboard, add top talkers and port analytics, and introduce deeper drill-down views.</p>
-            </div>
-            <div class="relative pl-8">
-              <span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-signal"></span>
-              <div class="absolute left-[5px] top-5 h-[calc(100%+10px)] w-px bg-line"></div>
-              <h3 class="font-display font-semibold">Advanced traffic features</h3>
-              <p class="mt-1 text-sm leading-6 text-muted">Interarrival statistics, burst intensity, TCP flags, five-tuple flows, and non-IP packet analysis.</p>
-            </div>
-            <div class="relative pl-8">
-              <span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-signal"></span>
-              <div class="absolute left-[5px] top-5 h-[calc(100%+10px)] w-px bg-line"></div>
-              <h3 class="font-display font-semibold">Scale beyond the prototype</h3>
-              <p class="mt-1 text-sm leading-6 text-muted">Chunked and batch processing for larger portions of the original 19 GB capture.</p>
-            </div>
-            <div class="relative pl-8">
-              <span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-amber"></span>
-              <h3 class="font-display font-semibold">Full-stack expansion</h3>
-              <p class="mt-1 text-sm leading-6 text-muted">REST API, React interface, Docker deployment, and later machine-learning experiments.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="rounded-[24px] bg-navy px-6 py-8 text-white md:px-8">
-          <p class="eyebrow font-mono text-[10px] text-signal">FINAL THOUGHTS</p>
-          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">More than a packet-analysis script</h2>
-          <p class="mt-4 max-w-3xl leading-7 text-slate-300">
+</figure>
+</div>
+<div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+<div class="rounded-xl border border-line bg-panel p-4">
+<p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Overview</p>
+<p class="mt-2 text-sm font-semibold">Traffic and reliability KPIs</p>
+</div>
+<div class="rounded-xl border border-line bg-panel p-4">
+<p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Traffic</p>
+<p class="mt-2 text-sm font-semibold">Protocols, endpoints, and sizes</p>
+</div>
+<div class="rounded-xl border border-line bg-panel p-4">
+<p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Reliability</p>
+<p class="mt-2 text-sm font-semibold">Retransmission count and rate</p>
+</div>
+<div class="rounded-xl border border-line bg-panel p-4">
+<p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Feature data</p>
+<p class="mt-2 text-sm font-semibold">Grouped columns and CSV export</p>
+</div>
+</div>
+<div class="mt-5 rounded-2xl border border-line bg-panel p-5">
+<h3 class="font-display font-semibold">Version 2 capabilities</h3>
+<ul class="mt-3 grid gap-x-8 gap-y-2 text-sm leading-6 text-muted md:grid-cols-2">
+<li>Global 100 ms time-window range filter</li>
+<li>Protocol selection controls</li>
+<li>Five dynamically updated KPI cards</li>
+<li>Overview, traffic, reliability, and feature-data tabs</li>
+<li>Packet volume and packet-size trend views</li>
+<li>Endpoint-diversity and protocol-share views</li>
+<li>Peak retransmission and traffic metrics</li>
+<li>Ranked high-retransmission window table</li>
+<li>Feature-group selection</li>
+<li>Filtered CSV download</li>
+</ul>
+</div>
+</section>
+<section class="section-card scroll-mt-24" id="results">
+<p class="eyebrow font-mono text-[10px] text-signalink">07 — CURRENT RESULTS</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Validated outputs from the prototype</h2>
+<div class="mt-6 overflow-x-auto rounded-xl border border-line">
+<table class="w-full min-w-[560px] border-collapse text-left">
+<thead class="bg-paper">
+<tr>
+<th class="border-b border-line px-4 py-3 font-mono text-[11px] uppercase tracking-[.12em] text-muted">Metric</th>
+<th class="border-b border-line px-4 py-3 font-mono text-[11px] uppercase tracking-[.12em] text-muted">Result</th>
+<th class="border-b border-line px-4 py-3 font-mono text-[11px] uppercase tracking-[.12em] text-muted">Purpose</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-line">
+<tr><td class="px-4 py-3 text-sm">Original capture</td><td class="px-4 py-3 font-mono text-sm">~19 GB</td><td class="px-4 py-3 text-sm text-muted">Full-scale source dataset</td></tr>
+<tr><td class="px-4 py-3 text-sm">Development sample</td><td class="px-4 py-3 font-mono text-sm">~1M packets</td><td class="px-4 py-3 text-sm text-muted">Fast, repeatable prototyping</td></tr>
+<tr><td class="px-4 py-3 text-sm">Parsed packets</td><td class="px-4 py-3 font-mono text-sm">904,720</td><td class="px-4 py-3 text-sm text-muted">Structured packet analysis</td></tr>
+<tr><td class="px-4 py-3 text-sm">TCP retransmissions</td><td class="px-4 py-3 font-mono text-sm">6,403</td><td class="px-4 py-3 text-sm text-muted">Reliability monitoring</td></tr>
+<tr><td class="px-4 py-3 text-sm">Aggregation interval</td><td class="px-4 py-3 font-mono text-sm">100 ms</td><td class="px-4 py-3 text-sm text-muted">Higher temporal resolution</td></tr>
+<tr><td class="px-4 py-3 text-sm">Feature windows</td><td class="px-4 py-3 font-mono text-sm">32</td><td class="px-4 py-3 text-sm text-muted">Dashboard observations</td></tr>
+<tr><td class="px-4 py-3 text-sm">Engineered features</td><td class="px-4 py-3 font-mono text-sm">17</td><td class="px-4 py-3 text-sm text-muted">Structured analytics and future ML input</td></tr>
+<tr><td class="px-4 py-3 text-sm">Dashboard release</td><td class="px-4 py-3 font-mono text-sm">Streamlit V2</td><td class="px-4 py-3 text-sm text-muted">Tabs, filters, charts, tables, and export</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="scroll-mt-24" id="challenges">
+<div class="mb-5">
+<p class="eyebrow font-mono text-[10px] text-signalink">08 — ENGINEERING CHALLENGES</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What required the most reasoning</h2>
+</div>
+<div class="grid gap-4 md:grid-cols-2">
+<article class="section-card">
+<h3 class="font-display font-semibold">Large files</h3>
+<p class="mt-2 text-sm leading-6 text-muted">The 19 GB source capture required a smaller representative sample for rapid iteration and debugging.</p>
+</article>
+<article class="section-card">
+<h3 class="font-display font-semibold">Mixed timestamp formats</h3>
+<p class="mt-2 text-sm leading-6 text-muted">Some values included microseconds while others ended on exact seconds, requiring mixed-format datetime parsing.</p>
+</article>
+<article class="section-card">
+<h3 class="font-display font-semibold">Window selection</h3>
+<p class="mt-2 text-sm leading-6 text-muted">A 100 ms interval was selected after one-second windows produced too few observations for useful trend analysis.</p>
+</article>
+<article class="section-card">
+<h3 class="font-display font-semibold">Data and Git hygiene</h3>
+<p class="mt-2 text-sm leading-6 text-muted">Raw PCAPs, virtual environments, and the large packet-level CSV are excluded from source control while reproducible scripts remain versioned.</p>
+</article>
+</div>
+</section>
+<section class="section-card scroll-mt-24" id="roadmap">
+<p class="eyebrow font-mono text-[10px] text-signalink">09 — ROADMAP</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Planned evolution of the platform</h2>
+<div class="mt-6 space-y-5">
+<div class="relative pl-8">
+<span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-signal"></span>
+<div class="absolute left-[5px] top-5 h-[calc(100%+10px)] w-px bg-line"></div>
+<h3 class="font-display font-semibold">Deploy and extend Streamlit Version 2</h3>
+<p class="mt-1 text-sm leading-6 text-muted">Publish the current dashboard, add top talkers and port analytics, and introduce deeper drill-down views.</p>
+</div>
+<div class="relative pl-8">
+<span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-signal"></span>
+<div class="absolute left-[5px] top-5 h-[calc(100%+10px)] w-px bg-line"></div>
+<h3 class="font-display font-semibold">Advanced traffic features</h3>
+<p class="mt-1 text-sm leading-6 text-muted">Interarrival statistics, burst intensity, TCP flags, five-tuple flows, and non-IP packet analysis.</p>
+</div>
+<div class="relative pl-8">
+<span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-signal"></span>
+<div class="absolute left-[5px] top-5 h-[calc(100%+10px)] w-px bg-line"></div>
+<h3 class="font-display font-semibold">Scale beyond the prototype</h3>
+<p class="mt-1 text-sm leading-6 text-muted">Chunked and batch processing for larger portions of the original 19 GB capture.</p>
+</div>
+<div class="relative pl-8">
+<span class="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-amber"></span>
+<h3 class="font-display font-semibold">Full-stack expansion</h3>
+<p class="mt-1 text-sm leading-6 text-muted">REST API, React interface, Docker deployment, and later machine-learning experiments.</p>
+</div>
+</div>
+</section>
+<section class="rounded-[24px] bg-navy px-6 py-8 text-white md:px-8">
+<p class="eyebrow font-mono text-[10px] text-signal">FINAL THOUGHTS</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">More than a packet-analysis script</h2>
+<p class="mt-4 max-w-3xl leading-7 text-slate-300">
             The current implementation is a validated prototype that connects packet parsing, network reliability analysis, feature engineering, and a multi-view Streamlit Version 2 application. It demonstrates how raw network data can be transformed into a reusable analytics product rather than stopping at manual inspection.
           </p>
-        </section>
-
-      </div>
-    </div>
-
-    <div class="mt-12 flex items-center justify-between border-t border-line pt-6">
-      <a href="energy.html" class="font-mono text-[12.5px] text-muted transition-colors hover:text-signalink">← Cell-Site Energy</a>
-      <a href="../index.html#projects" class="font-mono text-[12.5px] text-signalink">all projects</a>
-    </div>
-  </main>
-
-  <footer class="border-t border-line">
-    <div class="mx-auto max-w-6xl px-5 py-6 font-mono text-[12px] text-muted">
+</section>
+</div>
+</div>
+<div class="mt-12 flex items-center justify-between border-t border-line pt-6">
+<a class="font-mono text-[12.5px] text-muted transition-colors hover:text-signalink" href="energy.html">← Cell-Site Energy</a>
+<a class="font-mono text-[12.5px] text-signalink" href="../index.html#projects">all projects</a>
+</div>
+</main>
+<footer class="border-t border-line">
+<div class="mx-auto max-w-6xl px-5 py-6 font-mono text-[12px] text-muted">
       © <span id="yr"></span> Philips Akinbami
     </div>
-  </footer>
-
-  <script>
+</footer>
+<script>
     document.getElementById("yr").textContent = new Date().getFullYear();
 
     const sections = [...document.querySelectorAll("section[id]")];
@@ -625,5 +576,10 @@
       card.classList.add("active"); detail.textContent=card.dataset.detail;
     }));
   </script>
+<script>
+    const glow=document.createElement('div'); glow.className='cursor-glow'; document.body.appendChild(glow);
+    window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
+    document.querySelectorAll('[data-magnetic]').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.05}px,${(e.clientY-r.top-r.height/2)*.08}px)`});el.addEventListener('pointerleave',()=>el.style.transform='');});
+</script>
 </body>
 </html>

@@ -1,237 +1,244 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5G Integration Lab — Philips Akinbami</title>
-  <meta name="description" content="A virtual 5G standalone integration and test lab using srsRAN, Open5GS, Docker, Ansible, Python, and Linux." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>5G Integration Lab — Philips Akinbami</title>
+<meta content="A virtual 5G standalone integration and test lab using srsRAN, Open5GS, Docker, Ansible, Python, and Linux." name="description"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%230AA5A9' stroke-width='2'%3E%3Ccircle cx='6' cy='16' r='3'/%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='26' cy='16' r='3'/%3E%3Ccircle cx='16' cy='26' r='3'/%3E%3Cpath d='M8 14l6-6M18 8l6 6M24 18l-6 6M14 24l-6-6'/%3E%3C/g%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
     tailwind.config = { theme: { extend: {
-      colors: { paper:"#F5F7F8", panel:"#FFFFFF", ink:"#0D1B2A", muted:"#566573", line:"#E1E6EA", signal:"#0AA5A9", signalink:"#0A6E70", amber:"#E8833A", navy:"#102A43" },
+      colors: { paper:"#07111F", panel:"#0C1929", ink:"#EAF4FF", muted:"#8FA4B8", line:"#20344A", signal:"#38E8E1", signalink:"#8AFFF8", amber:"#FFB35C", navy:"#06101C" },
       fontFamily: { display:["Sora","sans-serif"], sans:["IBM Plex Sans","sans-serif"], mono:["IBM Plex Mono","monospace"] },
       boxShadow: { soft:"0 12px 35px rgba(13,27,42,.07)" }
     }}};
   </script>
-  <style>
+<style>
     html { scroll-behavior:smooth; }
-    body { background:#F5F7F8; color:#0D1B2A; }
-    ::selection { background:#0AA5A9; color:#fff; }
+    body { background:#07111F; color:#EAF4FF; }
+    ::selection { background:#38E8E1; color:#fff; }
     .eyebrow { letter-spacing:.18em; }
-    a:focus-visible { outline:2px solid #0AA5A9; outline-offset:3px; border-radius:4px; }
-    .section-card { background:#fff; border:1px solid #E1E6EA; border-radius:18px; padding:1.4rem; }
+    a:focus-visible { outline:2px solid #38E8E1; outline-offset:3px; border-radius:4px; }
+    .section-card { background:#0C1929; border:1px solid #20344A; border-radius:18px; padding:1.4rem; }
     .prose-copy p { margin-top:.9rem; line-height:1.78; }
     .prose-copy li { margin:.42rem 0; line-height:1.65; }
-    .prose-copy li::marker { color:#0AA5A9; }
+    .prose-copy li::marker { color:#38E8E1; }
     .status-planned { color:#9A4D12; background:#FFF2E8; border-color:#F4C6A4; }
-    .flow-arrow { color:#0AA5A9; font-size:1.25rem; text-align:center; }
-    .nf-button { width:68px;height:68px;border-radius:999px;border:1px solid #E1E6EA;background:#fff;font:600 12px "IBM Plex Mono";transition:.2s ease;position:relative; }
+    .flow-arrow { color:#38E8E1; font-size:1.25rem; text-align:center; }
+    .nf-button { width:68px;height:68px;border-radius:999px;border:1px solid #20344A;background:#0C1929;font:600 12px "IBM Plex Mono";transition:.2s ease;position:relative; }
     .nf-button::after { content:"";position:absolute;right:5px;top:5px;width:8px;height:8px;border-radius:999px; }
-    .nf-button.live::after { background:#0AA5A9;box-shadow:0 0 0 4px rgba(10,165,169,.12); }
-    .nf-button.next::after { background:#E8833A; }
-    .nf-button:hover,.nf-button.active { transform:translateY(-4px) scale(1.04);border-color:#0AA5A9; }
+    .nf-button.live::after { background:#38E8E1;box-shadow:0 0 0 4px rgba(10,165,169,.12); }
+    .nf-button.next::after { background:#FFB35C; }
+    .nf-button:hover,.nf-button.active { transform:translateY(-4px) scale(1.04);border-color:#38E8E1; }
+  
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
+      background-image:radial-gradient(circle at 20% 20%,rgba(56,232,225,.10),transparent 28%),radial-gradient(circle at 82% 15%,rgba(124,92,255,.12),transparent 26%),radial-gradient(circle at 55% 80%,rgba(255,179,92,.06),transparent 24%); }
+    body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:60; opacity:.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E"); }
+    .cursor-glow { position:fixed; width:320px; height:320px; border-radius:999px; pointer-events:none; z-index:-1; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(56,232,225,.11),transparent 68%); transition:opacity .25s ease; }
+    .scanline { position:relative; overflow:hidden; }
+    .scanline::after { content:""; position:absolute; left:0; right:0; height:1px; top:-10%; background:linear-gradient(90deg,transparent,rgba(56,232,225,.75),transparent); animation:scan 5s linear infinite; }
+    @keyframes scan { to { top:110%; } }
+    .neon-edge { box-shadow:0 0 0 1px rgba(56,232,225,.05),0 18px 55px -32px rgba(56,232,225,.45); }
+    .github-pill { display:inline-flex; align-items:center; gap:.45rem; border:1px solid #20344A; border-radius:999px; padding:.48rem .75rem; font:500 11px "IBM Plex Mono",monospace; color:#8FA4B8; transition:.2s ease; }
+    .github-pill:hover { color:#EAF4FF; border-color:#38E8E1; background:rgba(56,232,225,.08); transform:translateY(-1px); }
+    .project-link { display:inline-flex; align-items:center; gap:.45rem; font:500 12px "IBM Plex Mono",monospace; color:#8AFFF8; }
+    .project-link:hover { color:#fff; }
+    .lab-console { font-family:"IBM Plex Mono",monospace; color:#8AFFF8; text-shadow:0 0 14px rgba(56,232,225,.25); }
+    @media (prefers-reduced-motion:reduce){ .scanline::after{animation:none}.cursor-glow{display:none} }
+
   </style>
 </head>
 <body class="font-sans antialiased">
-  <header class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur">
-    <div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-5">
-      <a href="../index.html" class="inline-flex items-center gap-2 font-mono text-[12.5px] text-muted transition-colors hover:text-signalink">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+<header class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur">
+<div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-5">
+<a class="inline-flex items-center gap-2 font-mono text-[12.5px] text-muted transition-colors hover:text-signalink" href="../index.html">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>
         back to portfolio
       </a>
-      <a href="../assets/resume.pdf" class="rounded border border-line px-2.5 py-1 font-mono text-[12px] text-ink transition hover:border-signal hover:text-signalink">résumé</a>
-    </div>
-  </header>
-
-  <main class="mx-auto max-w-5xl px-5 py-10 md:py-16">
-    <section class="relative overflow-hidden rounded-[28px] border border-line bg-panel px-6 py-8 shadow-soft md:px-10 md:py-12">
-      <div class="absolute -right-16 -top-20 h-64 w-64 rounded-full bg-signal/10 blur-3xl"></div>
-      <div class="relative">
-        <div class="mb-5 flex flex-wrap items-center gap-3 font-mono text-[11px] text-muted">
-          <span class="eyebrow">PERSONAL PROJECT</span>
-          <span class="h-1 w-1 rounded-full bg-signal"></span>
-          <span class="status-planned rounded-full border px-2.5 py-1">ACTIVE BUILD</span>
-        </div>
-        <h1 class="max-w-4xl font-display text-[2.25rem] font-bold leading-[1.04] tracking-tight md:text-[3.6rem]">
+<a class="rounded border border-line px-2.5 py-1 font-mono text-[12px] text-ink transition hover:border-signal hover:text-signalink" href="../assets/resume.pdf">résumé</a>
+</div>
+</header>
+<main class="mx-auto max-w-5xl px-5 py-10 md:py-16">
+<section class="relative overflow-hidden rounded-[28px] border border-line bg-panel px-6 py-8 shadow-soft md:px-10 md:py-12 scanline neon-edge">
+<div class="absolute -right-16 -top-20 h-64 w-64 rounded-full bg-signal/10 blur-3xl"></div>
+<div class="relative">
+<div class="mb-5 flex flex-wrap items-center gap-3 font-mono text-[11px] text-muted">
+<span class="eyebrow">PERSONAL PROJECT</span>
+<span class="h-1 w-1 rounded-full bg-signal"></span>
+<span class="status-planned rounded-full border px-2.5 py-1">ACTIVE BUILD</span>
+</div>
+<h1 class="max-w-4xl font-display text-[2.25rem] font-bold leading-[1.04] tracking-tight md:text-[3.6rem]">
           5G Integration Lab
         </h1>
-        <p class="mt-5 max-w-3xl text-[1.05rem] leading-8 text-muted md:text-[1.14rem]">
+<p class="mt-5 max-w-3xl text-[1.05rem] leading-8 text-muted md:text-[1.14rem]">
           A virtual 5G standalone environment that builds Open5GS from source, deploys core network functions in Docker, validates service discovery and registration, and is progressing toward an end-to-end srsRAN UE-to-core data path.
         </p>
-        <div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px]">
-          <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">srsRAN</span>
-          <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Open5GS</span>
-          <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">srsUE / ZeroMQ</span>
-          <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Docker</span>
-          <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Ansible</span>
-          <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Python</span>
-          <span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Linux</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="mt-6 grid gap-3 sm:grid-cols-3">
-      <article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Functions deployed</p>
-        <p class="mt-2 font-display text-lg font-semibold">NRF · UDR · UDM · AUSF · AMF</p>
-      </article>
-      <article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Container build</p>
-        <p class="mt-2 font-display text-lg font-semibold">Open5GS built from source</p>
-      </article>
-      <article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
-        <p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Validated</p>
-        <p class="mt-2 font-display text-lg font-semibold">SBI discovery + NGAP listener</p>
-      </article>
-    </section>
-
-    <section class="mt-8 section-card">
-      <div class="flex flex-wrap items-end justify-between gap-3"><div><p class="eyebrow font-mono text-[10px] text-signalink">LIVE CORE MAP</p><h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Click a network function</h2></div><span id="coreStatus" class="font-mono text-[11px] text-muted">5 deployed · 2 next</span></div>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-3" id="coreMap">
-        <button class="nf-button live" data-name="NRF" data-role="Registers network functions and provides service discovery.">NRF</button>
-        <button class="nf-button live" data-name="UDR" data-role="Stores subscriber and policy data through MongoDB-backed access.">UDR</button>
-        <button class="nf-button live" data-name="UDM" data-role="Manages subscriber identity and authentication data.">UDM</button>
-        <button class="nf-button live" data-name="AUSF" data-role="Handles 5G authentication procedures.">AUSF</button>
-        <button class="nf-button live" data-name="AMF" data-role="Terminates N2/NGAP signaling and manages access and mobility.">AMF</button>
-        <button class="nf-button next" data-name="SMF" data-role="Next: manages PDU sessions and controls the UPF.">SMF</button>
-        <button class="nf-button next" data-name="UPF" data-role="Next: carries user-plane traffic toward external data networks.">UPF</button>
-      </div>
-      <div id="nfDetail" class="mt-5 rounded-xl border border-line bg-paper p-4 text-sm leading-6 text-muted">Select a function to see its role in the lab.</div>
-    </section>
-
-    <div class="mt-8 space-y-8">
-      <section class="section-card prose-copy">
-        <p class="eyebrow font-mono text-[10px] text-signalink">01 — WHY THIS PROJECT</p>
-        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Moving from traffic analysis to wireless system integration</h2>
-        <p class="text-muted">
+<div class="mt-6 flex flex-wrap gap-2 font-mono text-[11px]">
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">srsRAN</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Open5GS</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">srsUE / ZeroMQ</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Docker</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Ansible</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Python</span>
+<span class="rounded-full border border-line bg-paper px-3 py-1 text-muted">Linux</span>
+</div><a class="github-pill mt-5" data-magnetic="" href="https://github.com/Philakin/automated-5g-test-lab" rel="noopener noreferrer" target="_blank">View source on GitHub ↗</a>
+</div>
+</section>
+<section class="mt-6 grid gap-3 sm:grid-cols-3">
+<article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Functions deployed</p>
+<p class="mt-2 font-display text-lg font-semibold">NRF · UDR · UDM · AUSF · AMF</p>
+</article>
+<article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Container build</p>
+<p class="mt-2 font-display text-lg font-semibold">Open5GS built from source</p>
+</article>
+<article class="rounded-2xl border border-line bg-panel p-5 shadow-soft">
+<p class="font-mono text-[10px] uppercase tracking-[.14em] text-muted">Validated</p>
+<p class="mt-2 font-display text-lg font-semibold">SBI discovery + NGAP listener</p>
+</article>
+</section><section class="mt-6 rounded-2xl border border-line bg-navy/90 p-5 neon-edge scanline"><div class="flex items-center justify-between"><p class="font-mono text-[10px] tracking-[.16em] text-muted">LIVE CORE SNAPSHOT</p><span class="font-mono text-[10px] text-signalink">● DISCOVERY ACTIVE</span></div><div class="mt-4 grid gap-2 font-mono text-[11px] sm:grid-cols-5"><span class="rounded border border-line p-2 text-signalink">NRF registered</span><span class="rounded border border-line p-2 text-signalink">UDR connected</span><span class="rounded border border-line p-2 text-signalink">UDM discovered</span><span class="rounded border border-line p-2 text-signalink">AUSF discovered</span><span class="rounded border border-line p-2 text-signalink">AMF listening</span></div></section>
+<section class="mt-8 section-card">
+<div class="flex flex-wrap items-end justify-between gap-3"><div><p class="eyebrow font-mono text-[10px] text-signalink">LIVE CORE MAP</p><h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Click a network function</h2></div><span class="font-mono text-[11px] text-muted" id="coreStatus">5 deployed · 2 next</span></div>
+<div class="mt-6 flex flex-wrap items-center justify-center gap-3" id="coreMap">
+<button class="nf-button live" data-name="NRF" data-role="Registers network functions and provides service discovery.">NRF</button>
+<button class="nf-button live" data-name="UDR" data-role="Stores subscriber and policy data through MongoDB-backed access.">UDR</button>
+<button class="nf-button live" data-name="UDM" data-role="Manages subscriber identity and authentication data.">UDM</button>
+<button class="nf-button live" data-name="AUSF" data-role="Handles 5G authentication procedures.">AUSF</button>
+<button class="nf-button live" data-name="AMF" data-role="Terminates N2/NGAP signaling and manages access and mobility.">AMF</button>
+<button class="nf-button next" data-name="SMF" data-role="Next: manages PDU sessions and controls the UPF.">SMF</button>
+<button class="nf-button next" data-name="UPF" data-role="Next: carries user-plane traffic toward external data networks.">UPF</button>
+</div>
+<div class="mt-5 rounded-xl border border-line bg-paper p-4 text-sm leading-6 text-muted" id="nfDetail">Select a function to see its role in the lab.</div>
+</section>
+<div class="mt-8 space-y-8">
+<section class="section-card prose-copy">
+<p class="eyebrow font-mono text-[10px] text-signalink">01 — WHY THIS PROJECT</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Moving from traffic analysis to wireless system integration</h2>
+<p class="text-muted">
           The MAWI project focuses on understanding real backbone traffic after packets have been captured. This project extends that story into wireless systems by building a controlled 5G environment, automating how it is deployed, and testing how the system behaves under normal and faulty conditions.
         </p>
-        <p class="text-muted">
+<p class="text-muted">
           The goal is not to claim a production mobile network or RF lab. It is to create a transparent virtual testbed that demonstrates 5G architecture, Linux networking, automation, test planning, log analysis, and performance measurement.
         </p>
-      </section>
-
-      <section class="section-card">
-        <p class="eyebrow font-mono text-[10px] text-signalink">02 — PLANNED ARCHITECTURE</p>
-        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">A small but complete 5G standalone path</h2>
-        <p class="mt-3 leading-7 text-muted">The first version will keep the architecture intentionally focused so every component has a clear purpose.</p>
-        <div class="mt-6 grid gap-3 md:grid-cols-7 md:items-center">
-          <div class="rounded-xl border border-line bg-paper p-4 text-center"><p class="font-mono text-[10px] text-muted">VIRTUAL UE</p><p class="mt-2 text-sm font-semibold">srsUE</p></div>
-          <div class="flow-arrow hidden md:block">→</div>
-          <div class="rounded-xl border border-line bg-paper p-4 text-center"><p class="font-mono text-[10px] text-muted">RADIO LINK</p><p class="mt-2 text-sm font-semibold">ZeroMQ</p></div>
-          <div class="flow-arrow hidden md:block">→</div>
-          <div class="rounded-xl border border-line bg-paper p-4 text-center"><p class="font-mono text-[10px] text-muted">RAN</p><p class="mt-2 text-sm font-semibold">srsRAN gNB</p></div>
-          <div class="flow-arrow hidden md:block">→</div>
-          <div class="rounded-xl border border-line bg-paper p-4 text-center"><p class="font-mono text-[10px] text-muted">5G CORE</p><p class="mt-2 text-sm font-semibold">Open5GS</p></div>
-        </div>
-        <div class="mt-4 rounded-xl border border-line bg-paper p-4 font-mono text-[11px] text-muted">
+</section>
+<section class="section-card">
+<p class="eyebrow font-mono text-[10px] text-signalink">02 — PLANNED ARCHITECTURE</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">A small but complete 5G standalone path</h2>
+<p class="mt-3 leading-7 text-muted">The first version will keep the architecture intentionally focused so every component has a clear purpose.</p>
+<div class="mt-6 grid gap-3 md:grid-cols-7 md:items-center">
+<div class="rounded-xl border border-line bg-paper p-4 text-center"><p class="font-mono text-[10px] text-muted">VIRTUAL UE</p><p class="mt-2 text-sm font-semibold">srsUE</p></div>
+<div class="flow-arrow hidden md:block">→</div>
+<div class="rounded-xl border border-line bg-paper p-4 text-center"><p class="font-mono text-[10px] text-muted">RADIO LINK</p><p class="mt-2 text-sm font-semibold">ZeroMQ</p></div>
+<div class="flow-arrow hidden md:block">→</div>
+<div class="rounded-xl border border-line bg-paper p-4 text-center"><p class="font-mono text-[10px] text-muted">RAN</p><p class="mt-2 text-sm font-semibold">srsRAN gNB</p></div>
+<div class="flow-arrow hidden md:block">→</div>
+<div class="rounded-xl border border-line bg-paper p-4 text-center"><p class="font-mono text-[10px] text-muted">5G CORE</p><p class="mt-2 text-sm font-semibold">Open5GS</p></div>
+</div>
+<div class="mt-4 rounded-xl border border-line bg-paper p-4 font-mono text-[11px] text-muted">
           Ansible deploys and configures the environment · Python runs tests and parses results · Docker packages core and support services
         </div>
-      </section>
-
-      <section class="section-card">
-        <p class="eyebrow font-mono text-[10px] text-signalink">03 — PLANNED TESTS</p>
-        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What the first release will validate</h2>
-        <div class="mt-6 grid gap-4 md:grid-cols-2">
-          <article class="rounded-xl border border-line bg-paper p-5">
-            <h3 class="font-display font-semibold">Registration and connectivity</h3>
-            <p class="mt-2 text-sm leading-6 text-muted">Verify gNB-to-core connectivity, UE registration, PDU-session establishment, assigned IP connectivity, and external traffic flow.</p>
-          </article>
-          <article class="rounded-xl border border-line bg-paper p-5">
-            <h3 class="font-display font-semibold">Performance testing</h3>
-            <p class="mt-2 text-sm leading-6 text-muted">Measure throughput, latency, packet loss, and test duration using repeatable traffic scenarios.</p>
-          </article>
-          <article class="rounded-xl border border-line bg-paper p-5">
-            <h3 class="font-display font-semibold">Multi-UE load</h3>
-            <p class="mt-2 text-sm leading-6 text-muted">Compare performance as multiple virtual UEs share the same environment and traffic demand increases.</p>
-          </article>
-          <article class="rounded-xl border border-line bg-paper p-5">
-            <h3 class="font-display font-semibold">Failure injection</h3>
-            <p class="mt-2 text-sm leading-6 text-muted">Introduce configuration and service failures, then use logs and automated checks to isolate the likely cause.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section-card">
-        <p class="eyebrow font-mono text-[10px] text-signalink">04 — AUTOMATION PLAN</p>
-        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">How Ansible and Python will support the lab</h2>
-        <div class="mt-5 grid gap-4 md:grid-cols-2">
-          <div class="rounded-xl border border-line bg-paper p-5">
-            <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Ansible</p>
-            <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-muted">
-              <li>Prepare Linux hosts and install dependencies</li>
-              <li>Render gNB, UE, and core configuration templates</li>
-              <li>Start services in the required order</li>
-              <li>Load scenario variables and reset the lab</li>
-              <li>Collect logs and test artifacts</li>
-            </ul>
-          </div>
-          <div class="rounded-xl border border-line bg-paper p-5">
-            <p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Python</p>
-            <ul class="mt-3 list-disc pl-5 text-sm leading-6 text-muted">
-              <li>Check service and registration readiness</li>
-              <li>Run ping and iperf3 test traffic</li>
-              <li>Parse UE, gNB, and core logs</li>
-              <li>Calculate throughput, latency, and loss</li>
-              <li>Generate structured pass/fail reports</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-card">
-        <p class="eyebrow font-mono text-[10px] text-signalink">05 — CURRENT STATUS</p>
-        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Core services are live; the user-plane path comes next</h2>
-        <div class="mt-5 grid gap-4 md:grid-cols-2">
-          <div class="rounded-xl border border-line bg-paper p-5">
-            <span class="inline-flex rounded-full border border-[#BDE9E9] bg-[#E8F7F7] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em] text-signalink">Completed</span>
-            <ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
-              <li>Built Open5GS from source with a multi-stage Docker image</li>
-              <li>Deployed MongoDB, NRF, UDR, UDM, AUSF, and AMF</li>
-              <li>Configured PLMN 001/01, TAC 1, SST 1, SBI, NGAP, and metrics</li>
-              <li>Validated network-function registration and service discovery</li>
-              <li>Confirmed AMF NGAP listening on SCTP port 38412</li>
-            </ul>
-          </div>
-          <div class="rounded-xl border border-line bg-paper p-5">
-            <span class="status-planned inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">Next milestones</span>
-            <ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
-              <li>Add SMF and UPF for session and user-plane traffic</li>
-              <li>Integrate srsRAN gNB and virtual UE through ZeroMQ</li>
-              <li>Validate UE registration and PDU-session establishment</li>
-              <li>Run ping and iperf3 performance tests</li>
-              <li>Automate failure, recovery, and report generation</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-card">
-        <p class="eyebrow font-mono text-[10px] text-signalink">06 — PLANNED DELIVERABLES</p>
-        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What will appear here as development progresses</h2>
-        <div class="mt-5 grid gap-4 sm:grid-cols-2">
-          <div class="rounded-xl border border-dashed border-line bg-paper aspect-[16/10] flex items-center justify-center px-5 text-center font-mono text-[11.5px] text-muted">5G architecture diagram<br><span class="text-[10.5px]">planned artifact</span></div>
-          <div class="rounded-xl border border-dashed border-line bg-paper aspect-[16/10] flex items-center justify-center px-5 text-center font-mono text-[11.5px] text-muted">UE registration and PDU-session evidence<br><span class="text-[10.5px]">planned artifact</span></div>
-          <div class="rounded-xl border border-dashed border-line bg-paper aspect-[16/10] flex items-center justify-center px-5 text-center font-mono text-[11.5px] text-muted">Ansible playbook workflow<br><span class="text-[10.5px]">planned artifact</span></div>
-          <div class="rounded-xl border border-dashed border-line bg-paper aspect-[16/10] flex items-center justify-center px-5 text-center font-mono text-[11.5px] text-muted">Automated KPI and pass/fail report<br><span class="text-[10.5px]">planned artifact</span></div>
-        </div>
-      </section>
-    </div>
-
-    <div class="mt-12 flex items-center justify-between border-t border-line pt-6">
-      <a href="../index.html#projects" class="font-mono text-[12.5px] text-signalink">all projects</a>
-      <a href="energy.html" class="font-mono text-[12.5px] text-muted transition-colors hover:text-signalink">Cell-Site Energy →</a>
-    </div>
-  </main>
-
-  <footer class="border-t border-line">
-    <div class="mx-auto max-w-5xl px-5 py-6 font-mono text-[12px] text-muted">© <span id="yr"></span> Philips Akinbami</div>
-  </footer>
-  <script>
+</section>
+<section class="section-card">
+<p class="eyebrow font-mono text-[10px] text-signalink">03 — PLANNED TESTS</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What the first release will validate</h2>
+<div class="mt-6 grid gap-4 md:grid-cols-2">
+<article class="rounded-xl border border-line bg-paper p-5">
+<h3 class="font-display font-semibold">Registration and connectivity</h3>
+<p class="mt-2 text-sm leading-6 text-muted">Verify gNB-to-core connectivity, UE registration, PDU-session establishment, assigned IP connectivity, and external traffic flow.</p>
+</article>
+<article class="rounded-xl border border-line bg-paper p-5">
+<h3 class="font-display font-semibold">Performance testing</h3>
+<p class="mt-2 text-sm leading-6 text-muted">Measure throughput, latency, packet loss, and test duration using repeatable traffic scenarios.</p>
+</article>
+<article class="rounded-xl border border-line bg-paper p-5">
+<h3 class="font-display font-semibold">Multi-UE load</h3>
+<p class="mt-2 text-sm leading-6 text-muted">Compare performance as multiple virtual UEs share the same environment and traffic demand increases.</p>
+</article>
+<article class="rounded-xl border border-line bg-paper p-5">
+<h3 class="font-display font-semibold">Failure injection</h3>
+<p class="mt-2 text-sm leading-6 text-muted">Introduce configuration and service failures, then use logs and automated checks to isolate the likely cause.</p>
+</article>
+</div>
+</section>
+<section class="section-card">
+<p class="eyebrow font-mono text-[10px] text-signalink">04 — AUTOMATION PLAN</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">How Ansible and Python will support the lab</h2>
+<div class="mt-5 grid gap-4 md:grid-cols-2">
+<div class="rounded-xl border border-line bg-paper p-5">
+<p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Ansible</p>
+<ul class="mt-3 list-disc pl-5 text-sm leading-6 text-muted">
+<li>Prepare Linux hosts and install dependencies</li>
+<li>Render gNB, UE, and core configuration templates</li>
+<li>Start services in the required order</li>
+<li>Load scenario variables and reset the lab</li>
+<li>Collect logs and test artifacts</li>
+</ul>
+</div>
+<div class="rounded-xl border border-line bg-paper p-5">
+<p class="font-mono text-[10px] uppercase tracking-[.13em] text-muted">Python</p>
+<ul class="mt-3 list-disc pl-5 text-sm leading-6 text-muted">
+<li>Check service and registration readiness</li>
+<li>Run ping and iperf3 test traffic</li>
+<li>Parse UE, gNB, and core logs</li>
+<li>Calculate throughput, latency, and loss</li>
+<li>Generate structured pass/fail reports</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section-card">
+<p class="eyebrow font-mono text-[10px] text-signalink">05 — CURRENT STATUS</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">Core services are live; the user-plane path comes next</h2>
+<div class="mt-5 grid gap-4 md:grid-cols-2">
+<div class="rounded-xl border border-line bg-paper p-5">
+<span class="inline-flex rounded-full border border-[#BDE9E9] bg-[#E8F7F7] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em] text-signalink">Completed</span>
+<ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
+<li>Built Open5GS from source with a multi-stage Docker image</li>
+<li>Deployed MongoDB, NRF, UDR, UDM, AUSF, and AMF</li>
+<li>Configured PLMN 001/01, TAC 1, SST 1, SBI, NGAP, and metrics</li>
+<li>Validated network-function registration and service discovery</li>
+<li>Confirmed AMF NGAP listening on SCTP port 38412</li>
+</ul>
+</div>
+<div class="rounded-xl border border-line bg-paper p-5">
+<span class="status-planned inline-flex rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[.12em]">Next milestones</span>
+<ul class="mt-4 space-y-2 text-sm leading-6 text-muted">
+<li>Add SMF and UPF for session and user-plane traffic</li>
+<li>Integrate srsRAN gNB and virtual UE through ZeroMQ</li>
+<li>Validate UE registration and PDU-session establishment</li>
+<li>Run ping and iperf3 performance tests</li>
+<li>Automate failure, recovery, and report generation</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section-card">
+<p class="eyebrow font-mono text-[10px] text-signalink">06 — PLANNED DELIVERABLES</p>
+<h2 class="mt-2 font-display text-2xl font-semibold tracking-tight">What will appear here as development progresses</h2>
+<div class="mt-5 grid gap-4 sm:grid-cols-2">
+<div class="rounded-xl border border-dashed border-line bg-paper aspect-[16/10] flex items-center justify-center px-5 text-center font-mono text-[11.5px] text-muted">5G architecture diagram<br/><span class="text-[10.5px]">planned artifact</span></div>
+<div class="rounded-xl border border-dashed border-line bg-paper aspect-[16/10] flex items-center justify-center px-5 text-center font-mono text-[11.5px] text-muted">UE registration and PDU-session evidence<br/><span class="text-[10.5px]">planned artifact</span></div>
+<div class="rounded-xl border border-dashed border-line bg-paper aspect-[16/10] flex items-center justify-center px-5 text-center font-mono text-[11.5px] text-muted">Ansible playbook workflow<br/><span class="text-[10.5px]">planned artifact</span></div>
+<div class="rounded-xl border border-dashed border-line bg-paper aspect-[16/10] flex items-center justify-center px-5 text-center font-mono text-[11.5px] text-muted">Automated KPI and pass/fail report<br/><span class="text-[10.5px]">planned artifact</span></div>
+</div>
+</section>
+</div>
+<div class="mt-12 flex items-center justify-between border-t border-line pt-6">
+<a class="font-mono text-[12.5px] text-signalink" href="../index.html#projects">all projects</a>
+<a class="font-mono text-[12.5px] text-muted transition-colors hover:text-signalink" href="energy.html">Cell-Site Energy →</a>
+</div>
+</main>
+<footer class="border-t border-line">
+<div class="mx-auto max-w-5xl px-5 py-6 font-mono text-[12px] text-muted">© <span id="yr"></span> Philips Akinbami</div>
+</footer>
+<script>
     document.getElementById("yr").textContent = new Date().getFullYear();
     const detail=document.getElementById("nfDetail");
     document.querySelectorAll(".nf-button").forEach(btn=>btn.addEventListener("click",()=>{
@@ -240,5 +247,10 @@
       detail.innerHTML=`<strong class="text-ink">${btn.dataset.name}</strong> — ${btn.dataset.role}`;
     }));
   </script>
+<script>
+    const glow=document.createElement('div'); glow.className='cursor-glow'; document.body.appendChild(glow);
+    window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
+    document.querySelectorAll('[data-magnetic]').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.05}px,${(e.clientY-r.top-r.height/2)*.08}px)`});el.addEventListener('pointerleave',()=>el.style.transform='');});
+</script>
 </body>
 </html>
